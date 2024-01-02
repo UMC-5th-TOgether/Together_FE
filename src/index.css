@@ -1,0 +1,55 @@
+@import "reset.css";
+
+.root-wrap {
+    position: absolute;
+    top:0;
+    bottom:0;
+    width: 100%;
+}
+
+.header-container {
+    background-color: #333333; 
+}
+
+.header-wrap {
+    height: 64px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-left-wrap {
+    display:flex;
+    
+}
+
+.header-left-wrap ul {
+    display: flex;
+}
+.header-left-wrap li{
+    margin-right: 14px;
+    padding : 25px;
+
+}
+
+.header-right-wrap {
+    display:flex;
+   
+}
+.header-right-wrap ul {
+    display: flex;
+}
+.header-right-wrap li {
+    margin-right: 14px;
+    padding : 25px;
+}
+
+.header-nav-item {
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+    
+
+}
