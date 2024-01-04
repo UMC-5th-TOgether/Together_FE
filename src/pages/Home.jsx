@@ -1,7 +1,14 @@
-import React from 'react'
+import React from "react";
+import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 
-export default function Home() {
+const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <div>
+      <Banner />
+      <Footer />
+    </div>
+  );
+};
+
+export default Home;
