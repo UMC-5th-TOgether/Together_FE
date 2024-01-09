@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './store/LoginStore';
 import Category from "./pages/Category";
 import Chatting from "./pages/Chatting";
 import Friend from "./pages/Friend";
@@ -9,12 +11,14 @@ import Header from "./components/Header";
 import MyPage from "./pages/MyPage";
 import Login from "./pages/Login";
 import Notification from "./pages/Notification";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
     <div className="root-wrap">
     <BrowserRouter>
       <Header />
+      <Provider store={store}>
       <Routes>
         <Route path="/" element= {<Home/>} />
         <Route path="/category" element= {<Category/>} />
@@ -24,8 +28,10 @@ function App() {
         <Route path="/mypage" element= {<MyPage/>} />
         <Route path="/notification" element= {<Notification/>} />
         <Route path="/login" element= {<Login/>} />
+        <Route path="/signup" element= {<SignUp/>} />
         <Route path="/*" element= {<NotFound/>} />
       </Routes>
+      </Provider>
     </BrowserRouter>
     </div>
   );
