@@ -69,7 +69,7 @@ const Banner = () => {
     <div className="banner-container">
       <div className="controls-container">
         <h3 className="Hot">
-          지금 <a>HOT한</a> 모임글{" "}
+          지금 <a>HOT한</a> 모임글
         </h3>
         <h2 className="heading">{slidesData[activeSlide].title}</h2>
         <p className="subheading">{slidesData[activeSlide].subtitle}</p>
@@ -85,7 +85,11 @@ const Banner = () => {
             </span>
           ))}
         </div>
+        <div className="swiper-button-prev"></div>
+        <div className="swiper-pagination"></div>
+        <div className="swiper-button-next"></div>
       </div>
+
       <div className="slides-container">
         <Swiper
           modules={[Pagination, Navigation, Autoplay]}

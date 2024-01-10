@@ -19,6 +19,7 @@
   gap: 10px;
   padding-left: 190px;
   z-index: 20;
+  margin-top: -90px;
 }
 .Hot {
   font-size: 17px;
@@ -63,7 +64,7 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-  color: #ffffff;
+  color: gray;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -75,9 +76,13 @@
   color: #fff;
 }
 
+.swiper-button-prev::after {
+  font-size: 20px;
+}
+
 .swiper-pagination {
-  bottom: 10px; 
-  left: 10px; 
+  bottom: 10px;
+  left: 10px;
   position: absolute;
 }
 
@@ -86,7 +91,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  margin: 0 5px;
+  margin: 120px 5px;
   opacity: 0.5;
 }
 
@@ -97,7 +102,7 @@
 .slides-container {
   grid-column: 2 / 3;
   display: flex;
-  justify-content: right; 
+  justify-content: right;
   align-items: center;
   position: relative;
   height: 100%;
@@ -107,16 +112,16 @@
 
 .swiper-slide {
   display: flex;
-  justify-content: right; 
+  justify-content: right;
   align-items: center;
 }
 
 .swiper-slide img {
-  width: 100%; 
-  height: 100%; 
-  max-width: none; 
+  width: 100%;
+  height: 100%;
+  max-width: none;
   padding: 0px;
-  justify-content: right; 
+  justify-content: right;
 }
 
 .slides-container::after {
@@ -127,25 +132,34 @@
 .swiper-button-prev {
   position: absolute;
   left: calc(50% - 120px);
+  padding: 15px;
   transform: translateY(-50%);
   z-index: 10;
-  margin-top: 85px;
-  margin-left: 25px;
+  margin-top: 110px;
+  margin-left: -650px;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .swiper-button-next {
   position: absolute;
   right: calc(50% - 120px);
+  padding: 15px;
   transform: translateY(-50%);
   z-index: 10;
-  margin-top: 85px;
-  margin-right: 25px;
+  margin-top: 110px;
+  margin-right: 700px;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
+  color: gray;
 }
 
 .swiper-slide {
@@ -158,8 +172,8 @@
 
 .slide-image {
   object-fit: contain;
-  height: 100%; 
-  width: auto; /
+  height: 100%;
+  width: auto;
 }
 
 .slides-container::after {
@@ -180,11 +194,11 @@
 }
 
 .mySwiper {
-  width: 100%; 
+  width: 100%;
 }
 
 .slides-container {
-  overflow-x: auto;
+  overflow-x: hidden;
   grid-column: 2;
 }
 
@@ -200,6 +214,24 @@
 
 .swiper-slide-next {
   justify-content: flex-start;
+}
+
+/* Common Styles  pagination.scss*/
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, 8px);
+  top: var(--swiper-pagination-top, 390px);
+  left: 85px;
+  width: 20%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* 가로 스크롤바를 숨깁니다. */
 }
 
 @media (max-width: 768px) {
