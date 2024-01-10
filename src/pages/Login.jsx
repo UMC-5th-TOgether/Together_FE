@@ -2,18 +2,20 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserEmail, setUserPassword } from "../store/LoginActions";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import googleIcon from '../assets/google-icon.png';
 import naverIcon from '../assets/naver-icon.png';
 import kakaoIcon from '../assets/kakao-icon.png';
 import '../style/Login.css';
-import GoogleLoginButton from "../util/GoogleLogin";
+import { GoogleLoginButton, KakaoLoginButton, NaverLoginButton } from "../util/SocialLogin";
 
 export default function Login() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const email = useSelector((state) => state.login.email);
   const pw = useSelector((state) => state.login.pw);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
   const handleEmail = (e) => {
@@ -51,11 +53,18 @@ export default function Login() {
       // 통신 완료 후 로딩 해제
       setTimeout(() => {
         setIsLoading(false);
+        alert("로그인에 성공했습니다.");
+        navigate('/');
+        // localStorage.setItem('token');
+        // dispatch(setIsLoggedIn(true));
       }, 1500);
     }
     catch (err) {
-      alert("아이디 또는 비밀번호가 틀렸습니다.");
+      alert(err);
     }
+
+    dispatch(setUserEmail('')); // 이메일 상태 초기화
+    dispatch(setUserPassword('')); // 비밀번호 상태 초기화
   };
 
   return (
@@ -112,10 +121,10 @@ export default function Login() {
         <Link onClick={GoogleLoginButton}>
           <img src={googleIcon} alt="google" />
         </Link>
-        <Link to="/">
+        <Link onClick={NaverLoginButton}>
           <img src={naverIcon} alt="naver" />
         </Link>
-        <Link to="/">
+        <Link onClick={KakaoLoginButton}>
           <img src={kakaoIcon} alt="kakao" />
         </Link>
       </div>

@@ -45,7 +45,7 @@
   background-color: #f3f3f3;
 }
 .input-wrap:focus-within {
-  border: 1px solid #015ffa;
+  border: 1px solid #4285f4;
 }
 
 .input {
@@ -81,7 +81,7 @@
   font-size: 14px;
   font-weight: bold;
   border-radius: 0.5em;
-  background-color: #015ffa;
+  background-color: #4285f4;
   margin-top: 40px;
   color: white;
   cursor: pointer;
