@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import postAuthor from '../assets/post-author.png';
 import postUpload from '../assets/post-upload.png';
 import '../style/Posting.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { HashTag } from '../elements/HashTag';
 
 export default function Posting() {
@@ -16,6 +16,8 @@ export default function Posting() {
 
   const categories = ['공연', '운동', '식사', '취미'];
   const gender = ['제한 없음', '여성', '남성'];
+
+  const navigate = useNavigate();
 
   const handleTitleChange = (e) => {
     const newTitle = e.target.value.slice(0, 40);
@@ -46,6 +48,9 @@ export default function Posting() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // const lastPostId = dummy.results[dummy.results.length - 1].id;
+    // navigate(`/postuser/${lastPostId}`);
 
     // const res = await axios.post("http://localhost:8000/", {
     //   title: title,
@@ -165,10 +170,10 @@ export default function Posting() {
         <input type="file" multiple onChange={handleImageUpload} />
 
         <div className="upload">
-          <Link to="/postuser" onSubmit={handleSubmit}>
-            <img className="upload-button" src={postUpload}></img>
+          <Link to="/postuser/:id" onClick={handleSubmit}>
+            <img className="bottom-button" src={postUpload}></img>
           </Link>
-          {/* <button className="upload-button" type="submit">업로드 →</button> */}
+          {/* <button className="bottom-button" type="submit">업로드 →</button> */}
         </div>
       </div>
     </div >

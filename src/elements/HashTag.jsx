@@ -25,9 +25,8 @@ export const HashTag = () => {
     };
 
     return (
-        <div className="hashtag-wrap">
+        <div>
             <input
-                className="hashtag"
                 ref={inputRef}
                 placeholder="최대 3개의 해시태그를 입력할 수 있습니다."
             />

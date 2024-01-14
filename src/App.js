@@ -10,6 +10,7 @@ import MyPage from "./pages/MyPage";
 import Login from "./pages/Login";
 import Notification from "./pages/Notification";
 import PostUser from "./pages/PostUser";
+import { dummy } from "./CategoryDummy";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Route path="/chatting" element= {<Chatting/>} />
         <Route path="/friend" element= {<Friend/>} />
         <Route path="/posting" element= {<Posting/>} />
-        <Route path="/postuser" element= {<PostUser/>} />
+        {/* <Route path="/postuser" element= {<PostUser />} /> */}
+        <Route path="/postuser/:id" element={<PostUser component={PostUser}/>} />
         <Route path="/mypage" element= {<MyPage/>} />
         <Route path="/notification" element= {<Notification/>} />
         <Route path="/login" element= {<Login/>} />
