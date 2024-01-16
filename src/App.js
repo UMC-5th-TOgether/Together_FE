@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import MyPage from "./pages/MyPage";
 import Login from "./pages/Login";
 import Notification from "./pages/Notification";
+import { MatchingSend } from "./pages/MatchingSend";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/mypage" element= {<MyPage/>} />
         <Route path="/notification" element= {<Notification/>} />
         <Route path="/login" element= {<Login/>} />
+        <Route path="/matching" element= {<MatchingSend/>} />
         <Route path="/*" element= {<NotFound/>} />
       </Routes>
     </BrowserRouter>
