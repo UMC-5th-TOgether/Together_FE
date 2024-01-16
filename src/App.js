@@ -10,7 +10,6 @@ import MyPage from "./pages/MyPage";
 import Login from "./pages/Login";
 import Notification from "./pages/Notification";
 import PostUser from "./pages/PostUser";
-import { dummy } from "./CategoryDummy";
 
 function App() {
   return (

@@ -12,7 +12,7 @@ export default function Posting() {
   const [selectedGender, setSelectedGender] = useState('');
   const [recruitmentCount, setRecruitmentCount] = useState('');
   const [content, setContent] = useState('');
-  const [images, setImages] = useState([]);
+  const [selectedImages, setSelectedImages] = useState([]);
 
   const categories = ['공연', '운동', '식사', '취미'];
   const gender = ['제한 없음', '여성', '남성'];
@@ -40,14 +40,29 @@ export default function Posting() {
     setRecruitmentCount(newRecruitmentCount);
   };
 
-  const handleImageUpload = (e) => {
-    const newImages = Array.from(e.target.files);
-    setImages([...images, ...newImages]);
+  const handleImageChange = (e) => {
+    const files = e.target.files;
+    if (files) {
+      const newImages = Array.from(files).map(file => ({
+        file,
+        preview: URL.createObjectURL(file)
+      }));
+      setSelectedImages(prevImages => [...prevImages, ...newImages]);
+    }
   };
 
+  const handleRemoveImage = (index) => {
+    const newImages = [...selectedImages];
+    newImages.splice(index, 1);
+    setSelectedImages(newImages);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log('Title:', title);
+    console.log('Content:', content);
+    console.log('Selected Images:', selectedImages);
 
     // const lastPostId = dummy.results[dummy.results.length - 1].id;
     // navigate(`/postuser/${lastPostId}`);
@@ -166,16 +181,31 @@ export default function Posting() {
         <br />
         <br />
 
-        <div className="input-title">이미지 추가</div>
-        <input type="file" multiple onChange={handleImageUpload} />
-
-        <div className="upload">
-          <Link to="/postuser/:id" onClick={handleSubmit}>
-            <img className="bottom-button" src={postUpload}></img>
-          </Link>
-          {/* <button className="bottom-button" type="submit">업로드 →</button> */}
+        <div className="input-title">이미지</div>
+        <div className="images-wrap">
+          <input
+            id="imageInput"
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleImageChange}
+          />
         </div>
+        {selectedImages.map((image, index) => (
+          <div key={index} className="image-preview">
+            <button className="remove-image-button" onClick={() => handleRemoveImage(index)}>x</button>
+            <img src={image.preview} alt={`Selected ${index + 1}`} className="selected-image" />
+          </div>
+        ))}
       </div>
-    </div >
+
+
+      <div className="upload">
+        <Link to="/postuser/:id" onClick={handleSubmit}>
+          <img className="bottom-button" src={postUpload}></img>
+        </Link>
+        {/* <button className="bottom-button" type="submit">업로드 →</button> */}
+      </div>
+    </div>
   );
 };

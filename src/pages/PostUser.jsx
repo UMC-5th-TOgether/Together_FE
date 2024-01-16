@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { dummy } from '../CategoryDummy';
+import { dummy } from '../PostUserDummy';
 import postUser from '../assets/post-user.png';
 import matching from '../assets/matching-application.png';
 import chatting from '../assets/chatting.png';
@@ -13,6 +13,7 @@ const PostUser = () => {
     const postId = parseInt(id);
 
     const filteredPosts = dummy.results.filter(post => post.id === postId);
+
     const [comments, setComments] = useState([]);
 
     const [newComment, setNewComment] = useState('');
@@ -21,9 +22,7 @@ const PostUser = () => {
         return <div>No matching post found.</div>;
     }
 
-    const { title, who, category, date, headcount, gender, hashtag, content } = filteredPosts[0];
-
-    const { nickname, dateCreated, authorGender, age } = who;
+    const { title, author, dateCreated, category, date, headcount, gender, hashtag, content, comment } = filteredPosts[0];
 
     const handleCommentSubmit = () => {
         if (newComment.trim() !== '') {
@@ -38,13 +37,14 @@ const PostUser = () => {
             <div className="banner-container">
                 <img className="banner" src={postUser} alt="Posting img" />
             </div>
+            <br />
 
             <div className="wrap">
                 <div className="author-profile">
                     <img className="profile-picture" src={profilePicture} alt="Profile" />
                     <div className="profile">
-                        <span className="nickname">닉네임{nickname} (성별{authorGender}/나이{age})</span>
-                        <span className="date-created">0000.00.00 00:00{dateCreated}</span>
+                        <span className="nickname">{author.nickname} ({author.authorGender}/{author.age})</span>
+                        <span className="date-created">{dateCreated}</span>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@ const PostUser = () => {
                         <div className="hashtag-wrap">성별</div>
                         <span className="js-content"> {gender}</span>
                     </div>
-                    <div className="content-wrap"> {content} </div>
+                    <div className="content"> {content} </div>
                 </div>
 
                 <div className="wrap">
@@ -81,7 +81,7 @@ const PostUser = () => {
                     {/* {images} */}
                 </div>
 
-                <div className="upload">
+                <div className="button-wrap">
                     <Link to="/chatting">
                         <img className="bottom-button" src={chatting}></img>
                     </Link>
@@ -89,8 +89,34 @@ const PostUser = () => {
                         <img className="bottom-button" src={matching}></img>
                     </Link>
                 </div>
+
             </div>
             <br />
+
+            {comment.map((comment, id) => (
+
+                <div className="comment-post">
+                    <div className="wrap">
+                        <div className="comment-profile">
+                            <img className="profile-picture" src={profilePicture} alt="Profile" />
+                            <div className="profile">
+                                <span className="nickname">{comment.memberNickname} ({comment.authorGender}/{comment.age})</span>
+                                <span className="date-created">{comment.commentDateCreated}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="wrap">
+                        <div key={id} className="comment">
+                            {comment.contents}
+                        </div>
+                        <button
+                            className="comment-button comment-button-right">
+                            답글
+                        </button>
+                    </div>
+                </div>
+            ))
+            }
 
             <div className="input-wrap">
                 <input

@@ -81,12 +81,12 @@ textarea::placeholder {
 
 .wrap {
   display: flex;
-  margin-top: 8px;
+  margin-bottom: 2px;
 }
 
 .upload {
   display: flex;
-  width: 100%;
+  width: 1000px;
   justify-content: flex-end;
   margin-top: 30px;
 }
@@ -120,5 +120,31 @@ label button {
   text-align: start;
   padding: 10px; */
   width: 180px;
-  margin: 5px;
+  margin-left: 5px;
+}
+
+.selected-image {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 10px;
+}
+
+.image-preview {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.remove-image-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 0 3px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-preview:hover .remove-image-button {
+  opacity: 1;
 }
