@@ -10,7 +10,7 @@ export default function ReviewSlide() {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3.3,
+    slidesToShow: 3.28,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,

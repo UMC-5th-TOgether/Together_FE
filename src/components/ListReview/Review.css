@@ -1,5 +1,8 @@
 .Rectangle {
-  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
 }
@@ -16,6 +19,7 @@
 }
 .Yudeng {
   position: absolute;
+  overflow: hidden;
   z-index: -1;
   width: 100%;
   height: 159px;
