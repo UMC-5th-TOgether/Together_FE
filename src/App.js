@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import MyPage from "./pages/MyPage";
 import Login from "./pages/Login";
-import Notification from "./pages/Notification";
+import FriendProfile from "./pages/FriendProfile";
 import FriendList from "./pages/FriendList";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
           <Route path="/friend" element={<FriendList />} />
           <Route path="/posting" element={<Posting />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/notification" element={<Notification />} />
+          <Route path="/FriendProfile" element={<FriendProfile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>

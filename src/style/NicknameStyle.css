@@ -1,0 +1,37 @@
+.nickname-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px; /* Add space at the top of the component */
+}
+
+.avatar-container {
+  margin-top: 30px; /* Space between avatar and text */
+  margin-bottom: 40px; /* Space between avatar and text */
+}
+
+.profile-avatar {
+  width: 120px; /* Adjusted size */
+  height: 120px; /* Maintain aspect ratio for a circle */
+  border-radius: 50%;
+  object-fit: cover;
+}
+.empty-avatar {
+  width: 50px; /* Size of the empty avatar icon */
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.nickname {
+  font-size: 24px; /* Size of the nickname text */
+  margin-top: 16px; /* Margin around the nickname */
+  margin-bottom: 15px;
+}
+
+.introduction {
+  font-size: 14px; /* Size of the introduction text */
+  color: #666; /* Gray color for the introduction text */
+}
