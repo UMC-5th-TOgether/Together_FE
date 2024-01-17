@@ -13,7 +13,7 @@ import Login from "./pages/Login";
 import Notification from "./pages/Notification";
 import PostUser from "./pages/PostUser";
 import SignUp from "./pages/SignUp";
-
+import { MatchingSend } from "./pages/MatchingSend";
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
         <Route path="/notification" element= {<Notification/>} />
         <Route path="/login" element= {<Login/>} />
         <Route path="/signup" element= {<SignUp/>} />
+        <Route path="/matching" element= {<MatchingSend/>} />
         <Route path="/*" element= {<NotFound/>} />
       </Routes>
       </Provider>
