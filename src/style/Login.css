@@ -1,4 +1,8 @@
-.page {
+.login-page {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   position: absolute;
   width: 100%;
   max-width: 500px;
@@ -10,8 +14,7 @@
   flex-direction: column;
 }
 
-.title-wrap {
-  font-family: "Pretendard-SemiBold", sans-serif;
+.login-title-wrap {
   text-align: center;
   margin-top: 80px;
   font-size: 30px;
@@ -19,36 +22,36 @@
   color: #333333;
 }
 
-.message {
+.login-message {
   text-align: center;
   margin-top: 20px;
   color: #b3b3b3;
 }
 
-.content-wrap {
+.login-content-wrap {
   margin-top: 26px;
   flex: 1;
 }
 
-.input-title {
+.login-input-title {
   font-size: 12px;
   font-weight: 600;
   color: #b3b3b3;
   margin-top: 16px;
 }
 
-.input-wrap {
+.login-input-wrap {
   display: flex;
   border-radius: 8px;
   padding: 16px;
   margin-top: 10px;
   background-color: #f3f3f3;
 }
-.input-wrap:focus-within {
+.login-input-wrap:focus-within {
   border: 1px solid #222222;
 }
 
-.input {
+.login-input {
   width: 100%;
   outline: none;
   border: none;
@@ -57,7 +60,7 @@
   font-weight: 400;
 }
 
-.input::placeholder {
+.login-input::placeholder {
   color: #cccccc;
 }
 
@@ -74,7 +77,7 @@
   width: 20px;
 }
 
-.bottom-button {
+.login-bottom-button {
   width: 100%;
   height: 48px;
   border: none;
@@ -87,7 +90,7 @@
   cursor: pointer;
 }
 
-.bottom-button:disabled {
+.login-bottom-button:disabled {
   background-color: #dadada;
   color: white;
 }

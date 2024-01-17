@@ -68,16 +68,16 @@ export default function Login() {
   };
 
   return (
-    <div className="page">
+    <div className="login-page">
 
-      <div className="title-wrap">Log in for an account</div>
-      <div className="message">투게더에 돌아오신 것을 환영해요!</div>
+      <div className="login-title-wrap">Log in for an account</div>
+      <div className="login-message">투게더에 돌아오신 것을 환영해요!</div>
 
-      <div className="content-wrap">
-        <div className="input-title">Email</div>
-        <div className="input-wrap">
+      <div className="login-content-wrap">
+        <div className="login-input-title">Email</div>
+        <div className="login-input-wrap">
           <input
-            className="input"
+            className="login-input"
             type="text"
             value={email}
             placeholder="이메일을 입력하세요."
@@ -85,10 +85,10 @@ export default function Login() {
           />
         </div>
 
-        <div className="input-title">Password</div>
-        <div className="input-wrap">
+        <div className="login-input-title">Password</div>
+        <div className="login-input-wrap">
           <input
-            className="input"
+            className="login-input"
             type="password"
             value={pw}
             placeholder="비밀번호를 입력하세요."
@@ -107,7 +107,7 @@ export default function Login() {
       </div>
 
       <div>
-        <button onClick={onClickConfirmButton} className="bottom-button" disabled={isLoading}>
+        <button onClick={onClickConfirmButton} className="login-bottom-button" disabled={isLoading}>
           {isLoading ? 'Loading...' : 'Log in'}
         </button>
         <div className="additional-links">

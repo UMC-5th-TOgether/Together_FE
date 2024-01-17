@@ -78,15 +78,15 @@ export default function SignUp() {
   };
 
   return (
-    <div className="page">
-      <div className="title-wrap">Sign up for an account</div>
-      <div className="message">투게더와 함께 지금 바로 동반인을 구해보세요!</div>
+    <div className="login-page">
+      <div className="login-title-wrap">Sign up for an account</div>
+      <div className="login-message">투게더와 함께 지금 바로 동반인을 구해보세요!</div>
 
-      <div className="content-wrap">
-        <div className="input-title">Nickname</div>
-        <div className="input-wrap">
+      <div className="login-content-wrap">
+        <div className="login-input-title">Nickname</div>
+        <div className="login-input-wrap">
           <input
-            className="input"
+            className="login-input"
             type="text"
             value={nickname}
             placeholder="닉네임을 입력하세요."
@@ -95,10 +95,10 @@ export default function SignUp() {
         </div>
         {nicknameError && <div className="error">{nicknameError}</div>}
 
-        <div className="input-title">Email</div>
-        <div className="input-wrap">
+        <div className="login-input-title">Email</div>
+        <div className="login-input-wrap">
           <input
-            className="input"
+            className="login-input"
             type="text"
             value={email}
             placeholder="이메일을 입력하세요."
@@ -107,10 +107,10 @@ export default function SignUp() {
         </div>
         {emailError && <div className="error">{emailError}</div>}
 
-        <div className="input-title">Password</div>
-        <div className="input-wrap">
+        <div className="login-input-title">Password</div>
+        <div className="login-input-wrap">
           <input
-            className="input"
+            className="login-input"
             type="password"
             value={pw}
             placeholder="비밀번호를 입력하세요."
@@ -123,7 +123,7 @@ export default function SignUp() {
           <div className="to-login">
             <span>이미 계정이 있으신가요? <a href="/login">Log in</a> </span>
           </div>
-          <button onClick={onClickConfirmButton} className="bottom-button" disabled={isLoading}>
+          <button onClick={onClickConfirmButton} className="login-bottom-button" disabled={isLoading}>
             {isLoading ? 'Loading...' : 'Sign Up'}
           </button>
         </div>

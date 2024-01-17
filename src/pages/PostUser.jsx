@@ -32,61 +32,61 @@ const PostUser = () => {
     };
 
     return (
-        <div className="page">
+        <div className="posting-page">
 
             <div className="banner-container">
                 <img className="banner" src={postUser} alt="Posting img" />
             </div>
             <br />
 
-            <div className="wrap">
-                <div className="author-profile">
-                    <img className="profile-picture" src={profilePicture} alt="Profile" />
-                    <div className="profile">
-                        <span className="nickname">{author.nickname} ({author.authorGender}/{author.age})</span>
-                        <span className="date-created">{dateCreated}</span>
+            <div className="posting-wrap">
+                <div className="posting-author-profile">
+                    <img className="posting-profile-picture" src={profilePicture} alt="Profile" />
+                    <div className="posting-profile">
+                        <span className="posting-nickname">{author.nickname} ({author.authorGender}/{author.age})</span>
+                        <span className="posting-date-created">{dateCreated}</span>
                     </div>
                 </div>
             </div>
 
-            <div className="home-post">
+            <div className="posting-post">
 
-                <div className="home-post-title">{title}</div>
+                <div className="posting-post-title">{title}</div>
                 <br />
 
-                <div className="home-post-content">
-                    <div className="wrap">
-                        <div className="hashtag-wrap">카테고리  </div>
-                        <span className="js-content"> {category}</span>
+                <div className="posting-post-content">
+                    <div className="posting-wrap">
+                        <div className="posting-hashtag-wrap">카테고리  </div>
+                        <span className="posting-li"> {category}</span>
 
-                        <div className="hashtag-wrap">일자</div>
-                        <span className="js-content"> {date}</span>
+                        <div className="posting-hashtag-wrap">일자</div>
+                        <span className="posting-li"> {date}</span>
 
-                        <div className="hashtag-wrap">모집</div>
-                        <span className="js-content"> {headcount}</span>
+                        <div className="posting-hashtag-wrap">모집</div>
+                        <span className="posting-li"> {headcount}</span>
 
-                        <div className="hashtag-wrap">성별</div>
-                        <span className="js-content"> {gender}</span>
+                        <div className="posting-hashtag-wrap">성별</div>
+                        <span className="posting-li"> {gender}</span>
                     </div>
-                    <div className="content"> {content} </div>
+                    <div className="posting-content"> {content} </div>
                 </div>
 
-                <div className="wrap">
+                <div className="posting-wrap">
                     {hashtag.map((tag, tagIndex) => (
-                        <div key={tagIndex} className="hashtag">#{tag}</div>
+                        <div key={tagIndex} className="posting-hashtag">#{tag}</div>
                     ))}
                 </div>
 
-                <div className="wrap">
+                <div className="posting-wrap">
                     {/* {images} */}
                 </div>
 
-                <div className="button-wrap">
+                <div className="posting-button-wrap">
                     <Link to="/chatting">
-                        <img className="bottom-button" src={chatting}></img>
+                        <img className="posting-bottom-button" src={chatting}></img>
                     </Link>
                     <Link to="/matching">
-                        <img className="bottom-button" src={matching}></img>
+                        <img className="posting-bottom-button" src={matching}></img>
                     </Link>
                 </div>
 
@@ -95,22 +95,22 @@ const PostUser = () => {
 
             {comment.map((comment, id) => (
 
-                <div className="comment-post">
-                    <div className="wrap">
-                        <div className="comment-profile">
-                            <img className="profile-picture" src={profilePicture} alt="Profile" />
-                            <div className="profile">
-                                <span className="nickname">{comment.memberNickname} ({comment.authorGender}/{comment.age})</span>
-                                <span className="date-created">{comment.commentDateCreated}</span>
+                <div className="posting-comment-post">
+                    <div className="posting-wrap">
+                        <div className="posting-comment-profile">
+                            <img className="posting-profile-picture" src={profilePicture} alt="Profile" />
+                            <div className="posting-profile">
+                                <span className="posting-nickname">{comment.memberNickname} ({comment.authorGender}/{comment.age})</span>
+                                <span className="posting-date-created">{comment.commentDateCreated}</span>
                             </div>
                         </div>
                     </div>
-                    <div className="wrap">
-                        <div key={id} className="comment">
+                    <div className="posting-wrap">
+                        <div key={id} className="posting-comment">
                             {comment.contents}
                         </div>
                         <button
-                            className="comment-button comment-button-right">
+                            className="posting-comment-button posting-comment-button-right">
                             답글
                         </button>
                     </div>
@@ -118,7 +118,7 @@ const PostUser = () => {
             ))
             }
 
-            <div className="input-wrap">
+            <div className="posting-input-wrap">
                 <input
                     value={newComment}
                     placeholder="댓글을 남겨보세요."
@@ -126,7 +126,7 @@ const PostUser = () => {
                     style={{ height: '40px', width: '900px' }} />
                 <button
                     type="submit"
-                    className="comment-button"
+                    className="posting-comment-button"
                     disabled={newComment.trim() === ''}
                     onClick={handleCommentSubmit}>
                     전송

@@ -79,20 +79,20 @@ export default function Posting() {
   };
 
   return (
-    <div className="page">
+    <div className="posting-page">
 
       <div className="banner-container">
         <img className="banner" src={postAuthor} alt="Posting img" />
       </div>
 
-      <div className="title-wrap">포스트 작성</div>
+      <div className="posting-title-wrap">포스트 작성</div>
 
-      <div className="content-wrap">
-        <div className="wrap">
-          <div className="input-title">제목</div>
-          <div className="input-wrap">
+      <div className="posting-content-wrap">
+        <div className="posting-wrap">
+          <div className="posting-input-title">제목</div>
+          <div className="posting-input-wrap">
             <input
-              className="input"
+              className="posting-input"
               type="text"
               value={title}
               placeholder="제목은 최대 40자까지 작성 가능합니다."
@@ -102,13 +102,13 @@ export default function Posting() {
         </div>
         <br />
 
-        <div className="wrap">
-          <div className="input-title">카테고리</div>
-          <div className="input-button category-buttons">
+        <div className="posting-wrap">
+          <div className="posting-input-title">카테고리</div>
+          <div className="posting-input-button posting-category-buttons">
             {categories.map((cat) => (
               <label key={cat}>
                 <button
-                  className={`category-buttons ${selectedCategory === cat ? 'selected' : ''}`}
+                  className={`posting-category-buttons ${selectedCategory === cat ? 'selected' : ''}`}
                   key={cat}
                   onClick={() => handleCategoryChange(cat)}
                 >
@@ -120,19 +120,19 @@ export default function Posting() {
         </div>
         <br />
 
-        <div className="wrap">
-          <div className="input-title">해시태그</div>
+        <div className="posting-wrap">
+          <div className="posting-input-title">해시태그</div>
           {/* <button type="button">+</button> */}
           <HashTag />
         </div>
 
-        <div className="wrap">
-          <div className="input-title">성별 제한</div>
-          <div className="input-button gender-buttons">
+        <div className="posting-wrap">
+          <div className="posting-input-title">성별 제한</div>
+          <div className="iposting-nput-button posting-gender-buttons">
             {gender.map((gen) => (
               <label key={gen}>
                 <button
-                  className={`gender-buttons ${selectedGender === gen ? 'selected' : ''}`}
+                  className={`posting-gender-buttons ${selectedGender === gen ? 'selected' : ''}`}
                   key={gen}
                   onClick={() => handleGenderRestrictionChange(gen)}
                 >
@@ -144,25 +144,25 @@ export default function Posting() {
         </div>
         <br />
 
-        <div className="wrap">
-          <div className="input-title">모집 인원</div>
-          <div className="input-wrap" style={{ width: '35px' }}>
+        <div className="posting-wrap">
+          <div className="posting-input-title">모집 인원</div>
+          <div className="posting-input-wrap" style={{ width: '35px' }}>
             <input
-              className="input"
+              className="posting-input"
               type="text"
               // pattern="[0-9]+"
               value={recruitmentCount}
               onChange={handleRecruitmentCountChange}
               style={{ width: '30px' }} />
           </div>
-          <div className="input-message">명~</div>
+          <div className="posting-input-message">명~</div>
         </div>
         <br />
 
-        <div className="input-title">글 쓰기</div>
+        <div className="posting-input-title">글 쓰기</div>
         <div>
           <textarea
-            className="input"
+            className="posting-input"
             value={content}
             placeholder="매칭 시, 실제로 인증된 나이 / 성별 및 프로필이 상대방에게 자동적으로 전달됩니다.&#13;SNS 계정, 전화번호 등 개인정보는 입력하지 않도록 주의하세요."
             onChange={(e) => setContent(e.target.value)}
@@ -171,18 +171,18 @@ export default function Posting() {
         </div>
         <br />
 
-        <div className="input-wrap">
+        {/* <div className="posting-input-wrap">
           <input
             // value={comment}
             placeholder="댓글을 남겨보세요."
             // onChange={(e) => setComment(e.target.value)}
             style={{ height: '40px' }} />
         </div>
-        <br />
+        <br /> */}
         <br />
 
-        <div className="input-title">이미지</div>
-        <div className="images-wrap">
+        <div className="posting-input-title">이미지</div>
+        <div className="posting-images-wrap">
           <input
             id="imageInput"
             type="file"
@@ -192,17 +192,17 @@ export default function Posting() {
           />
         </div>
         {selectedImages.map((image, index) => (
-          <div key={index} className="image-preview">
+          <div key={index} className="posting-image-preview">
             <button className="remove-image-button" onClick={() => handleRemoveImage(index)}>x</button>
-            <img src={image.preview} alt={`Selected ${index + 1}`} className="selected-image" />
+            <img src={image.preview} alt={`Selected ${index + 1}`} className="posting-selected-image" />
           </div>
         ))}
       </div>
 
 
-      <div className="upload">
+      <div className="posting-upload">
         <Link to="/postuser/:id" onClick={handleSubmit}>
-          <img className="bottom-button" src={postUpload}></img>
+          <img className="posting-bottom-button" src={postUpload}></img>
         </Link>
         {/* <button className="bottom-button" type="submit">업로드 →</button> */}
       </div>

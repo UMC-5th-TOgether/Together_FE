@@ -1,5 +1,9 @@
-.page {
-  font-family: "Pretendard-SemiBold", sans-serif;
+.posting-page {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  position: absolute;
   position: absolute;
   width: 100%;
   padding: 0 20px;
@@ -16,8 +20,7 @@
   height: auto;
 }
 
-.title-wrap {
-  font-family: "Pretendard-SemiBold", sans-serif;
+.posting-title-wrap {
   margin-top: 50px;
   margin-bottom: 30px;
   font-size: 30px;
@@ -27,14 +30,14 @@
   text-align: start;
 }
 
-.content-wrap {
+.posting-content-wrap {
   width: 1000px;
   max-width: 1500px;
   margin-top: 30px;
   flex: 1;
 }
 
-.input-title {
+.posting-input-title {
   width: 100px;
   font-size: 16px;
   font-weight: 560;
@@ -42,7 +45,7 @@
   margin-bottom: 10px;
 }
 
-.input-message {
+.posting-input-message {
   width: 100px;
   font-size: 16px;
   margin-top: 5px;
@@ -50,17 +53,17 @@
   margin-left: 3px;
 }
 
-.input-wrap {
+.posting-input-wrap {
   display: flex;
   border-radius: 8px;
   padding: 8px;
   background-color: #f3f3f3;
 }
-.input-wrap:focus-within {
+.posting-input-wrap:focus-within {
   border: 1px solid #015ffa;
 }
 
-.input {
+.posting-input {
   width: 100%;
   outline: none;
   border: none;
@@ -79,12 +82,12 @@ textarea::placeholder {
   color: #cccccc;
 }
 
-.wrap {
+.posting-wrap {
   display: flex;
   margin-bottom: 2px;
 }
 
-.upload {
+.posting-upload {
   display: flex;
   width: 1000px;
   justify-content: flex-end;
@@ -104,32 +107,24 @@ label button {
   transition: background-color 0.1s ease;
 }
 
-.category-buttons.selected,
-.gender-buttons.selected {
+.posting-category-buttons.selected,
+.posting-gender-buttons.selected {
   background-color: #015ffa;
   color: #fff;
 }
 
-.bottom-button {
-  /* justify-content: flex-end;
-  color: white;
-  width: 150px;
-  height: 40px;
-  border-radius: 10px;
-  background-color: black;
-  text-align: start;
-  padding: 10px; */
+.posting-bottom-button {
   width: 180px;
   margin-left: 5px;
 }
 
-.selected-image {
+.posting-selected-image {
   max-width: 200px;
   max-height: 200px;
   margin: 10px;
 }
 
-.image-preview {
+.posting-image-preview {
   position: relative;
   display: inline-block;
   margin-right: 10px;
@@ -145,6 +140,6 @@ label button {
   transition: opacity 0.3s ease-in-out;
 }
 
-.image-preview:hover .remove-image-button {
+.posting-image-preview:hover .remove-image-button {
   opacity: 1;
 }
