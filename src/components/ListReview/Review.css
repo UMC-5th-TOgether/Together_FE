@@ -1,0 +1,108 @@
+.Rectangle {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.Box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #015ffa;
+  width: 100%;
+  height: 759px;
+  margin-top: 75px;
+}
+.Yudeng {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 159px;
+  border-radius: 50%;
+  background: #015ffa;
+}
+
+.Rectangle-font1 {
+  /* 동반인 만남 이후 솔직한 후기를 만나보세요 */
+
+  width: 700px;
+  height: 50px;
+  margin-bottom: 16px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 140%;
+  /* or 50px */
+  text-align: center;
+  letter-spacing: -1px;
+
+  /* White */
+  color: #ffffff;
+}
+
+.Rectangle-font2 {
+  /* 매칭 시작 전, 나의 매칭에 도움이 되는 후기를 알고 싶다면? 만남 이후, 나의 솔직한 후기를 남기고 싶다면? 투게더 후기를 통해 다른 사람들의 만남 후기를 참고하고 해시태그와 별점 남기기, 간단한 느낀점 작성을 통해 만남 이후 나의 솔직한 후기도 작성해보세요! */
+
+  width: 1100px;
+  height: 44px;
+  margin-bottom: 40px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+  text-align: center;
+  letter-spacing: -1px;
+
+  /* White */
+  color: #ffffff;
+}
+
+.Review-button {
+  /* 후기 작성하기 버튼_Default */
+
+  box-sizing: border-box;
+  margin-bottom: 88px;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  gap: 10px;
+  cursor: pointer;
+
+  width: 160px;
+  height: 42px;
+
+  background: white;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+
+  /* 후기 작성하기 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -1px;
+
+  /* White */
+  color: var(--Blue-00, #015ffa);
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}

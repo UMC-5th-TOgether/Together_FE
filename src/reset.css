@@ -1,21 +1,3 @@
-@import url("https://webfontworld.github.io/pretendard/Pretendard.css");
-
-:root {
-  --Pretendard-26B: 700 26px/36px Pretendard;
-  --Pretendard-20B: 700 20px/28px Pretendard;
-  --Pretendard-20R: 400 20px/28px Pretendard;
-  --Pretendard-18B: 700 18px/23px Pretendard;
-  --Pretendard-18M: 500 18px/23px Pretendard;
-  --Pretendard-18R: 400 18px/23px Pretendard;
-  --Pretendard-16B: 700 16px/24px Pretendard;
-  --Pretendard-16M: 500 16px/24px Pretendard;
-  --Pretendard-16R: 400 16px/20px Pretendard;
-  --Pretendard-14B: 700 14px/23px Pretendard;
-  --Pretendard-14M: 500 14px/23px Pretendard;
-  --Pretendard-14R: 400 14px/23px Pretendard;
-  --Pretendard-12M: 500 12px/12px Pretendard;
-  --Pretendard-12R: 400 12px/12px Pretendard;
-}
 html,
 body,
 div,

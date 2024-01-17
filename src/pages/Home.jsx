@@ -1,10 +1,11 @@
 import React from "react";
-import Footer from "../components/Footer";
-import Review from "../components/Review";
+import "../index.css";
+import Footer from "../components/ListFooter/Footer";
+import Review from "../components/ListReview/Review";
 
 export default function Home() {
   return (
-    <div>
+    <div className="home-container">
       Home
       <Review />
       <Footer />

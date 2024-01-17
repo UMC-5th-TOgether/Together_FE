@@ -1,4 +1,12 @@
 @import "reset.css";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+* {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
 
 .root-wrap {
   position: absolute;
@@ -49,196 +57,12 @@
   font-weight: 900;
 }
 
-.footer {
-  /* Group 26 */
-
-  position: absolute;
-  width: 1920px;
-  height: 236px;
-  left: 0px;
-  bottom: 0px;
-  top: 2722px;
-
-  background: #333333;
+.body {
+  height: 100%;
+  overflow: hidden;
 }
 
-.footer-font {
-  /* FOOTER */
-
-  position: absolute;
-  width: 71px;
-  height: 21px;
-  left: calc(50% - 71px / 2 - 0.5px);
-  top: 98px;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 21px;
-  text-align: center;
-
-  /* White */
-  color: white;
-}
-
-.Union1 {
-  /* Union */
+.home-container {
   display: flex;
-  justify-content: center;
-  text-align: center;
-  position: absolute;
-  width: 1920px;
-  height: 78.5px;
-  left: 0px;
-  top: 1885px;
-
-  /* Blue 01 */
-  background: #e5efff;
-}
-
-.Vector1 {
-  /* Vector 284 */
-
-  position: absolute;
-  width: 960px;
-  height: 78.5px;
-  left: 960px;
-  top: 0px;
-  border-top-left-radius: 1800px;
-  /* Blue 01 */
-  background: #015ffa;
-}
-
-.Vector2 {
-  /* Vector 285 */
-
-  position: absolute;
-  width: 960px;
-  height: 78.5px;
-  left: 0px;
-  top: 0px;
-
-  /* Blue 01 */
-  background: #015ffa;
-  transform: matrix(-1, 0, 0, 1, 0, 0);
-  -webkit-border-radius: 0px 960px 0 0;
-}
-
-.Rectangle {
-  /* Rectangle 34624847 */
-
-  position: absolute;
-  width: 1920px;
-  height: 759px;
-  left: 0px;
-  top: 1963px;
-
-  /* Blue 01 */
-  background: #015ffa;
-}
-
-.Rectangle-font1 {
-  /* 동반인 만남 이후 솔직한 후기를 만나보세요 */
-
-  position: absolute;
-  width: 700px;
-  height: 50px;
-  left: calc(50% - 700px / 2 - 1px);
-  top: 60px;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 140%;
-  /* or 50px */
-  text-align: center;
-  letter-spacing: -1px;
-
-  /* White */
-  color: #ffffff;
-}
-
-.Rectangle-font2 {
-  /* 매칭 시작 전, 나의 매칭에 도움이 되는 후기를 알고 싶다면? 만남 이후, 나의 솔직한 후기를 남기고 싶다면? 투게더 후기를 통해 다른 사람들의 만남 후기를 참고하고 해시태그와 별점 남기기, 간단한 느낀점 작성을 통해 만남 이후 나의 솔직한 후기도 작성해보세요! */
-
-  position: absolute;
-  width: 1100px;
-  height: 44px;
-  left: calc(50% - 1100px / 2 - 0.5px);
-  top: 120px;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 140%;
-  /* or 22px */
-  text-align: center;
-  letter-spacing: -1px;
-
-  /* White */
-  color: #ffffff;
-}
-
-.Review-button {
-  /* 후기 작성하기 버튼_Default */
-
-  box-sizing: border-box;
-
-  /* Auto layout */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 24px;
-  gap: 10px;
-  cursor: pointer;
-
-  position: absolute;
-  width: 160px;
-  height: 42px;
-  left: calc(50% - 160px / 2 - 0.5px);
-  top: 200px;
-
-  /* Blue 00 */
-  background: #015ffa;
-  /* White */
-  border: 2px solid #ffffff;
-  border-radius: 8px;
-
-  /* 후기 작성하기 */
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 140%;
-  /* or 22px */
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: -1px;
-
-  /* White */
-  color: #ffffff;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-.ReviewSlide-container {
-  /* Group 427319992 */
-  display: flex;
-  position: absolute;
-  width: 2044px;
-  height: 238px;
-  left: calc(50% - 1920px / 2);
-  top: 328px;
-
-  background-color: #015ffa;
-  color: white;
+  flex-direction: column;
 }
