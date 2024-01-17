@@ -121,3 +121,11 @@
   width: 50px;
   margin: 20px;
 }
+
+.error {
+  font-size: 10px;
+  color: #ff0000;
+  height: 20px;
+  font-weight: 700;
+  margin: 5px;
+}
