@@ -1,37 +1,35 @@
-/* ReviewTableStyle.css */
 .review-table {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) auto; /* 3 equal columns and one auto-sized for the rating */
-  gap: 20px; /* Reduced gap between columns */
-  padding: 0 10px; /* Reduced padding on the sides */
+  grid-template-columns: repeat(3, 1fr) auto;
+  gap: 20px;
+  padding: 0 10px;
   font-size: 0.9em;
   width: auto;
-  margin: 0 auto; /* This centers the grid in the parent if there is a set max-width */
-  max-width: 1200px; /* Adjust max-width as needed for your layout */
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .review-column-heading {
   font-weight: bold;
   padding-top: 40px;
-  padding-bottom: 15px; /* Space between the heading and the first entry */
+  padding-bottom: 15px;
 }
 
 .review-column,
 .review-rating-column {
-  padding-bottom: 10px; /* Space at the bottom of each entry */
+  padding-bottom: 10px;
 }
 
 .review-rating-column {
-  text-align: right; /* Align the manners rating to the right */
-  padding-right: 30px; /* Adjusted padding on the right side */
+  text-align: right;
+  padding-right: 30px;
 }
 
 .review-rating {
-  color: black; /* Star rating color */
-  padding-bottom: 10px; /* Consistent padding with other entries */
+  color: black;
+  padding-bottom: 10px;
 }
 
 .review-text {
-  padding-bottom: 10px; /* Space at the bottom of each text entry */
+  padding-bottom: 10px;
 }
-/* Additional styling can be added here */

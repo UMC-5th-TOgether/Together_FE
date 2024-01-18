@@ -1,9 +1,9 @@
 import React from "react";
-import usersData from "../../data/UserProfileData.json"; // Ensure the path is correct
-import "../../style/ReviewTableStyle.css"; // Ensure this path is correct
+import usersData from "../../data/UserProfileData.json";
+import "../../style/ReviewTableStyle.css";
 
 const ReviewTable = () => {
-  const userData = usersData[0]; // Assuming you're displaying data for the first user
+  const userData = usersData[0];
 
   return (
     <div className="review-table">

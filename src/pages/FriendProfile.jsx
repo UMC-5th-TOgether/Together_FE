@@ -1,8 +1,8 @@
 import React from "react";
 import Nickname from "../components/FriendProfile/Nickname";
 import ReviewTable from "../components/FriendProfile/ReviewTable";
-import "../style/FriendProfileStyle.css"; // Ensure this path is correct
-import BannerImage from "../assets/Friend - Following.png";
+import "../style/FriendProfileStyle.css";
+import BannerImage from "../assets/Profile.png";
 
 const FriendProfile = () => {
   return (

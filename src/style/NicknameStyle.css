@@ -3,22 +3,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px; /* Add space at the top of the component */
+  margin-top: 50px;
 }
 
 .avatar-container {
-  margin-top: 30px; /* Space between avatar and text */
-  margin-bottom: 40px; /* Space between avatar and text */
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 .profile-avatar {
-  width: 120px; /* Adjusted size */
-  height: 120px; /* Maintain aspect ratio for a circle */
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
 }
 .empty-avatar {
-  width: 50px; /* Size of the empty avatar icon */
+  width: 50px;
   height: 50px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -26,12 +26,12 @@
 }
 
 .nickname {
-  font-size: 24px; /* Size of the nickname text */
-  margin-top: 16px; /* Margin around the nickname */
+  font-size: 24px;
+  margin-top: 16px;
   margin-bottom: 15px;
 }
 
 .introduction {
-  font-size: 14px; /* Size of the introduction text */
-  color: #666; /* Gray color for the introduction text */
+  font-size: 14px;
+  color: #666;
 }
