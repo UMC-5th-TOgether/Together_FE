@@ -1,0 +1,254 @@
+.banner-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 100%;
+  max-width: 1920px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #333;
+  color: #fff;
+  position: relative;
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  padding-left: 190px;
+  z-index: 20;
+  margin-top: -90px;
+}
+.Hot {
+  font-size: 17px;
+  margin-bottom: 22px;
+}
+
+.Hot > a {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.subheading {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.tags {
+  margin-bottom: 20px;
+  color: gray;
+}
+
+.tags > .tag {
+  margin-right: 20px;
+}
+
+.control-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: gray;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px;
+  color: #fff;
+}
+
+.swiper-button-prev::after {
+  font-size: 20px;
+}
+
+.swiper-pagination {
+  bottom: 10px;
+  left: 10px;
+  position: absolute;
+}
+
+.swiper-pagination-bullet {
+  background-color: #fff;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 120px 5px;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.slides-container {
+  grid-column: 2 / 3;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  margin-right: -330px;
+  margin-top: 60px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  padding: 0px;
+  justify-content: right;
+}
+
+.slides-container::after {
+  display: none;
+  background: linear-gradient(to right, rgba(51, 51, 51, 0) 0%, #333 100%);
+}
+
+.swiper-button-prev {
+  position: absolute;
+  left: calc(50% - 120px);
+  padding: 15px;
+  transform: translateY(-50%);
+  z-index: 10;
+  margin-top: 110px;
+  margin-left: -650px;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+.swiper-button-next {
+  position: absolute;
+  right: calc(50% - 120px);
+  padding: 15px;
+  transform: translateY(-50%);
+  z-index: 10;
+  margin-top: 110px;
+  margin-right: 700px;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: gray;
+}
+
+.swiper-slide {
+  width: 480px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-image {
+  object-fit: contain;
+  height: 100%;
+  width: auto;
+}
+
+.slides-container::after {
+  display: none;
+}
+
+.slide-image-container {
+  width: 480px;
+  height: 480px;
+  padding: 10px;
+}
+
+.category-button {
+  width: 70px;
+  height: auto;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.mySwiper {
+  width: 100%;
+}
+
+.slides-container {
+  overflow-x: hidden;
+  grid-column: 2;
+}
+
+.swiper-button-prev,
+.swiper-button-next,
+.swiper-pagination {
+  display: block;
+}
+
+.swiper-slide-active {
+  justify-content: flex-end;
+}
+
+.swiper-slide-next {
+  justify-content: flex-start;
+}
+
+/* Common Styles  pagination.scss*/
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, 8px);
+  top: var(--swiper-pagination-top, 390px);
+  left: 85px;
+  width: 20%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* 가로 스크롤바를 숨깁니다. */
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    grid-template-columns: 1fr;
+  }
+
+  .slide-image-container {
+    width: 100%;
+  }
+
+  .controls-container,
+  .slide-details-container {
+    order: 2;
+  }
+
+  .slides-container {
+    order: 1;
+  }
+}
