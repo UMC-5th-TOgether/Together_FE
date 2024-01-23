@@ -8,7 +8,6 @@ import HomeCategory from "../components/HomeCategory";
 const Home = () => {
   return (
     <div className="homepage-container">
-      Home
       <Banner />
       <HomeCategory />
       <Review />
