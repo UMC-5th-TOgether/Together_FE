@@ -3,12 +3,14 @@ import "../index.css";
 import Footer from "../components/ListFooter/Footer";
 import Review from "../components/ListReview/Review";
 import Banner from "../components/Banner";
+import HomeCategory from "../components/HomeCategory";
 
 const Home = () => {
   return (
-    <div className="home-container">
+    <div className="homepage-container">
       Home
       <Banner />
+      <HomeCategory />
       <Review />
       <Footer />
     </div>
