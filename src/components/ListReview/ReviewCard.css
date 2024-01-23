@@ -1,0 +1,114 @@
+/* 전체를 덮고 있는 큰 박스*/
+.ReviewBox {
+  display: flex;
+  width: 493px;
+  height: 238px;
+  background-color: var(--White, #fff);
+  border-radius: 24px;
+  box-shadow: 0px 4px 20px 0px rgba(51, 51, 51, 0.1);
+}
+/* 박스 안에 있는 컨텐츠*/
+.Contents {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-top: 32px;
+}
+/*user이미지와 이름, 카테고리 해쉬테그, 별점등을 포함하고있는 박스*/
+.UserBox {
+  display: flex;
+  text-align: center;
+}
+
+.UserDetailBox {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+}
+
+.UserName {
+  color: var(--Black, #333);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 28px */
+  letter-spacing: -1px;
+  display: flex;
+  justify-content: left;
+}
+
+.StarBox {
+  position: relative;
+  display: flex;
+  width: max-content;
+  unicode-bidi: bidi-override;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.star-ratings-fill {
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.star-rating-base {
+  z-index: 0;
+  display: flex;
+  padding: 0;
+}
+
+.Point {
+  color: var(--Black, #333);
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 33.6px */
+  letter-spacing: -1px;
+  margin-left: 8px;
+
+  vertical-align: text-top;
+}
+
+.CategoryBox {
+  display: flex;
+  margin-top: 4px;
+}
+
+.CategoryHash {
+  width: 73px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Pretendard;
+  font-size: 13px;
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 18.2px */
+  letter-spacing: -1px;
+  color: #808080;
+  background-color: #f3f3f3;
+  margin-right: 8px;
+}
+
+.UserReviewBox {
+  display: flex;
+  text-align: center;
+  width: 381px;
+  height: 44px;
+  color: var(--Gray-07, #4d4d4d);
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 22.4px */
+  letter-spacing: -1px;
+  margin-top: 25px;
+}

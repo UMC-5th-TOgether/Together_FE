@@ -13,20 +13,20 @@ import Notification from "./pages/Notification";
 function App() {
   return (
     <div className="root-wrap">
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element= {<Home/>} />
-        <Route path="/category" element= {<Category/>} />
-        <Route path="/chatting" element= {<Chatting/>} />
-        <Route path="/friend" element= {<Friend/>} />
-        <Route path="/posting" element= {<Posting/>} />
-        <Route path="/mypage" element= {<MyPage/>} />
-        <Route path="/notification" element= {<Notification/>} />
-        <Route path="/login" element= {<Login/>} />
-        <Route path="/*" element= {<NotFound/>} />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/category" element={<Category />} />
+          <Route path="/chatting" element={<Chatting />} />
+          <Route path="/friend" element={<Friend />} />
+          <Route path="/posting" element={<Posting />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/notification" element={<Notification />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -56,7 +56,7 @@ const slidesData = [
     alt: "testC",
     Tag: BtnB,
     title: "서울 강동구 스페이스파운틴",
-    subtitle: "<JUNGKE CITY>",
+    subtitle: "<JUNGLE CITY>",
     tags: ["#디자인 전시", "#JUNGLE CITY ", "#스페이스마운틴"],
   },
 ];
@@ -92,7 +92,7 @@ const Banner = () => {
       <div className="slides-container">
         <Swiper
           modules={[Pagination, Navigation, Autoplay]}
-          spaceBetween={100}
+          spaceBetween={500}
           slidesPerView={1}
           loop={true}
           autoplay={{
