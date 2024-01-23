@@ -39,10 +39,27 @@
 }
 
 .StarBox {
+  position: relative;
   display: flex;
+  width: max-content;
+  unicode-bidi: bidi-override;
   flex-direction: row;
   align-items: center;
   margin-top: 16px;
+}
+
+.star-ratings-fill {
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.star-rating-base {
+  z-index: 0;
+  display: flex;
+  padding: 0;
 }
 
 .Point {
