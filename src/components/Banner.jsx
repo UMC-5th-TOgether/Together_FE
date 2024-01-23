@@ -16,7 +16,6 @@ import BtnD from "../assets/카테고리 버튼_Default_운동.png";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import "../style/BannerStyle.css";
 
 const slidesData = [
@@ -93,8 +92,8 @@ const Banner = () => {
       <div className="slides-container">
         <Swiper
           modules={[Pagination, Navigation, Autoplay]}
-          spaceBetween={70}
-          slidesPerView={2}
+          spaceBetween={100}
+          slidesPerView={1}
           loop={true}
           autoplay={{
             delay: 5000,
