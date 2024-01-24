@@ -173,17 +173,25 @@
   border-radius: 10px;
   margin: 11px;
   display: flex;
-  justify-content: left;
   align-items: center;
+
 }
 .Category-Button {
+  width: 100%;
   font-weight: bold;
   text-decoration: none;
   color: white;
+  display:flex;
+  margin:15px;
+  justify-content: space-between;
+  align-items: center;
 
-  margin-left: 15px;
 }
+.Category-Button img {
 
+  width: 14px;
+  height: 14px;
+}
 .Category-Wrap2 {
   display: flex;
   justify-content: center;
