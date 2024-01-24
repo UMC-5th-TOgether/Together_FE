@@ -84,10 +84,18 @@ export default function HomeCategory() {
           <br/>
             <div className= "Category-Wrap3">
               <div className="Category-Wrap2">
-                <div className= "Category-Only">공연</div>
-                <div className= "Category-Only">운동</div>
-                <div className= "Category-Only">식사</div>
-                <div className= "Category-Only">취미</div>
+                <div className= "Category-Only">
+                  <Link>공연</Link>
+                </div>
+                <div className= "Category-Only">
+                  <Link>운동</Link>
+                </div>
+                <div className= "Category-Only">
+                  <Link>식사</Link>
+                </div>
+                <div className= "Category-Only">
+                  <Link>취미</Link>
+                </div>
               </div>
             </div>
         
