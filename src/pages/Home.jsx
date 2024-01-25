@@ -1,6 +1,5 @@
 import React from "react";
 import "../index.css";
-import Footer from "../components/ListFooter/Footer";
 import Review from "../components/ListReview/Review";
 import Banner from "../components/Banner";
 
@@ -10,7 +9,6 @@ const Home = () => {
       Home
       <Banner />
       <Review />
-      <Footer />
     </div>
   );
 };

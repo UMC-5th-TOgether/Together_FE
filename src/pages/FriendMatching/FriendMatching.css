@@ -1,0 +1,44 @@
+.friend-matching-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+}
+.profile-container {
+}
+
+.matching-comment {
+  margin-top: 60px;
+  margin-left: 100px;
+}
+.matching-comment2 {
+  width: 1354px;
+  text-align: left;
+  margin: auto;
+  line-height: 3;
+}
+
+.matching-btn {
+  margin-left: 30px;
+  width: 93px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(92, 139, 209, 0.8);
+  background: #fff;
+  cursor: pointer;
+}
+
+.image-container {
+  width: 1353px;
+  height: 207px;
+  flex-shrink: 0;
+  margin: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(210, 210, 210, 0.7);
+  background: #fff;
+  color: #888;
+  margin-bottom: 275px;
+  cursor: pointer;
+}
