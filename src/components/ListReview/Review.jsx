@@ -1,6 +1,7 @@
 import React from "react";
 import ReviewSlide from "./ReviewSlide";
 import "./Review.css";
+import ReviewFont from "../../assets/review.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Review() {
@@ -9,6 +10,11 @@ export default function Review() {
     <div className="Rectangle">
       <div className="Yudeng"></div>
       <div className="Box">
+        <img
+          src={ReviewFont}
+          alt="reviewfont"
+          style={{ marginBottom: "15px" }}
+        />
         <div className="Rectangle-font1">
           동반인 만남 이후 솔직한 후기를 만나보세요
         </div>
