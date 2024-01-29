@@ -1,7 +1,15 @@
-import React from 'react'
+import React from "react";
+import "../index.css";
+import ChattingBox from "../components/Chat/ChattingBox";
+import ChattingList from "../components/Chat/ChattingList";
 
-export default function Chatting() {
+const Chatting = () => {
   return (
-    <div>Chatting</div>
-  )
-}
+    <>
+      <ChattingList />
+      <ChattingBox />
+    </>
+  );
+};
+
+export default Chatting;

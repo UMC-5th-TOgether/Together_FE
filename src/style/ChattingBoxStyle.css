@@ -1,0 +1,121 @@
+.chattingBox {
+  width: 100%;
+  height: 100%;
+  padding: 32px 40px;
+  background: white;
+  box-shadow: 0px 4px 20px rgba(51, 51, 51, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.messageContainer {
+  width: 576px;
+  height: 890px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.textBadge {
+  padding: 5px 8px;
+  background: #f3f3f3;
+  border-radius: 4px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.text {
+  color: #cccccc;
+  font-size: 13px;
+  font-family: "Pretendard";
+  font-weight: 600;
+  line-height: 18.2px;
+  word-wrap: break-word;
+}
+
+.userIcon {
+  width: 56px;
+  height: 56px;
+  position: relative;
+  margin-bottom: 16px; /* Adjust as needed */
+}
+
+.userIconBackground {
+  width: 56px;
+  height: 56px;
+  background: #222222;
+  border-radius: 9999px;
+  /* Add more styling for the user icon background */
+}
+
+.messageBubble {
+  padding: 16px;
+  background: #f3f3f3;
+  border-radius: 8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px; /* Adjust as needed */
+}
+
+.messageText {
+  color: #222222;
+  font-size: 16px;
+  font-family: "Pretendard";
+  font-weight: 500;
+  line-height: 22.4px;
+  word-wrap: break-word;
+}
+
+.timestamp {
+  color: #b3b3b3;
+  font-size: 16px;
+  font-family: "Pretendard";
+  font-weight: 500;
+  line-height: 22.4px;
+  word-wrap: break-word;
+  margin-bottom: 16px; /* Adjust as needed */
+}
+
+.sendButtonContainer {
+  align-self: stretch;
+  height: 92px;
+  padding: 30px 32px 30px 469px; /* Adjust as needed */
+  background: #f3f3f3;
+  border-radius: 16px;
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.sendButton {
+  padding: 5px 24px;
+  background: #cccccc;
+  border-radius: 8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.sendText {
+  text-align: center;
+  color: #f3f3f3;
+  font-size: 16px;
+  font-family: "Pretendard";
+  font-weight: 600;
+  line-height: 22.4px;
+  word-wrap: break-word;
+}
+
+/* Add any additional specific styling as needed */
