@@ -1,8 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import CategoryPosting from '../components/CategoryPosting'
 
+
+
 export default function HomeCategory() {
+  const [popularCategory, setPopularCategory] = useState('');
+
+  const handleCategoryClick = (category) => {
+    setPopularCategory(category);
+  // 선택한 카테고리에 따라 인기 포스트를 가져오는 로직을 구현합니다.
+  // 예를 들어, API 호출이나 데이터 필터링 등을 수행할 수 있습니다.
+};
     return (
     
         <>
@@ -84,18 +93,10 @@ export default function HomeCategory() {
           <br/>
             <div className= "Category-Wrap3">
               <div className="Category-Wrap2">
-                <div className= "Category-Only">
-                  <Link>공연</Link>
-                </div>
-                <div className= "Category-Only">
-                  <Link>운동</Link>
-                </div>
-                <div className= "Category-Only">
-                  <Link>식사</Link>
-                </div>
-                <div className= "Category-Only">
-                  <Link>취미</Link>
-                </div>
+                <button onClick={() => handleCategoryClick('공연')}>공연</button>
+                <button onClick={() => handleCategoryClick('식사')}>식사</button>
+                <button onClick={() => handleCategoryClick('운동')}>운동</button>
+                <button onClick={() => handleCategoryClick('취미')}>취미</button> 
               </div>
             </div>
         

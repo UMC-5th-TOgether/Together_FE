@@ -199,17 +199,22 @@
 }
 
 .Category-Only {
+
+}
+.Category-Wrap2 button{
   font-size: 0.7rem;
   width: 54px;
   height: 20px;
   color: white;
-  font-weight: bold;
-  border-radius: 30px;
-  background-color: #015ffa;
+  border-radius: 35px;
+  background-color: #222222;
   margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
 }
 
 .Header-Background {
