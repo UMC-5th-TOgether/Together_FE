@@ -1,27 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import IsLoggedIn from '../pages/Login'
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsLoggedIn } from '../store/LoginActions';
 
 export const LoginControl = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
 
-    const handleToggleClick = () => {
-        if (IsLoggedIn) {
-            navigate('/');
+    const handleToggleClick = async () => {
+        if (isLoggedIn) {
+            navigate('/login');
+            localStorage.removeItem('token');
+            localStorage.removeItem('isLoggedIn');
+            dispatch(setIsLoggedIn(false));
+            // setAuthHeader(null);
+
         } else {
-            // localStorage.removeItem('token');
             navigate('/login');
         }
-        // setIsLogin((prevIsLogin) => !prevIsLogin);
     };
 
     return (
         <div>
-            {IsLoggedIn ? (
-                <div onClick={handleToggleClick}>로그인</div>
+            {isLoggedIn ? (
+                <div className="header-nav-item" onClick={handleToggleClick}>로그아웃</div>
             ) : (
-                <div onClick={handleToggleClick}>로그아웃</div>
+                <div className="header-nav-item" onClick={handleToggleClick}>로그인</div>
             )}
         </div>
     );
-}
+};

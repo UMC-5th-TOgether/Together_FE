@@ -1,13 +1,15 @@
-// import axios from "axios";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserEmail, setUserPassword } from "../store/LoginActions";
 import { Link, useNavigate } from 'react-router-dom';
 import googleIcon from '../assets/google-icon.png';
 import naverIcon from '../assets/naver-icon.png';
 import kakaoIcon from '../assets/kakao-icon.png';
+import LoginBanner from '../assets/login.png'
 import '../style/Login.css';
 import { GoogleLoginButton, KakaoLoginButton, NaverLoginButton } from "../util/SocialLogin";
+import { setIsLoggedIn } from "../store/LoginReducer";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,8 +17,23 @@ export default function Login() {
   const email = useSelector((state) => state.login.email);
   const pw = useSelector((state) => state.login.pw);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+    if (storedIsLoggedIn) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  // 토큰 헤더에 추가
+  const setAuthHeader = (token) => {
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+      delete axios.defaults.headers.common['Authorization'];
+    }
+  };
 
   const handleEmail = (e) => {
     dispatch(setUserEmail(e.target.value));
@@ -39,42 +56,61 @@ export default function Login() {
     try {
       setIsLoading(true);
 
-      // const res = await axios.post("http://localhost:8000/user/login", {
+      // const res = await axios.post("http://localhost:8000/api/auth/login", {
       //   email: email,
-      //   pw: pw,
+      //   pw: pw
       // });
 
-      // if (res.data.isSuccess) {
-      //   alert("로그인에 성공했습니다.");
-      //   localStorage.setItem('token', res.data.result.AccessToken);
-      //   localStorage.setItem('email', res.data.result.userEmail);
+      // if (res.isSuccess) {
+      //   setTimeout(() => {
+      //     const token = res.data.token;
+
+      //     setIsLoading(false);
+      //     alert("로그인에 성공했습니다.");
+      //     localStorage.setItem('token', token);
+      //     setAuthHeader(token);
+      //     dispatch(setIsLoggedIn(true));
+      //     navigate('/');
+
+      //     if (keepLoggedIn) { // 로그인 상태 유지
+      //       localStorage.setItem('isLoggedIn', 'true');
+      //       dispatch(setIsLoggedIn(true));
+      //     }
+      //   }, 1500);
+      // } else {
+      //   setIsLoading(false);
+      //   alert(res.message);
       // }
 
-      // 통신 완료 후 로딩 해제
+      alert("로그인에 성공했습니다.");
       setTimeout(() => {
         setIsLoading(false);
-        alert("로그인에 성공했습니다.");
         navigate('/');
-        // localStorage.setItem('token');
-        // dispatch(setIsLoggedIn(true));
+        dispatch(setIsLoggedIn(true));
+
+        if (keepLoggedIn) { // 로그인 상태 유지
+          dispatch(setIsLoggedIn(true));
+        }
       }, 1500);
     }
     catch (err) {
       alert(err);
+      setIsLoading(false);
     }
 
-    dispatch(setUserEmail('')); // 이메일 상태 초기화
-    dispatch(setUserPassword('')); // 비밀번호 상태 초기화
+    dispatch(setUserEmail(''));
+    dispatch(setUserPassword(''));
   };
 
   return (
     <div className="login-page">
 
-      <div className="login-title-wrap">Log in for an account</div>
-      <div className="login-message">투게더에 돌아오신 것을 환영해요!</div>
+      <div className="banner-container">
+        <img className="banner" src={LoginBanner} alt="Login img" />
+      </div>
 
       <div className="login-content-wrap">
-        <div className="login-input-title">Email</div>
+        <div className="login-input-title">이메일</div>
         <div className="login-input-wrap">
           <input
             className="login-input"
@@ -85,7 +121,7 @@ export default function Login() {
           />
         </div>
 
-        <div className="login-input-title">Password</div>
+        <div className="login-input-title">비밀번호</div>
         <div className="login-input-wrap">
           <input
             className="login-input"
@@ -95,39 +131,40 @@ export default function Login() {
             onChange={handlePw}
           />
         </div>
-      </div>
 
-      <div className="check-box">
-        <input
-          type="checkbox"
-          checked={keepLoggedIn}
-          onChange={handleKeepLoggedIn}
-        />
-        <label> 로그인 상태 유지 </label>
-      </div>
+        <div className="check-box">
+          <input
+            type="checkbox"
+            checked={keepLoggedIn}
+            onChange={handleKeepLoggedIn}
+          />
+          <label> 로그인 상태 유지 </label>
+        </div>
 
-      <div>
-        <button onClick={onClickConfirmButton} className="login-bottom-button" disabled={isLoading}>
-          {isLoading ? 'Loading...' : 'Log in'}
-        </button>
-        <div className="additional-links">
-          <span><a href="/">계정 찾기</a> | </span>
-          <span><a href="/">비밀번호 찾기</a> | </span>
-          <span><a href="/signup">회원가입</a></span>
+        <div>
+          <button onClick={onClickConfirmButton} className="login-bottom-button" disabled={isLoading}>
+            {isLoading ? 'Loading...' : '로그인'}
+          </button>
+          <div className="additional-links">
+            <span><a href="/">계정 찾기</a> | </span>
+            <span><a href="/">비밀번호 찾기</a> | </span>
+            <span><a href="/signup">회원가입</a></span>
+          </div>
+        </div>
+
+        <div className="social-login">
+          <Link onClick={GoogleLoginButton}>
+            <img src={googleIcon} alt="google" />
+          </Link>
+          <Link onClick={NaverLoginButton}>
+            <img src={naverIcon} alt="naver" />
+          </Link>
+          <Link onClick={KakaoLoginButton}>
+            <img src={kakaoIcon} alt="kakao" />
+          </Link>
         </div>
       </div>
-
-      <div className="social-login">
-        <Link onClick={GoogleLoginButton}>
-          <img src={googleIcon} alt="google" />
-        </Link>
-        <Link onClick={NaverLoginButton}>
-          <img src={naverIcon} alt="naver" />
-        </Link>
-        <Link onClick={KakaoLoginButton}>
-          <img src={kakaoIcon} alt="kakao" />
-        </Link>
-      </div>
     </div>
+
   );
 }
