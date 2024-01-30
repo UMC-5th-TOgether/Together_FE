@@ -2,24 +2,20 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { SearchBar } from './SearchBar';
 import { LoginControl } from '../util/LoginControl';
+
 export default function Header() {
   return (
     <div className="header-container">
       <div className="header-wrap">
         <div className="header-left-wrap">
-          <Link style={{ display: 'flex', alignItems: 'center' }} to='/'>
+          <Link style={{ display: 'flex', marginTop: '8px', marginRight: '20px' }} to='/'>
             <img
-              style={{ width: "154px", height: "33px" }}
+              style={{ width: "130px", height: "27px" }}
               src="/logo_together.png"
               alt="로고"
             />
           </Link>
           <ul>
-            <li>
-              <Link className="header-nav-item" to="/">
-                홈
-              </Link>
-            </li>
             <li>
               <Link className="header-nav-item" to="/Category">
                 카테고리
@@ -55,13 +51,11 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link className="header-nav-item" to="/login">
-                <LoginControl></LoginControl>
-              </Link>
+              <LoginControl />
             </li>
-            <li>
+            <div className="search-bar">
               <SearchBar />
-            </li>
+            </div>
           </ul>
         </div>
       </div>
