@@ -1,23 +1,23 @@
 .posting-post {
-  width: 1000px;
+  width: 1320px;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  border-radius: 12px;
   box-sizing: border-box;
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.2);
-  padding: 30px 25px;
+  padding: 30px;
   text-align: left;
   margin-bottom: 20px;
 }
 
 .posting-comment-post {
-  width: 1000px;
+  width: 1320px;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  border-radius: 12px;
   box-sizing: border-box;
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.2);
-  padding: 15px 8px 8px 20px;
+  padding: 15px 18px 5px 20px;
   text-align: left;
   margin-bottom: 20px;
 }
@@ -65,7 +65,7 @@
 .posting-button-wrap {
   display: flex;
   justify-content: right;
-  width: 950px;
+  width: 1265px;
   bottom: 0;
 }
 
@@ -89,7 +89,7 @@
   display: flex;
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 1000px;
+  width: 1320px;
 }
 
 .posting-profile-picture {
@@ -110,12 +110,11 @@
   margin-top: 8px;
   margin-left: 56px;
   font-size: 15px;
-  width: 800px;
+  width: 1100px;
 }
 
 .posting-comment-profile {
   display: flex;
-  width: 300px;
 }
 
 .posting-date-created {

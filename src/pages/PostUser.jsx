@@ -120,14 +120,18 @@ const PostUser = () => {
 
             <div className="posting-input-wrap">
                 <input
+                    className="posting-input"
                     value={newComment}
                     placeholder="댓글을 남겨보세요."
                     onChange={(e) => setNewComment(e.target.value)}
-                    style={{ height: '40px', width: '900px' }} />
+                    style={{
+                        height: '40px', width: '1205px'
+                    }} />
                 <button
                     type="submit"
                     className="posting-comment-button"
-                    disabled={newComment.trim() === ''}
+                    disabled={newComment.trim() === ''
+                    }
                     onClick={handleCommentSubmit}>
                     전송
                 </button>
@@ -137,20 +141,3 @@ const PostUser = () => {
 };
 
 export default PostUser;
-
-
-// import React, { useState, useEffect } from 'react';
-
-// const PostList = ({ posts }) => {
-//     //     const [posts, setPosts] = useState([]);
-
-//     //     useEffect(() => {
-//     //         // axios.get("http://localhost:8000/posts").then(response => setPosts(response.data));
-//     //     }, []);
-//     return (
-//         <div>
-//         </div>
-//     );
-// };
-
-// export default PostList;

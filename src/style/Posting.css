@@ -13,25 +13,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 50px;
 }
 
 .banner {
   width: 100%;
   height: auto;
+  margin-bottom: 50px;
 }
 
 .posting-title-wrap {
-  margin-top: 50px;
+  margin-top: 20px;
   margin-bottom: 30px;
-  font-size: 30px;
+  font-size: 32px;
   font-weight: bold;
   color: #333333;
-  width: 1000px;
+  width: 1320px;
   text-align: start;
 }
 
 .posting-content-wrap {
-  width: 1000px;
+  width: 1320px;
   max-width: 1500px;
   margin-top: 30px;
   flex: 1;
@@ -39,24 +41,23 @@
 
 .posting-input-title {
   width: 100px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 560;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.posting-input-message {
-  width: 100px;
-  font-size: 16px;
-  margin-top: 5px;
-  margin-bottom: 10px;
+.posting-input-p {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   margin-left: 3px;
 }
 
 .posting-input-wrap {
   display: flex;
   border-radius: 8px;
-  padding: 8px;
+  padding: 12px 18px;
   background-color: #f3f3f3;
 }
 .posting-input-wrap:focus-within {
@@ -68,41 +69,39 @@
   outline: none;
   border: none;
   height: 15px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-}
-
-textarea {
-  padding: 5px;
+  background-color: #f3f3f3;
 }
 
 input::placeholder,
 textarea::placeholder {
-  font-size: 14px;
+  font-size: 15px;
   color: #cccccc;
 }
 
 .posting-wrap {
   display: flex;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
 }
 
 .posting-upload {
   display: flex;
-  width: 1000px;
+  width: 1260px;
   justify-content: flex-end;
   margin-top: 30px;
 }
 
 label button {
   border-style: solid;
-  font-size: 14px;
+  font-size: 15px;
   color: #015ffa;
   border-color: #015ffa;
   border-radius: 16px;
   background-color: white;
   padding: 2px 13px 2px 13px;
-  margin-right: 5px;
+  margin-right: 8px;
+  margin-top: 5px;
   cursor: pointer;
   transition: background-color 0.1s ease;
 }
@@ -114,8 +113,8 @@ label button {
 }
 
 .posting-bottom-button {
-  width: 180px;
-  margin-left: 5px;
+  width: 200px;
+  margin-left: 10px;
 }
 
 .posting-selected-image {
