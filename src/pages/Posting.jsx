@@ -13,6 +13,7 @@ export default function Posting() {
   const [recruitmentCount, setRecruitmentCount] = useState('');
   const [content, setContent] = useState('');
   const [selectedImages, setSelectedImages] = useState([]);
+  const [hashtags, setHashtags] = useState([]);
 
   const categories = ['공연', '운동', '식사', '취미'];
   const gender = ['제한 없음', '여성', '남성'];
@@ -30,7 +31,6 @@ export default function Posting() {
 
   const handleGenderRestrictionChange = (selectedGender) => {
     setSelectedGender(selectedGender);
-
   };
 
   const handleRecruitmentCountChange = (e) => {
@@ -57,12 +57,18 @@ export default function Posting() {
     setSelectedImages(newImages);
   };
 
+  const handleHashTagsChange = (tags) => {
+    setHashtags(tags);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     console.log('Title:', title);
     console.log('Content:', content);
     console.log('Selected Images:', selectedImages);
+    console.log('tags:', hashtags);
+
 
     // const lastPostId = dummy.results[dummy.results.length - 1].id;
     // navigate(`/postuser/${lastPostId}`);
@@ -123,7 +129,7 @@ export default function Posting() {
         <div className="posting-wrap">
           <div className="posting-input-title">해시태그</div>
           {/* <button type="button">+</button> */}
-          <HashTag />
+          <HashTag onHashTagsChange={handleHashTagsChange} />
         </div>
 
         <div className="posting-wrap">
@@ -155,12 +161,12 @@ export default function Posting() {
               onChange={handleRecruitmentCountChange}
               style={{ width: '30px' }} />
           </div>
-          <div className="posting-input-message">명~</div>
+          <p className="posting-input-p">명~</p>
         </div>
         <br />
 
         <div className="posting-input-title">글 쓰기</div>
-        <div>
+        <div className="posting-input-wrap">
           <textarea
             className="posting-input"
             value={content}
@@ -169,16 +175,6 @@ export default function Posting() {
             style={{ height: '100px', resize: 'none' }}
           />
         </div>
-        <br />
-
-        {/* <div className="posting-input-wrap">
-          <input
-            // value={comment}
-            placeholder="댓글을 남겨보세요."
-            // onChange={(e) => setComment(e.target.value)}
-            style={{ height: '40px' }} />
-        </div>
-        <br /> */}
         <br />
 
         <div className="posting-input-title">이미지</div>
