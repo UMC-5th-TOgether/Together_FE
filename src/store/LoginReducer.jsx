@@ -1,7 +1,8 @@
 const initialState = {
     email: "",
     pw: "",
-    isLoggedIn: false
+    isLoggedIn: false,
+    authToken: null
 };
 
 export const setIsLoggedIn = (isLoggedIn) => ({
@@ -9,6 +10,10 @@ export const setIsLoggedIn = (isLoggedIn) => ({
     payload: isLoggedIn,
 });
 
+export const setAuthToken = (token) => ({
+    type: 'SET_IS_LOGGED_IN',
+    payload: token,
+});
 
 const loginReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -26,6 +31,11 @@ const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: action.payload,
+            };
+        case 'SET_AUTH_TOKEN':
+            return {
+                ...state,
+                authToken: action.payload,
             };
         default:
             return state;

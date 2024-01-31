@@ -27,13 +27,13 @@ export default function Login() {
   }, []);
 
   // 토큰 헤더에 추가
-  const setAuthHeader = (token) => {
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    } else {
-      delete axios.defaults.headers.common['Authorization'];
-    }
-  };
+  // const setAuthHeader = (token) => {
+  //   if (token) {
+  //     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  //   } else {
+  //     delete axios.defaults.headers.common['Authorization'];
+  //   }
+  // };
 
   const handleEmail = (e) => {
     dispatch(setUserEmail(e.target.value));
@@ -56,42 +56,44 @@ export default function Login() {
     try {
       setIsLoading(true);
 
-      // const res = await axios.post("http://localhost:8000/api/auth/login", {
-      //   email: email,
-      //   pw: pw
-      // });
+      const res = await axios.post("http://hyeonjo.shop/api/auth/login", {
+        email: email,
+        password: pw
+      });
 
-      // if (res.isSuccess) {
-      //   setTimeout(() => {
-      //     const token = res.data.token;
+      console.log(res.data.inSuccess);
 
-      //     setIsLoading(false);
-      //     alert("로그인에 성공했습니다.");
-      //     localStorage.setItem('token', token);
-      //     setAuthHeader(token);
-      //     dispatch(setIsLoggedIn(true));
-      //     navigate('/');
+      if (res.data.isSuccess) {
+        setTimeout(() => {
+          const token = res.data.data[0].token;
 
-      //     if (keepLoggedIn) { // 로그인 상태 유지
-      //       localStorage.setItem('isLoggedIn', 'true');
-      //       dispatch(setIsLoggedIn(true));
-      //     }
-      //   }, 1500);
-      // } else {
-      //   setIsLoading(false);
-      //   alert(res.message);
-      // }
-
-      alert("로그인에 성공했습니다.");
-      setTimeout(() => {
-        setIsLoading(false);
-        navigate('/');
-        dispatch(setIsLoggedIn(true));
-
-        if (keepLoggedIn) { // 로그인 상태 유지
+          setIsLoading(false);
+          alert("로그인에 성공했습니다.");
+          localStorage.setItem('token', token);
+          // setAuthHeader(token);
           dispatch(setIsLoggedIn(true));
-        }
-      }, 1500);
+          navigate('/');
+
+          if (keepLoggedIn) { // 로그인 상태 유지
+            localStorage.setItem('isLoggedIn', 'true');
+            dispatch(setIsLoggedIn(true));
+          }
+        }, 1500);
+      } else {
+        setIsLoading(false);
+        alert(res.message);
+      }
+
+      // alert("로그인에 성공했습니다.");
+      // setTimeout(() => {
+      //   setIsLoading(false);
+      //   navigate('/');
+      //   dispatch(setIsLoggedIn(true));
+
+      //   if (keepLoggedIn) { // 로그인 상태 유지
+      //     dispatch(setIsLoggedIn(true));
+      //   }
+      // }, 1500);
     }
     catch (err) {
       alert(err);

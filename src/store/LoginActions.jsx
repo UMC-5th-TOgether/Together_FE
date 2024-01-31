@@ -16,3 +16,8 @@ export const setIsLoggedIn = (isLoggedIn) => ({
     type: 'SET_IS_LOGGED_IN',
     payload: isLoggedIn,
 });
+
+export const setAuthToken = (token) => ({
+    type: 'SET_AUTH_TOKEN',
+    payload: token,
+});
