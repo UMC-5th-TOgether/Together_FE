@@ -1,22 +1,45 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { validateEmail, validatePw, validateNickname } from '../util/SignUpValidation';
-import { Link } from 'react-router-dom';
+import { validateEmail, validatePw, validateNickname, validateBirthdate } from '../util/SignUpValidation';
+import { Link, useNavigate } from 'react-router-dom';
 import googleIcon from '../assets/google-icon.png';
 import naverIcon from '../assets/naver-icon.png';
 import kakaoIcon from '../assets/kakao-icon.png';
+import SignUpBanner from '../assets/sign-up.png';
 import '../style/Login.css';
 import { GoogleLoginButton, KakaoLoginButton, NaverLoginButton } from "../util/SocialLogin";
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const [nickname, setNickname] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [age, setAge] = useState('');
+  const [station, setStation] = useState('');
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
 
   const [nicknameError, setNicknameError] = useState('');
+  const [birthdateError, setBirthdateError] = useState('');
+  const [stationError, setStationError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [pwError, setPwError] = useState('');
 
   const [isLoading, setIsLoading] = useState(false);
+  const [checkbox1Checked, setCheckbox1Checked] = useState(false);
+  const [checkbox2Checked, setCheckbox2Checked] = useState(false);
+  const [checkbox3Checked, setCheckbox3Checked] = useState(false);
+
+  const handleCheckbox1Change = () => {
+    setCheckbox1Checked(!checkbox1Checked);
+  };
+
+  const handleCheckbox2Change = () => {
+    setCheckbox2Checked(!checkbox2Checked);
+  };
+
+  const handleCheckbox3Change = () => {
+    setCheckbox3Checked(!checkbox3Checked);
+  };
 
   const handleNickname = (e) => {
     const value = e.target.value;
@@ -25,6 +48,29 @@ export default function SignUp() {
       setNicknameError('2글자 이상 8글자 이하로 입력해주세요.');
     } else {
       setNicknameError('');
+    }
+  };
+
+  function calculateAge(birthdate) {
+    const today = new Date();
+
+    let age = (today.getFullYear() - parseInt(birthdate.slice(0, 4)) + 1).toString();
+
+    return age;
+  }
+
+  const handleBirthdate = (e) => {
+    const value = e.target.value;
+    setBirthdate(value);
+
+    if (!validateBirthdate(value)) {
+      setBirthdateError('생년월일 8자리를 입력하세요.');
+      setAge('');
+    } else {
+      setBirthdateError('');
+      const age = calculateAge(value);
+      setAge(age);
+      console.log("age:", age);
     }
   };
 
@@ -49,41 +95,59 @@ export default function SignUp() {
   };
 
   const onClickConfirmButton = async (e) => {
-    if (email === '' || pw === '' || nickname === '') {
-      alert('닉네임, 이메일, 비밀번호를 모두 입력해주세요.');
+    if (email === '' || pw === '') {
+      alert('이메일, 비밀번호를 모두 입력해주세요.');
+      return;
+    }
+
+    if (!checkbox1Checked || !checkbox2Checked || !checkbox3Checked) {
+      alert('모든 약관에 동의해주세요.');
       return;
     }
 
     try {
       setIsLoading(true);
 
-      // const res = await axios.post("http://localhost:8000/user/register", {
-      //   email: email,
-      //   pw: pw,
-      //   nickname: nickname,
-      // });
+      const res = await axios.post("http://hyeonjo.shop/api/auth/signup", {
+        // nickname: nickname,
+        email: email,
+        password: pw,
+        // age: age,
+        // gender: gender,
+        // station: station
+      });
 
-      // if (res.data.isSuccess) {
-      //   alert("회원가입에 성공했습니다.");
-      // }
-
-      setTimeout(() => {
+      if (res.isSuccess) {
+        setTimeout(() => {
+          setIsLoading(false);
+          alert(res.message);
+          navigate('/login');
+        }, 1500);
+      } else {
         setIsLoading(false);
-        alert("회원가입에 성공했습니다.");
-      }, 1500);
+        alert(res.message);
+      }
+
     }
     catch (err) {
       alert(err);
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="login-page">
-      <div className="login-title-wrap">Sign up for an account</div>
-      <div className="login-message">투게더와 함께 지금 바로 동반인을 구해보세요!</div>
+
+      <div className="banner-container">
+        <img className="banner" src={SignUpBanner} alt="SignUp img" />
+      </div>
+      <br />
 
       <div className="login-content-wrap">
-        <div className="login-input-title">Nickname</div>
+
+        <div className="hr-sect"> 이메일로 가입하기</div>
+        <br />
+        {/* <div className="login-input-title">닉네임</div>
         <div className="login-input-wrap">
           <input
             className="login-input"
@@ -95,7 +159,19 @@ export default function SignUp() {
         </div>
         {nicknameError && <div className="error">{nicknameError}</div>}
 
-        <div className="login-input-title">Email</div>
+        <div className="login-input-title">생년월일</div>
+        <div className="login-input-wrap">
+          <input
+            className="login-input"
+            type="text"
+            value={birthdate}
+            placeholder="생년월일 8자리를 입력하세요."
+            onChange={handleBirthdate}
+          />
+        </div>
+        {birthdateError && <div className="error">{birthdateError}</div>} */}
+
+        <div className="login-input-title">이메일</div>
         <div className="login-input-wrap">
           <input
             className="login-input"
@@ -107,7 +183,8 @@ export default function SignUp() {
         </div>
         {emailError && <div className="error">{emailError}</div>}
 
-        <div className="login-input-title">Password</div>
+
+        <div className="login-input-title">비밀번호</div>
         <div className="login-input-wrap">
           <input
             className="login-input"
@@ -118,15 +195,44 @@ export default function SignUp() {
           />
         </div>
         {pwError && <div className="error">{pwError}</div>}
+        <br />
+        <br />
+
+        <div className="check-box-signup">
+          <input
+            type="checkbox"
+            checked={checkbox1Checked}
+            onChange={handleCheckbox1Change}
+          />
+          <label> 서비스 약관에 동의합니다. <a href="/">내용 보기</a></label>
+        </div>
+        <div className="check-box-signup">
+          <input
+            type="checkbox"
+            checked={checkbox2Checked}
+            onChange={handleCheckbox2Change}
+          />
+          <label> 개인정보 수집 및 이용에 동의합니다. <a href="/">내용 보기</a></label>
+        </div>
+        <div className="check-box-signup">
+          <input
+            type="checkbox"
+            checked={checkbox3Checked}
+            onChange={handleCheckbox3Change}
+          />
+          <label> 위치 기반 서비스 이용약관에 동의합니다. <a href="/">내용 보기</a></label>
+        </div>
 
         <div>
           <div className="to-login">
             <span>이미 계정이 있으신가요? <a href="/login">Log in</a> </span>
           </div>
           <button onClick={onClickConfirmButton} className="login-bottom-button" disabled={isLoading}>
-            {isLoading ? 'Loading...' : 'Sign Up'}
+            {isLoading ? 'Loading...' : '다음'}
           </button>
         </div>
+
+        <div className="hr-sect">소셜 계정으로 가입하기</div>
 
         <div className="social-login">
           <Link onClick={GoogleLoginButton}>
@@ -140,6 +246,6 @@ export default function SignUp() {
           </Link>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
