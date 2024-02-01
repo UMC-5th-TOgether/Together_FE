@@ -68,7 +68,6 @@ export const SearchBar = () => {
             />
             <FaSearch id="search-icon" />
 
-            {/* Dropdown */}
             {showDropdown && (
                 <div className="dropdown">
                     <ul>
@@ -81,4 +80,3 @@ export const SearchBar = () => {
         </div>
     );
 };
-

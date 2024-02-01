@@ -30,7 +30,7 @@
   cursor: pointer;
 }
 
-/* .dropdown {
+.dropdown {
   position: absolute;
   top: 100%;
   left: 0;
@@ -58,4 +58,4 @@
 
 .dropdown li:hover {
   background-color: #f0f0f0;
-} */
+}
