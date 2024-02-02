@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import matchingSend from '../assets/matching-send.png';
+import matchingSendButton from '../assets/matching-send-button.png';
 import '../style/Matching.css';
+import { Link } from 'react-router-dom';
 
 export const MatchingSend = () => {
     const [title, setTitle] = useState('');
@@ -43,61 +45,67 @@ export const MatchingSend = () => {
     return (
         <div className="matching-page">
             <div className="banner-container">
-                <img className="banner" src={matchingSend} alt="Posting img" />
+                <img className="banner" src={matchingSend} alt="MatchingSend img" />
             </div>
 
-            <div className="matching-title-wrap">매칭 신청하기</div>
+            <div className="posting-post">
 
-            <div className="matching-content-wrap">
-                <div className="matching-input-wrap">
-                    <input
-                        className="matching-input"
-                        type="text"
-                        value={title}
-                        placeholder="소개글 제목은 최대 20자까지 작성 가능합니다."
-                        onChange={handleTitleChange}
-                    />
-                    <button
-                        onClick={handleSubmit}
-                        className="matching-upload-button"
-                        disabled={title.trim() === '' || selectedImages.length === 0}>
-                        전송
-                    </button>
-                </div>
-                <hr />
+                <div className="posting-title-wrap">매칭 신청</div>
 
-                <div className="matching-input-wrap">
-                    <textarea
-                        className="matching-input"
-                        value={content}
-                        placeholder="매칭 시, 실제로 인증한 나이 / 성별 및 프로필이&#13;&#13;상대방에게 자동적으로 전달됩니다.&#13;&#13;SNS 계정, 전화번호 등 개인 정보는 입력하지 않도록&#13;&#13;주의해주세요."
-                        onChange={handleContentChange}
-                        style={{ height: '140px' }}
-                    />
-                </div>
-            </div>
-
-            <div
-                className="matching-images-wrap"
-                onClick={() => document.getElementById("imageInput").click()}
-            >
-                {selectedImages.map((image, index) => (
-                    <div key={index} className="matching-image-preview">
-                        <button className="remove-image-button" onClick={() => handleRemoveImage(index)}>x</button>
-                        <img src={image.preview} alt={`Selected ${index + 1}`} className="matching-selected-image" />
+                <div className="posting-content-wrap">
+                    <div className="posting-wrap">
+                        <div className="posting-input-title">제목</div>
+                        <div className="posting-input-wrap" style={{ width: '1120px' }}>
+                            <input
+                                className="posting-input"
+                                type="text"
+                                value={title}
+                                placeholder="소개글 제목은 최대 20자까지 작성 가능합니다."
+                                onChange={handleTitleChange}
+                            />
+                        </div>
                     </div>
-                ))}
-                <label className="matching-image-label">
-                    이미지 추가하기
-                </label>
-                <input
-                    id="imageInput"
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    style={{ display: 'none' }}
-                    onChange={handleImageChange}
-                />
+
+                    <div className="posting-input-title">글 쓰기</div>
+                    <div className="posting-input-wrap" style={{ width: '1220px', height: '150px' }}>
+                        <textarea
+                            className="posting-input"
+                            value={content}
+                            placeholder="매칭 시, 실제로 인증한 나이 / 성별 및 프로필이 상대방에게 자동적으로 전달됩니다.&#13;SNS 계정, 전화번호 등 개인 정보는 입력하지 않도록 주의해주세요."
+                            onChange={handleContentChange}
+                            style={{ width: '1220px', height: '150px' }}
+                        />
+                    </div>
+                </div>
+
+                <div className="posting-input-title">이미지</div>
+                <div
+                    className="matching-images-wrap"
+                    onClick={() => document.getElementById("imageInput").click()}
+                >
+                    {selectedImages.map((image, index) => (
+                        <div key={index} className="matching-image-preview">
+                            <button className="remove-image-button" onClick={() => handleRemoveImage(index)}>x</button>
+                            <img src={image.preview} alt={`Selected ${index + 1}`} className="matching-selected-image" />
+                        </div>
+                    ))}
+                    <label className="matching-image-label">
+                        이미지 추가하기
+                    </label>
+                    <input
+                        id="imageInput"
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        style={{ display: 'none' }}
+                        onChange={handleImageChange}
+                    />
+                </div>
+            </div>
+            <div className="posting-upload">
+                <Link to="/postuser/:id" onClick={handleSubmit}>
+                    <img className="posting-bottom-button" src={matchingSendButton}></img>
+                </Link>
             </div>
         </div>
     );
