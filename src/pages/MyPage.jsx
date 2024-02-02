@@ -23,25 +23,25 @@ export default function MyPage() {
     const currentPosts = dummy.writtenPosts.slice(indexOfFirstPost, indexOfLastPost);
 
     return (
-        <div className="page">
+        <div className="my-page">
             <div className="banner-container">
                 <img className="banner" src={matchingSend} alt="Posting img" />
             </div>
 
-            <div className="profile-wrap">
-                <img className="profile-picture" src={profilePicture} alt="Profile" />
-                <div className="profile">
-                    <span className="nickname">{nickname} ({gender} / {age})</span>
+            <div className="mypage-profile-wrap">
+                <img className="mypage-profile-picture" src={profilePicture} alt="Profile" />
+                <div className="mypage-profile">
+                    <span className="mypage-nickname">{nickname} ({gender} / {age})</span>
                 </div>
-                <div className="residence">{residence}</div>
+                <div className="mypage-residence">{residence}</div>
             </div>
 
-            <div className="wrap">
-                <div className="review-wrap">
-                    <span className="review-content">
+            <div className="mypage-wrap">
+                <div className="mypage-review-wrap">
+                    <span className="mypage-review-content">
                         매너 별점
                     </span>
-                    <span className="review-content">
+                    <span className="mypage-review-content">
                         {ARRAY.map((el, index) => (
                             <FaStar
                                 key={index}
@@ -51,19 +51,18 @@ export default function MyPage() {
                         ))}
 
                     </span>
-                    <span className="review-content">
+                    <span className="mypage-review-content">
                         {review.num_of_people}명 중 {review.num_of_people}명의 이용자가 다시 만나고 싶어해요.
                     </span>
-                    <span className="review-content">
+                    <span className="mypage-review-content">
                         응답률 {review.response_rate}%
                     </span>
                 </div>
             </div>
 
-            <div className="wrap">
-                <div className="home-post">
-
-                    <div className="wrap">
+            <div className="mypage-wrap">
+                <div className="mypage-post">
+                    <div className="mypage-wrap">
 
                         <div className="mypage-title"> 작성한 글</div>
                         <ReactPaginate
@@ -92,7 +91,7 @@ export default function MyPage() {
 
                     {currentPosts.map((post, index) => (
                         <div key={index}>
-                            <div className="wrap">
+                            <div className="mypage-wrap">
                                 {post.title} {post.content}
                             </div>
                         </div>
@@ -100,12 +99,12 @@ export default function MyPage() {
 
                 </div>
 
-                <div className="home-post">
+                <div className="mypage-post">
                     <div className="mypage-title"> 작성한 댓글</div>
 
                 </div>
 
-                <div className="home-post">
+                <div className="mypage-post">
                     <div className="mypage-title"> 작성한 후기</div>
 
                 </div>

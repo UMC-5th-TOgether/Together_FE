@@ -1,4 +1,4 @@
-.page {
+.my-page {
   font-family: "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
@@ -19,33 +19,33 @@
   height: auto;
 }
 
-.profile-wrap {
+.mypage-profile-wrap {
   text-align: center;
   margin-top: 50px;
 }
 
-.profile-picture {
+.mypage-profile-picture {
   width: 110px;
-  border-radius: 70%;
+  border-radius: 50%;
   margin-bottom: 20px;
 }
 
-.profile {
+.mypage-profile {
   font-size: 30px;
   font-weight: 600;
 }
 
-.residence {
+.mypage-residence {
   margin: 15px;
   color: #808080;
 }
 
-.wrap {
+.mypage-wrap {
   display: flex;
   margin: 10px;
 }
 
-.home-post {
+.mypage-post {
   width: 320px;
   height: 320px;
   display: flex;
@@ -58,12 +58,12 @@
   margin: 12px;
 }
 
-.review-wrap {
+.mypage-review-wrap {
   margin: 30px;
   font-size: 18px;
 }
 
-.review-content {
+.mypage-review-content {
   margin: 20px;
 }
 
