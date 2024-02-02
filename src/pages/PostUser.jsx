@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { dummy } from '../PostUserDummy';
 import postUser from '../assets/post-user.png';
-import matching from '../assets/matching-application.png';
-import chatting from '../assets/chatting.png';
+import matching from '../assets/matching-application-button.png';
+import chatting from '../assets/chatting-button.png';
 import profilePicture from '../assets/profile.png';
 import '../style/PostUser.css';
 import '../style/Posting.css';
@@ -125,7 +125,7 @@ const PostUser = () => {
                     placeholder="댓글을 남겨보세요."
                     onChange={(e) => setNewComment(e.target.value)}
                     style={{
-                        height: '40px', width: '1205px'
+                        height: '40px', width: '1203px'
                     }} />
                 <button
                     type="submit"

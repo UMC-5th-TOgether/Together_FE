@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import postAuthor from '../assets/post-author.png';
-import postUpload from '../assets/post-upload.png';
+import postUpload from '../assets/post-upload-button.png';
 import '../style/Posting.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { HashTag } from '../elements/HashTag';
@@ -206,13 +206,11 @@ export default function Posting() {
             </div>
           ))}
         </div>
-
-
-        <div className="posting-upload">
-          <Link to="/postuser/:id" onClick={handleSubmit}>
-            <img className="posting-bottom-button" src={postUpload}></img>
-          </Link>
-        </div>
+      </div>
+      <div className="posting-upload">
+        <Link to="/postuser/:id" onClick={handleSubmit}>
+          <img className="posting-bottom-button" src={postUpload}></img>
+        </Link>
       </div>
     </div>
   );

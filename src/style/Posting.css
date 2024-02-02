@@ -57,7 +57,7 @@
 .posting-input-wrap {
   display: flex;
   border-radius: 8px;
-  padding: 12px 18px;
+  padding: 12px 20px;
   background-color: #f3f3f3;
 }
 .posting-input-wrap:focus-within {
@@ -87,7 +87,7 @@ textarea::placeholder {
 
 .posting-upload {
   display: flex;
-  width: 1260px;
+  width: 1320px;
   justify-content: flex-end;
   margin-top: 30px;
 }
