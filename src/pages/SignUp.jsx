@@ -8,6 +8,7 @@ import kakaoIcon from '../assets/kakao-icon.png';
 import SignUpBanner from '../assets/sign-up.png';
 import '../style/Login.css';
 import { GoogleLoginButton, KakaoLoginButton, NaverLoginButton } from "../util/SocialLogin";
+import { ModalContent1, ModalContent2, ModalContent3 } from '../elements/TermsOfService';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -28,6 +29,9 @@ export default function SignUp() {
   const [checkbox1Checked, setCheckbox1Checked] = useState(false);
   const [checkbox2Checked, setCheckbox2Checked] = useState(false);
   const [checkbox3Checked, setCheckbox3Checked] = useState(false);
+  const [showModal1, setShowModal1] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
+  const [showModal3, setShowModal3] = useState(false);
 
   const handleCheckbox1Change = () => {
     setCheckbox1Checked(!checkbox1Checked);
@@ -39,6 +43,27 @@ export default function SignUp() {
 
   const handleCheckbox3Change = () => {
     setCheckbox3Checked(!checkbox3Checked);
+  };
+
+  const handleModal1 = (e) => {
+    e.preventDefault();
+    setShowModal1(true);
+  };
+
+  const handleModal2 = (e) => {
+    e.preventDefault();
+    setShowModal2(true);
+  };
+
+  const handleModal3 = (e) => {
+    e.preventDefault();
+    setShowModal3(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal1(false);
+    setShowModal2(false);
+    setShowModal3(false);
   };
 
   const handleNickname = (e) => {
@@ -100,6 +125,12 @@ export default function SignUp() {
       return;
     }
 
+    console.log(emailError)
+    if (!emailError || !pwError === '') {
+      alert('이메일 또는 비밀번호 형식이 틀렸습니다.');
+      return;
+    }
+
     if (!checkbox1Checked || !checkbox2Checked || !checkbox3Checked) {
       alert('모든 약관에 동의해주세요.');
       return;
@@ -108,26 +139,29 @@ export default function SignUp() {
     try {
       setIsLoading(true);
 
-      const res = await axios.post("http://hyeonjo.shop/api/auth/signup", {
-        // nickname: nickname,
-        email: email,
-        password: pw,
-        // age: age,
-        // gender: gender,
-        // station: station
-      });
+      // const res = await axios.post("http://hyeonjo.shop/api/auth/signup", {
+      //   // nickname: nickname,
+      //   email: email,
+      //   password: pw,
+      //   // age: age,
+      //   // gender: gender,
+      //   // station: station
+      // });
 
-      if (res.isSuccess) {
-        setTimeout(() => {
-          setIsLoading(false);
-          alert(res.message);
-          navigate('/login');
-        }, 1500);
-      } else {
+      // if (res.data.isSuccess) {
+      //   setTimeout(() => {
+      //     setIsLoading(false);
+      //     navigate('/signup/Authentication ');
+      //   }, 1500);
+      // } else {
+      //   setIsLoading(false);
+      //   alert(res.message);
+      // }
+
+      setTimeout(() => {
         setIsLoading(false);
-        alert(res.message);
-      }
-
+        navigate('/signup/Authentication');
+      }, 1500);
     }
     catch (err) {
       alert(err);
@@ -199,38 +233,48 @@ export default function SignUp() {
         <br />
 
         <div className="check-box-signup">
-          <input
-            type="checkbox"
-            checked={checkbox1Checked}
-            onChange={handleCheckbox1Change}
-          />
-          <label> 서비스 약관에 동의합니다. <a href="/">내용 보기</a></label>
+          <input type="checkbox" checked={checkbox1Checked} onChange={handleCheckbox1Change} />
+          <label onClick={handleModal1}> 서비스 약관에 동의합니다. <a href="/">내용 보기</a></label>
         </div>
         <div className="check-box-signup">
-          <input
-            type="checkbox"
-            checked={checkbox2Checked}
-            onChange={handleCheckbox2Change}
-          />
-          <label> 개인정보 수집 및 이용에 동의합니다. <a href="/">내용 보기</a></label>
+          <input type="checkbox" checked={checkbox2Checked} onChange={handleCheckbox2Change} />
+          <label onClick={handleModal2}> 개인정보 수집 및 이용에 동의합니다. <a href="/">내용 보기</a></label>
         </div>
         <div className="check-box-signup">
-          <input
-            type="checkbox"
-            checked={checkbox3Checked}
-            onChange={handleCheckbox3Change}
-          />
-          <label> 위치 기반 서비스 이용약관에 동의합니다. <a href="/">내용 보기</a></label>
+          <input type="checkbox" checked={checkbox3Checked} onChange={handleCheckbox3Change} />
+          <label onClick={handleModal3}> 위치 기반 서비스 이용약관에 동의합니다. <a href="/">내용 보기</a></label>
         </div>
 
-        <div>
-          <div className="to-login">
-            <span>이미 계정이 있으신가요? <a href="/login">Log in</a> </span>
+        {showModal1 && (
+          <div className="modal" onClick={handleCloseModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <ModalContent1 onClose={handleCloseModal} />
+            </div>
           </div>
-          <button onClick={onClickConfirmButton} className="login-bottom-button" disabled={isLoading}>
-            {isLoading ? 'Loading...' : '다음'}
-          </button>
+        )}
+
+        {showModal2 && (
+          <div className="modal" onClick={handleCloseModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <ModalContent2 onClose={handleCloseModal} />
+            </div>
+          </div>
+        )}
+
+        {showModal3 && (
+          <div className="modal" onClick={handleCloseModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <ModalContent3 onClose={handleCloseModal} />
+            </div>
+          </div>
+        )}
+
+        <div className="to-login">
+          <span>이미 계정이 있으신가요? <a href="/login">Log in</a> </span>
         </div>
+        <button onClick={onClickConfirmButton} className="login-bottom-button" disabled={isLoading}>
+          {isLoading ? 'Loading...' : '다음'}
+        </button>
 
         <div className="hr-sect">소셜 계정으로 가입하기</div>
 
@@ -246,6 +290,6 @@ export default function SignUp() {
           </Link>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
