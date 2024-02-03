@@ -1,18 +1,16 @@
 import React from "react";
 import usersData from "../../data/UserProfileData.json";
 import "../../style/ReviewTableStyle.css";
+import AfterMatching from "../../assets/매칭완료.png";
+import BeforeMatching from "../../assets/매칭전.png";
 
 const ReviewTable = () => {
   const userData = usersData[0];
 
   return (
     <div className="review-table">
-      <div className="review-column-heading">작성한 글</div>
-      <div className="review-column-heading">작성한 댓글</div>
-      <div className="review-column-heading">후기</div>
-      <div className="review-column-heading">매너별점</div>
-
       <div className="review-column">
+        <div className="review-column-heading">작성한 글</div>
         {userData.posts.map((post, index) => (
           <p key={index} className="review-text">
             {post}
@@ -20,6 +18,7 @@ const ReviewTable = () => {
         ))}
       </div>
       <div className="review-column">
+        <div className="review-column-heading">작성한 댓글</div>
         {userData.comments.map((comment, index) => (
           <p key={index} className="review-text">
             {comment}
@@ -27,14 +26,12 @@ const ReviewTable = () => {
         ))}
       </div>
       <div className="review-column">
-        {userData.reviews.map((review, index) => (
-          <p key={index} className="review-text">
-            {review}
+        <div className="review-column-heading">후기</div>
+        {userData.reviews.map((reviews, index) => (
+          <p className="review-text" key={index}>
+            {reviews}
           </p>
         ))}
-      </div>
-      <div className="review-rating-column">
-        <p className="review-rating">{"★".repeat(userData.manners)}</p>
       </div>
     </div>
   );

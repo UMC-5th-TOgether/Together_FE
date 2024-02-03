@@ -1,13 +1,12 @@
 import React from "react";
 import Nickname from "../components/FriendProfile/Nickname";
 import ReviewTable from "../components/FriendProfile/ReviewTable";
-import "../style/FriendProfileStyle.css";
-import BannerImage from "../assets/Profile.png";
+import BannerImage from "../assets/friend-Profile.png";
 
 const FriendProfile = () => {
   return (
     <div className="friend-profile-page">
-      <header>
+      <header style={{ marginBottom: "72px" }}>
         <img
           src={BannerImage}
           alt="Banner"

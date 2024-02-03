@@ -1,23 +1,33 @@
 .review-table {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) auto;
+  grid-template-columns: repeat(3, 426px);
+  place-items: center;
   gap: 20px;
   padding: 0 10px;
   font-size: 0.9em;
   width: auto;
-  margin: 0 auto;
-  max-width: 1200px;
+  justify-content: center;
 }
 
 .review-column-heading {
   font-weight: bold;
+  font-size: 32px;
   padding-top: 40px;
-  padding-bottom: 15px;
+  padding-left: 40px;
+  padding-bottom: 75px;
 }
 
 .review-column,
 .review-rating-column {
+  margin-top: 24px;
   padding-bottom: 10px;
+  border-radius: 16px;
+  background: var(--White, #fff);
+
+  /* Shadow 01 */
+  box-shadow: 0px 4px 20px 0px rgba(51, 51, 51, 0.1);
+  width: 426px;
+  height: 406px;
 }
 
 .review-rating-column {
@@ -31,5 +41,8 @@
 }
 
 .review-text {
-  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+  padding-left: 40px;
 }

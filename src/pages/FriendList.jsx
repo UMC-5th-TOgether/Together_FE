@@ -1,6 +1,6 @@
 import React from "react";
 import Friend from "../components/FriendList/Friend";
-import BannerImage from "../assets/Friend - Following.png";
+import BannerImage from "../assets/Friend List.png";
 
 const FriendList = () => {
   return (

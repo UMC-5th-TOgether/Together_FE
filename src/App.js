@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import Posting from "./pages/Posting";
 import Home from "./pages/Home";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import MyPage from "./pages/MyPage";
 import Login from "./pages/Login";
 import FriendProfile from "./pages/FriendProfile";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

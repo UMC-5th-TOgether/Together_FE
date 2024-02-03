@@ -2,22 +2,27 @@
   {
     "id": 1,
     "image": "",
-
     "nickname": "User 1",
+    "sex": "여성",
+    "age": 20,
     "introduction": "안녕 난 유저 1이야",
     "posts": ["User 1's post 1", "User 1's post 2"],
     "comments": ["User 1's comment 1", "User 1's comment 2"],
     "reviews": ["User 1's review 1", "User 1's review 2"],
+    "matching": false,
     "manners": 4.5
   },
   {
     "id": 2,
     "image": "",
     "nickname": "User 2",
+    "sex": "남성",
+    "age": 22,
     "introduction": "안녕 난 유저 2여",
     "posts": ["User 2's post 1", "User 2's post 2"],
     "comments": ["User 2's comment 1", "User 2's comment 2"],
     "reviews": ["User 2's review 1", "User 2's review 2"],
+    "matching": true,
     "manners": 4.7
   }
 ]
