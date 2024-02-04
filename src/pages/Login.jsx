@@ -81,7 +81,7 @@ export default function Login() {
         }, 1500);
       } else {
         setIsLoading(false);
-        alert(res.message);
+        alert(res.data.message);
       }
 
       // alert("로그인에 성공했습니다.");
