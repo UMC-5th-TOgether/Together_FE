@@ -126,7 +126,7 @@ export default function SignUp() {
     }
 
     console.log(emailError)
-    if (!emailError || !pwError === '') {
+    if (emailError || pwError) {
       alert('이메일 또는 비밀번호 형식이 틀렸습니다.');
       return;
     }
@@ -139,29 +139,29 @@ export default function SignUp() {
     try {
       setIsLoading(true);
 
-      // const res = await axios.post("http://hyeonjo.shop/api/auth/signup", {
-      //   // nickname: nickname,
-      //   email: email,
-      //   password: pw,
-      //   // age: age,
-      //   // gender: gender,
-      //   // station: station
-      // });
+      const res = await axios.post("http://hyeonjo.shop/api/auth/signup", {
+        // nickname: nickname,
+        email: email,
+        password: pw,
+        // age: age,
+        // gender: gender,
+        // station: station
+      });
 
-      // if (res.data.isSuccess) {
-      //   setTimeout(() => {
-      //     setIsLoading(false);
-      //     navigate('/signup/Authentication ');
-      //   }, 1500);
-      // } else {
-      //   setIsLoading(false);
-      //   alert(res.message);
-      // }
-
-      setTimeout(() => {
+      if (res.data.isSuccess) {
+        setTimeout(() => {
+          setIsLoading(false);
+          navigate('/signup/Authentication ');
+        }, 1500);
+      } else {
         setIsLoading(false);
-        navigate('/signup/Authentication');
-      }, 1500);
+        alert(res.data.message);
+      }
+
+      // setTimeout(() => {
+      //   setIsLoading(false);
+      //   navigate('/signup/Authentication');
+      // }, 1500);
     }
     catch (err) {
       alert(err);
