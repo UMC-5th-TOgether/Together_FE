@@ -1,7 +1,7 @@
 export const dummy = {
     results: [
         {
-            id:1,
+            id:7,
             title:"뉴진스 팬미팅 동행 구합니다",
             author: 
                 {

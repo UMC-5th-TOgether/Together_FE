@@ -172,8 +172,8 @@ export default function SignUp() {
   return (
     <div className="login-page">
 
-      <div className="banner-container">
-        <img className="banner" src={SignUpBanner} alt="SignUp img" />
+      <div className="banner-image-container">
+        <img className="banner-image" src={SignUpBanner} alt="SignUp img" />
       </div>
       <br />
 

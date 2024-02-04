@@ -107,8 +107,8 @@ export default function Login() {
   return (
     <div className="login-page">
 
-      <div className="banner-container">
-        <img className="banner" src={LoginBanner} alt="Login img" />
+      <div className="banner-image-container">
+        <img className="banner-image" src={LoginBanner} alt="Login img" />
       </div>
 
       <div className="login-content-wrap">

@@ -44,8 +44,8 @@ export const MatchingSend = () => {
 
     return (
         <div className="matching-page">
-            <div className="banner-container">
-                <img className="banner" src={matchingSend} alt="MatchingSend img" />
+            <div className="banner-image-container">
+                <img className="banner-image" src={matchingSend} alt="MatchingSend img" />
             </div>
 
             <div className="posting-post">

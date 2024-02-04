@@ -97,8 +97,8 @@ export default function Posting() {
   return (
     <div className="posting-page">
 
-      <div className="banner-container">
-        <img className="banner" src={postAuthor} alt="Posting img" />
+      <div className="banner-image-container">
+        <img className="banner-image" src={postAuthor} alt="Posting img" />
       </div>
 
       <div className="posting-post">

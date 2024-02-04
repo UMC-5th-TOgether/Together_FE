@@ -34,8 +34,8 @@ const PostUser = () => {
     return (
         <div className="posting-page">
 
-            <div className="banner-container">
-                <img className="banner" src={postUser} alt="Posting img" />
+            <div className="banner-image-container">
+                <img className="banner-image" src={postUser} alt="Posting img" />
             </div>
             <br />
 

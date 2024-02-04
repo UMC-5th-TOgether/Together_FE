@@ -24,8 +24,8 @@ export default function MyPage() {
 
     return (
         <div className="my-page">
-            <div className="banner-container">
-                <img className="banner" src={matchingSend} alt="Posting img" />
+            <div className="banner-image-container">
+                <img className="banner-image" src={matchingSend} alt="Posting img" />
             </div>
 
             <div className="mypage-profile-wrap">
