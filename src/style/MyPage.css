@@ -76,29 +76,30 @@
 .pagination {
   display: flex;
   margin-left: 5px;
+  margin-top: -3px;
 }
 
 .pagination-label {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
   text-align: center;
   border-radius: 50%;
   background-color: #222222;
   color: #fff;
   margin: 0 8px;
-  margin-top: -5px;
   cursor: pointer;
 }
 
 .pagination-info {
   margin: 0 5px;
-  line-height: 30px;
+  /* line-height: 25px; */
 }
 
 .pagination-link {
   cursor: pointer;
   margin: 0 5px;
+  line-height: 25px;
 }
 
 .active {
