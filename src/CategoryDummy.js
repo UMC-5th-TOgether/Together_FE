@@ -64,11 +64,11 @@
             id:7,
             category: "공연",
             title:"뉴진스 팬미팅 동행 구합니다",
-            who:"tzsdqw1712",
+            who:"귀여운 흑등고래",
             date:"2023.1.15",
             headcount:"2명",
             gender:"제한없음",
-            hashtag:["운동", "스키", "리조트"]
+            hashtag:["뉴진스", "팬미팅", "버니즈"]
         },
         {
             category: "식사",
