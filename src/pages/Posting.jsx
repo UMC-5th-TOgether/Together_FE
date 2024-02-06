@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import postAuthor from '../assets/post-author.png';
 import postUpload from '../assets/post-upload-button.png';
 import '../style/Posting.css';
@@ -22,8 +22,27 @@ export default function Posting() {
   const categories = ['공연', '운동', '식사', '취미'];
   const gender = ['제한 없음', '여성', '남성'];
 
-  const navigate = useNavigate();
+  let genderValue;
+  if (selectedGender === '제한 없음') {
+    genderValue = 'NONE';
+  } else if (selectedGender === '여성') {
+    genderValue = 'FEMALE';
+  } else if (selectedGender === '남성') {
+    genderValue = 'MALE';
+  }
 
+  let categoryValue;
+  if (selectedCategory === '공연') {
+    categoryValue = 'PLAY';
+  } else if (selectedCategory === '운동') {
+    categoryValue = 'EXERCISE';
+  } else if (selectedCategory === '식사') {
+    categoryValue = 'EAT';
+  } else if (selectedCategory === '취미') {
+    categoryValue = 'HOBBY';
+  }
+
+  const navigate = useNavigate();
 
   const handleTitleChange = (e) => {
     const newTitle = e.target.value.slice(0, 40);
@@ -39,9 +58,7 @@ export default function Posting() {
   };
 
   const handleRecruitmentCountChange = (e) => {
-    // const newRecruitmentCount = e.target.value.replace(/[^0-9]/g, '');
-    // newRecruitmentCount = newRecruitmentCount.slice(0, 3);
-    const newRecruitmentCount = e.target.value.slice(0, 3);
+    const newRecruitmentCount = e.target.value.replace(/\D/g, '').slice(0, 3);
     setRecruitmentCount(newRecruitmentCount);
   };
 
@@ -71,27 +88,39 @@ export default function Posting() {
 
     console.log('Title:', title);
     console.log('Content:', content);
-    console.log('Selected Images:', selectedImages);
+    console.log('Categories:', selectedCategory);
+    console.log('recruitmentCount:', recruitmentCount);
     console.log('Hashtags:', hashtags);
-
 
     const lastPostId = dummy.results[dummy.results.length - 1].id;
     navigate(`/postuser/${lastPostId}`);
 
-    const res = await axios.post("http://hyunjin.link/api/posts", {
+
+    const userData = {
       title: title,
-      selectedCategory: selectedCategory,
-      hashtags: hashtags,
-      selectedGender: selectedGender,
-      recruitmentCount: recruitmentCount,
+      category: categoryValue,
+      postHashtagList: hashtags,
+      gender: genderValue,
+      personNum: parseInt(recruitmentCount),
       content: content,
-      // images: images
-    }, {
-      headers: {
-        Autorization: token,
-      }
+      status: "ING"
     }
-    );
+    try {
+      const res = await axios.post("http://hyeonjo.shop/api/posts",
+        // const res = await axios.post("https://hyunjin.link/api/posts",
+        userData
+        ,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+
+      console.log("Response:", res.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -167,7 +196,6 @@ export default function Posting() {
               <input
                 className="posting-input"
                 type="text"
-                // pattern="[0-9]+"
                 value={recruitmentCount}
                 onChange={handleRecruitmentCountChange}
                 style={{ width: '30px' }} />
