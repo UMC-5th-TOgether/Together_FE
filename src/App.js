@@ -17,7 +17,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/category" element={<Category />} />
+          <Route path="/Category" element={<Category />} />
           <Route path="/chatting" element={<Chatting />} />
           <Route path="/friend" element={<Friend />} />
           <Route path="/posting" element={<Posting />} />

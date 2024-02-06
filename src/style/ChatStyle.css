@@ -1,0 +1,150 @@
+/**/
+
+.chat-app {
+  grid: 4fr 4fr;
+}
+
+.chat-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 20px; /* Optional: space between columns */
+  /* Other styling as needed */
+  margin-bottom: 100px;
+}
+
+.chat-room,
+.chat-room-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: white;
+  margin-bottom: 100px;
+}
+
+.chat-room-list {
+  grid-row: 1/1;
+  display: grid;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 656px;
+  height: 1062px;
+  margin: 10px auto;
+  margin-left: 296px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 10px 0 15px -3px rgba(211, 211, 211, 0.5),
+    -10px 0 15px -3px rgba(211, 211, 211, 0.5),
+    0 -10px 15px -3px rgba(211, 211, 211, 0.5),
+    0 10px 15px -3px rgba(211, 211, 211, 0.5);
+  margin-bottom: 100px;
+}
+
+.chat-room {
+  grid-row: 1/2;
+  display: grid;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 656px;
+  height: 1062px;
+  margin: 10px auto;
+  margin-right: 296px;
+  margin-left: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: white;
+  box-shadow: -10px 0 15px -3px rgba(211, 211, 211, 0.5),
+    10px 0 15px -3px rgba(211, 211, 211, 0.5),
+    0 -10px 15px -3px rgba(211, 211, 211, 0.5),
+    0 10px 15px -3px rgba(211, 211, 211, 0.5);
+  margin-bottom: 100px;
+}
+
+/***/
+
+/* Additional styles for chatroom entries */
+.chattingroom {
+  padding: 10px;
+  margin: 40px;
+  margin-bottom: 8px;
+  border: 1px solid #eee;
+}
+
+.post-title {
+  font-weight: bold;
+}
+
+.last-chat {
+  color: grey;
+  font-size: 0.9rem;
+}
+
+/* Styles for messages */
+.message {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+}
+
+.server-profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #bbb;
+  /* Add more styling for profile images */
+}
+
+.chat-content {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.chat-time {
+  text-align: right;
+  font-size: 0.8rem;
+  color: grey;
+}
+
+/* Styles for textarea and buttons */
+.textarea {
+  display: flex;
+  margin-top: auto;
+}
+
+.send {
+  padding: 10px 20px;
+  margin-left: auto;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.two-button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.two-button button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Add responsive behavior as necessary */
+@media (max-width: 768px) {
+  .chat-app {
+    grid-template-columns: 1fr;
+  }
+}
