@@ -26,15 +26,6 @@ export default function Login() {
     }
   }, []);
 
-  // 토큰 헤더에 추가
-  // const setAuthHeader = (token) => {
-  //   if (token) {
-  //     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  //   } else {
-  //     delete axios.defaults.headers.common['Authorization'];
-  //   }
-  // };
-
   const handleEmail = (e) => {
     dispatch(setUserEmail(e.target.value));
   };
@@ -56,13 +47,11 @@ export default function Login() {
     try {
       setIsLoading(true);
 
-      const res = await axios.post("http://hyeonjo.shop/api/auth/login", {
+      // const res = await axios.post("https://hyunjin.link/api/auth/login", {
+      const res = await axios.post("https://hyeonjo.shop/api/auth/login", {
         email: email,
         password: pw
       });
-
-      console.log(res.data.inSuccess);
-
       if (res.data.isSuccess) {
         setTimeout(() => {
           const token = res.data.data[0].token;
@@ -112,6 +101,9 @@ export default function Login() {
       </div>
 
       <div className="login-content-wrap">
+
+        <div className="login-title-wrap">로그인</div>
+
         <div className="login-input-title">이메일</div>
         <div className="login-input-wrap">
           <input
@@ -148,8 +140,8 @@ export default function Login() {
             {isLoading ? 'Loading...' : '로그인'}
           </button>
           <div className="additional-links">
-            <span><a href="/">계정 찾기</a> | </span>
-            <span><a href="/">비밀번호 찾기</a> | </span>
+            <span><a href="/findEmail">계정 찾기</a> | </span>
+            <span><a href="/findPassword">비밀번호 찾기</a> | </span>
             <span><a href="/signup">회원가입</a></span>
           </div>
         </div>
