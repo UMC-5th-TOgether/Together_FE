@@ -2,475 +2,100 @@
   "chatRooms": [
     {
       "id": 1,
-      "name": "Room 1"
+      "name": "뉴진스 팬미팅 동행 구합니다 !",
+      "lastMessage": "마지막 메시지 내용"
     },
     {
       "id": 2,
-      "name": "Room 2"
+      "name": "에스파 드라마 콘서트 동행 구합니다 !",
+      "lastMessage": "마지막 메시지 내용"
     },
     {
       "id": 3,
-      "name": "Room 3"
+      "name": "채팅 대신 해줄 사람 구합니다 !",
+      "lastMessage": "마지막 메시지 내용"
     },
     {
       "id": 4,
-      "name": "Room 4"
+      "name": "알바 대신 가줄 사람 구합니다 !",
+      "lastMessage": "마지막 메시지 내용"
     },
     {
       "id": 5,
-      "name": "Room 5"
+      "name": "오늘은 설날 입니다 .",
+      "lastMessage": "마지막 메시지 내용"
     }
   ],
   "messages": [
     {
       "roomId": 1,
-      "sender": "User2",
+      "sender": "아산백호",
       "receiver": "User1",
-      "senderMessage": "Message from User2",
-      "receiverMessage": "Message to User1",
-      "lastMessage": "Last message in Room 1",
+      "content": "뉴진스 팬미팅 가실 분?",
       "timestamp": "2024-01-15T20:51:31.422529"
     },
     {
       "roomId": 1,
       "sender": "User1",
+      "receiver": "아산백호",
+      "content": "함께할 사람 구합니다!",
+      "timestamp": "2024-01-15T21:10:20.422529"
+    },
+    {
+      "roomId": 2,
+      "sender": "User1",
+      "receiver": "User2",
+      "content": "드라마 콘서트 가요!",
+      "timestamp": "2024-01-16T15:22:19.422529"
+    },
+    {
+      "roomId": 2,
+      "sender": "User1",
+      "receiver": "User2",
+      "content": "콘서트 티켓 있어요!",
+      "timestamp": "2024-01-16T16:35:45.422529"
+    },
+    {
+      "roomId": 3,
+      "sender": "User1",
       "receiver": "User3",
-      "senderMessage": "Message from User1",
-      "receiverMessage": "Message to User3",
-      "lastMessage": "Last message in Room 1",
-      "timestamp": "2024-01-12T14:22:19.422529"
+      "content": "채팅 대신 해주실 분?",
+      "timestamp": "2024-01-17T13:47:11.422529"
     },
     {
-      "roomId": 1,
-      "sender": "User10",
-      "receiver": "User4",
-      "senderMessage": "Message from User10",
-      "receiverMessage": "Message to User4",
-      "lastMessage": "Last message in Room 1",
-      "timestamp": "2024-02-06T05:56:38.422529"
-    },
-    {
-      "roomId": 1,
+      "roomId": 3,
       "sender": "User1",
-      "receiver": "User4",
-      "senderMessage": "Message from User1",
-      "receiverMessage": "Message to User4",
-      "lastMessage": "Last message in Room 1",
-      "timestamp": "2024-01-08T14:36:14.422529"
-    },
-    {
-      "roomId": 1,
-      "sender": "User5",
-      "receiver": "User2",
-      "senderMessage": "Message from User5",
-      "receiverMessage": "Message to User2",
-      "lastMessage": "Last message in Room 1",
-      "timestamp": "2024-01-19T19:05:26.422529"
-    },
-    {
-      "roomId": 1,
-      "sender": "User9",
-      "receiver": "User4",
-      "senderMessage": "Message from User9",
-      "receiverMessage": "Message to User4",
-      "lastMessage": "Last message in Room 1",
-      "timestamp": "2024-01-16T21:00:09.422529"
-    },
-    {
-      "roomId": 1,
-      "sender": "User10",
-      "receiver": "User4",
-      "senderMessage": "Message from User10",
-      "receiverMessage": "Message to User4",
-      "lastMessage": "Last message in Room 1",
-      "timestamp": "2024-01-21T04:05:32.422529"
-    },
-    {
-      "roomId": 1,
-      "sender": "User10",
-      "receiver": "User4",
-      "senderMessage": "Message from User10",
-      "receiverMessage": "Message to User4",
-      "lastMessage": "Last message in Room 1",
-      "timestamp": "2024-02-01T21:47:57.422529"
-    },
-    {
-      "roomId": 1,
-      "sender": "User3",
-      "receiver": "User4",
-      "senderMessage": "Message from User3",
-      "receiverMessage": "Message to User4",
-      "lastMessage": "Last message in Room 1",
-      "timestamp": "2024-01-22T13:47:11.422529"
-    },
-    {
-      "roomId": 1,
-      "sender": "User3",
-      "receiver": "User9",
-      "senderMessage": "Message from User3",
-      "receiverMessage": "Message to User9",
-      "lastMessage": "Last message in Room 1",
-      "timestamp": "2024-01-19T19:14:53.422529"
-    },
-    {
-      "roomId": 2,
-      "sender": "User9",
-      "receiver": "User7",
-      "senderMessage": "Message from User9",
-      "receiverMessage": "Message to User7",
-      "lastMessage": "Last message in Room 2",
-      "timestamp": "2024-01-19T23:44:14.422707"
-    },
-    {
-      "roomId": 2,
-      "sender": "User1",
-      "receiver": "User10",
-      "senderMessage": "Message from User1",
-      "receiverMessage": "Message to User10",
-      "lastMessage": "Last message in Room 2",
-      "timestamp": "2024-02-04T03:47:50.422707"
-    },
-    {
-      "roomId": 2,
-      "sender": "User1",
-      "receiver": "User8",
-      "senderMessage": "Message from User1",
-      "receiverMessage": "Message to User8",
-      "lastMessage": "Last message in Room 2",
-      "timestamp": "2024-02-02T22:44:23.422707"
-    },
-    {
-      "roomId": 2,
-      "sender": "User10",
-      "receiver": "User7",
-      "senderMessage": "Message from User10",
-      "receiverMessage": "Message to User7",
-      "lastMessage": "Last message in Room 2",
-      "timestamp": "2024-02-03T14:55:43.422707"
-    },
-    {
-      "roomId": 2,
-      "sender": "User9",
-      "receiver": "User10",
-      "senderMessage": "Message from User9",
-      "receiverMessage": "Message to User10",
-      "lastMessage": "Last message in Room 2",
-      "timestamp": "2024-02-02T00:06:39.422707"
-    },
-    {
-      "roomId": 2,
-      "sender": "User5",
-      "receiver": "User9",
-      "senderMessage": "Message from User5",
-      "receiverMessage": "Message to User9",
-      "lastMessage": "Last message in Room 2",
-      "timestamp": "2024-02-04T09:25:18.422707"
-    },
-    {
-      "roomId": 2,
-      "sender": "User4",
       "receiver": "User3",
-      "senderMessage": "Message from User4",
-      "receiverMessage": "Message to User3",
-      "lastMessage": "Last message in Room 2",
-      "timestamp": "2024-02-02T12:06:44.422707"
-    },
-    {
-      "roomId": 2,
-      "sender": "User9",
-      "receiver": "User8",
-      "senderMessage": "Message from User9",
-      "receiverMessage": "Message to User8",
-      "lastMessage": "Last message in Room 2",
-      "timestamp": "2024-01-08T20:39:31.422707"
-    },
-    {
-      "roomId": 2,
-      "sender": "User8",
-      "receiver": "User1",
-      "senderMessage": "Message from User8",
-      "receiverMessage": "Message to User1",
-      "lastMessage": "Last message in Room 2",
-      "timestamp": "2024-02-06T01:15:10.422707"
-    },
-    {
-      "roomId": 2,
-      "sender": "User8",
-      "receiver": "User2",
-      "senderMessage": "Message from User8",
-      "receiverMessage": "Message to User2",
-      "lastMessage": "Last message in Room 2",
-      "timestamp": "2024-01-08T07:57:58.422707"
-    },
-    {
-      "roomId": 3,
-      "sender": "User4",
-      "receiver": "User5",
-      "senderMessage": "Message from User4",
-      "receiverMessage": "Message to User5",
-      "lastMessage": "Last message in Room 3",
-      "timestamp": "2024-01-30T17:14:11.422839"
-    },
-    {
-      "roomId": 3,
-      "sender": "User5",
-      "receiver": "User8",
-      "senderMessage": "Message from User5",
-      "receiverMessage": "Message to User8",
-      "lastMessage": "Last message in Room 3",
-      "timestamp": "2024-01-12T04:26:25.422839"
-    },
-    {
-      "roomId": 3,
-      "sender": "User7",
-      "receiver": "User9",
-      "senderMessage": "Message from User7",
-      "receiverMessage": "Message to User9",
-      "lastMessage": "Last message in Room 3",
-      "timestamp": "2024-01-29T20:12:16.422839"
-    },
-    {
-      "roomId": 3,
-      "sender": "User6",
-      "receiver": "User5",
-      "senderMessage": "Message from User6",
-      "receiverMessage": "Message to User5",
-      "lastMessage": "Last message in Room 3",
-      "timestamp": "2024-02-01T10:34:09.422839"
-    },
-    {
-      "roomId": 3,
-      "sender": "User5",
-      "receiver": "User4",
-      "senderMessage": "Message from User5",
-      "receiverMessage": "Message to User4",
-      "lastMessage": "Last message in Room 3",
-      "timestamp": "2024-01-22T12:10:15.422839"
-    },
-    {
-      "roomId": 3,
-      "sender": "User10",
-      "receiver": "User6",
-      "senderMessage": "Message from User10",
-      "receiverMessage": "Message to User6",
-      "lastMessage": "Last message in Room 3",
-      "timestamp": "2024-01-21T17:56:03.422839"
-    },
-    {
-      "roomId": 3,
-      "sender": "User6",
-      "receiver": "User4",
-      "senderMessage": "Message from User6",
-      "receiverMessage": "Message to User4",
-      "lastMessage": "Last message in Room 3",
-      "timestamp": "2024-01-24T09:24:03.422839"
-    },
-    {
-      "roomId": 3,
-      "sender": "User7",
-      "receiver": "User8",
-      "senderMessage": "Message from User7",
-      "receiverMessage": "Message to User8",
-      "lastMessage": "Last message in Room 3",
-      "timestamp": "2024-02-06T08:54:44.422839"
-    },
-    {
-      "roomId": 3,
-      "sender": "User10",
-      "receiver": "User6",
-      "senderMessage": "Message from User10",
-      "receiverMessage": "Message to User6",
-      "lastMessage": "Last message in Room 3",
-      "timestamp": "2024-01-27T03:17:20.422839"
-    },
-    {
-      "roomId": 3,
-      "sender": "User3",
-      "receiver": "User6",
-      "senderMessage": "Message from User3",
-      "receiverMessage": "Message to User6",
-      "lastMessage": "Last message in Room 3",
-      "timestamp": "2024-02-03T03:41:01.422839"
-    },
-    {
-      "roomId": 4,
-      "sender": "User8",
-      "receiver": "User7",
-      "senderMessage": "Message from User8",
-      "receiverMessage": "Message to User7",
-      "lastMessage": "Last message in Room 4",
-      "timestamp": "2024-02-01T12:05:51.422973"
-    },
-    {
-      "roomId": 4,
-      "sender": "User4",
-      "receiver": "User9",
-      "senderMessage": "Message from User4",
-      "receiverMessage": "Message to User9",
-      "lastMessage": "Last message in Room 4",
-      "timestamp": "2024-01-18T18:42:06.422973"
+      "content": "대화 상대 구합니다.",
+      "timestamp": "2024-01-17T14:58:22.422529"
     },
     {
       "roomId": 4,
       "sender": "User1",
       "receiver": "User4",
-      "senderMessage": "Message from User1",
-      "receiverMessage": "Message to User4",
-      "lastMessage": "Last message in Room 4",
-      "timestamp": "2024-01-08T15:48:47.422973"
+      "content": "알바 대타 구해요.",
+      "timestamp": "2024-01-18T17:14:11.422529"
     },
     {
       "roomId": 4,
-      "sender": "User6",
-      "receiver": "User9",
-      "senderMessage": "Message from User6",
-      "receiverMessage": "Message to User9",
-      "lastMessage": "Last message in Room 4",
-      "timestamp": "2024-01-20T01:35:43.422973"
-    },
-    {
-      "roomId": 4,
-      "sender": "User5",
-      "receiver": "User8",
-      "senderMessage": "Message from User5",
-      "receiverMessage": "Message to User8",
-      "lastMessage": "Last message in Room 4",
-      "timestamp": "2024-01-16T12:34:16.422973"
-    },
-    {
-      "roomId": 4,
-      "sender": "User8",
-      "receiver": "User7",
-      "senderMessage": "Message from User8",
-      "receiverMessage": "Message to User7",
-      "lastMessage": "Last message in Room 4",
-      "timestamp": "2024-01-07T14:59:41.422973"
-    },
-    {
-      "roomId": 4,
-      "sender": "User4",
-      "receiver": "User7",
-      "senderMessage": "Message from User4",
-      "receiverMessage": "Message to User7",
-      "lastMessage": "Last message in Room 4",
-      "timestamp": "2024-01-15T23:07:44.422973"
-    },
-    {
-      "roomId": 4,
-      "sender": "User4",
-      "receiver": "User10",
-      "senderMessage": "Message from User4",
-      "receiverMessage": "Message to User10",
-      "lastMessage": "Last message in Room 4",
-      "timestamp": "2024-01-30T15:13:32.422973"
-    },
-    {
-      "roomId": 4,
-      "sender": "User5",
-      "receiver": "User7",
-      "senderMessage": "Message from User5",
-      "receiverMessage": "Message to User7",
-      "lastMessage": "Last message in Room 4",
-      "timestamp": "2024-01-09T03:06:03.422973"
-    },
-    {
-      "roomId": 4,
-      "sender": "User4",
-      "receiver": "User10",
-      "senderMessage": "Message from User4",
-      "receiverMessage": "Message to User10",
-      "lastMessage": "Last message in Room 4",
-      "timestamp": "2024-01-21T09:26:20.422973"
+      "sender": "User1",
+      "receiver": "User4",
+      "content": "급한 알바 대타!",
+      "timestamp": "2024-01-18T18:23:37.422529"
     },
     {
       "roomId": 5,
-      "sender": "User9",
-      "receiver": "User8",
-      "senderMessage": "Message from User9",
-      "receiverMessage": "Message to User8",
-      "lastMessage": "Last message in Room 5",
-      "timestamp": "2024-01-16T04:46:27.423103"
+      "sender": "User1",
+      "receiver": "User5",
+      "content": "새해 복 많이 받으세요!",
+      "timestamp": "2024-01-19T04:05:32.422529"
     },
     {
       "roomId": 5,
-      "sender": "User3",
-      "receiver": "User10",
-      "senderMessage": "Message from User3",
-      "receiverMessage": "Message to User10",
-      "lastMessage": "Last message in Room 5",
-      "timestamp": "2024-01-28T14:06:47.423103"
-    },
-    {
-      "roomId": 5,
-      "sender": "User3",
-      "receiver": "User1",
-      "senderMessage": "Message from User3",
-      "receiverMessage": "Message to User1",
-      "lastMessage": "Last message in Room 5",
-      "timestamp": "2024-02-02T00:17:40.423103"
-    },
-    {
-      "roomId": 5,
-      "sender": "User3",
-      "receiver": "User7",
-      "senderMessage": "Message from User3",
-      "receiverMessage": "Message to User7",
-      "lastMessage": "Last message in Room 5",
-      "timestamp": "2024-01-12T14:36:33.423103"
-    },
-    {
-      "roomId": 5,
-      "sender": "User3",
-      "receiver": "User9",
-      "senderMessage": "Message from User3",
-      "receiverMessage": "Message to User9",
-      "lastMessage": "Last message in Room 5",
-      "timestamp": "2024-01-11T21:25:36.423103"
-    },
-    {
-      "roomId": 5,
-      "sender": "User6",
-      "receiver": "User9",
-      "senderMessage": "Message from User6",
-      "receiverMessage": "Message to User9",
-      "lastMessage": "Last message in Room 5",
-      "timestamp": "2024-01-09T10:58:13.423103"
-    },
-    {
-      "roomId": 5,
-      "sender": "User6",
-      "receiver": "User7",
-      "senderMessage": "Message from User6",
-      "receiverMessage": "Message to User7",
-      "lastMessage": "Last message in Room 5",
-      "timestamp": "2024-01-29T15:25:41.423103"
-    },
-    {
-      "roomId": 5,
-      "sender": "User5",
-      "receiver": "User2",
-      "senderMessage": "Message from User5",
-      "receiverMessage": "Message to User2",
-      "lastMessage": "Last message in Room 5",
-      "timestamp": "2024-01-20T16:45:11.423103"
-    },
-    {
-      "roomId": 5,
-      "sender": "User3",
-      "receiver": "User8",
-      "senderMessage": "Message from User3",
-      "receiverMessage": "Message to User8",
-      "lastMessage": "Last message in Room 5",
-      "timestamp": "2024-02-05T04:24:35.423103"
-    },
-    {
-      "roomId": 5,
-      "sender": "User8",
-      "receiver": "User10",
-      "senderMessage": "Message from User8",
-      "receiverMessage": "Message to User10",
-      "lastMessage": "Last message in Room 5",
-      "timestamp": "2024-01-23T05:33:39.423103"
+      "sender": "User1",
+      "receiver": "User5",
+      "content": "설날 잘 보내고 계신가요?",
+      "timestamp": "2024-01-19T05:15:48.422529"
     }
   ]
 }
