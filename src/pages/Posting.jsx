@@ -9,7 +9,6 @@ import { dummy } from "../PostUserDummy";
 
 export default function Posting() {
   const token = localStorage.getItem('token');
-  console.log(token);
 
   const [title, setTitle] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -86,27 +85,20 @@ export default function Posting() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Title:', title);
-    console.log('Content:', content);
-    console.log('Categories:', selectedCategory);
-    console.log('recruitmentCount:', recruitmentCount);
-    console.log('Hashtags:', hashtags);
-
-    const lastPostId = dummy.results[dummy.results.length - 1].id;
-    navigate(`/postuser/${lastPostId}`);
-
+    console.log(token);
 
     const userData = {
       title: title,
       category: categoryValue,
       postHashtagList: hashtags,
       gender: genderValue,
-      personNum: parseInt(recruitmentCount),
+      personNumMin: parseInt(recruitmentCount),
+      personNumMax: parseInt(recruitmentCount),
+      meetTime: "2024-02-10",
       content: content,
-      status: "ING"
     }
     try {
-      const res = await axios.post("http://hyeonjo.shop/api/posts",
+      const res = await axios.post("https://hyeonjo.shop/api/posts",
         // const res = await axios.post("https://hyunjin.link/api/posts",
         userData
         ,
@@ -117,7 +109,11 @@ export default function Posting() {
         }
       );
 
+      // const id = res.data.data.id;
       console.log("Response:", res.data);
+      // navigate(`/postuser/${id}`);
+      navigate(`/category`);
+
     } catch (error) {
       console.error("Error:", error);
     }

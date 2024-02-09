@@ -142,3 +142,8 @@ label button {
 .posting-image-preview:hover .remove-image-button {
   opacity: 1;
 }
+
+.posting-reply-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
