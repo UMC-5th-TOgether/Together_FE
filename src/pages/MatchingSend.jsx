@@ -4,7 +4,7 @@ import matchingSendButton from '../assets/matching-send-button.png';
 import '../style/Matching.css';
 import { Link } from 'react-router-dom';
 
-export const MatchingSend = () => {
+export default function MatchingSend() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [selectedImages, setSelectedImages] = useState([]);
