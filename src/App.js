@@ -14,7 +14,12 @@ import Login from './pages/Login';
 import Notification from './pages/Notification';
 import PostUser from './pages/PostUser';
 import SignUp from './pages/SignUp';
-import { MatchingSend } from './pages/MatchingSend';
+import MatchingSend from './pages/MatchingSend';
+import SignUpAuthentication from './pages/SignUpAuthentication';
+import SignUpAuthenticationCheck from './pages/SignUpAuthenticationCheck';
+import FindEmail from './pages/FindEmail';
+import FindPassword from './pages/FindPassword';
+import Footer from './components/ListFooter/Footer';
 
 function App() {
   return (
@@ -33,14 +38,19 @@ function App() {
                     <Route path="/chatting" element={<Chatting />} />
                     <Route path="/friend" element={<Friend />} />
                     <Route path="/posting" element={<Posting />} />
-                    <Route path="/postuser/:id" element={<PostUser component={PostUser} />} />
+                    <Route path="/postuser/:id" element={<PostUser />} />
                     <Route path="/mypage" element={<MyPage />} />
                     <Route path="/notification" element={<Notification />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/findEmail" element={<FindEmail />} />
+                    <Route path="/findPassword" element={<FindPassword />} />
                     <Route path="/signup" element={<SignUp />} />
+                    <Route path="/authentication" element={<SignUpAuthentication />} />
+                    <Route path="/checkSms" element={<SignUpAuthenticationCheck />} />
                     <Route path="/matching" element={<MatchingSend />} />
                     <Route path="/*" element={<NotFound />} />
                   </Routes>
+                  {/* <Footer /> */}
                 </div>
               }
             />
