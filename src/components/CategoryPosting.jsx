@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaQuoteLeft } from 'react-icons/fa6';
 import { FaQuoteRight } from 'react-icons/fa6';
-import { useNavigate } from 'react-router-dom'; // Import navigate function
+import { useNavigate } from 'react-router-dom';
 import { dummy } from '../CategoryDummy';
+import axios from 'axios';
 
 const CategoryPosting = ({ selectedCategory }) => {
+  const token = localStorage.getItem('token');
+  const [postData, setPostData] = useState(null);
+
   const navigate = useNavigate();
 
   const iconStyle = {
@@ -17,12 +21,34 @@ const CategoryPosting = ({ selectedCategory }) => {
   };
 
   const filteredPosts = selectedCategory
-    ? dummy.results.filter((post) => post.category === selectedCategory).slice(0, 8)
+    ? dummy.results.filter((post) => post.category === selectedCategory).slice(0, 12)
     : dummy.results.slice(0, 8);
 
-  const handleClick = (postId) => {
-    navigate(`/postuser/${postId}`);
+
+  const handleClick = async (postId) => {
+    try {
+      const res = await axios.get(`https://hyeonjo.shop/api/posts/id?postId=${postId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+      console.log(res.data.data);
+      setPostData(res.data.data);
+    } catch (error) {
+      console.error('Error fetching post data:', error);
+    }
   };
+
+  useEffect(() => {
+    if (postData !== null) {
+      navigate(`/postuser/${postData.id}`, { state: { postData } });
+    }
+  }, [postData, navigate]);
+
+
+  // const handleClick = async (postId) => {
+  //   navigate(`/postuser/${postId}`);
+  // };
 
   return (
     <div className="home-container">

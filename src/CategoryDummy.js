@@ -2,6 +2,7 @@
   export const dummy = {
     results: [
         {
+            id:1,
             category: "운동",
             title:"오늘 밤 10시 별내 OO헬스장 운동해요~",
             who:"귀여운 흑등고래",
@@ -71,6 +72,7 @@
             hashtag:["뉴진스", "팬미팅", "버니즈"]
         },
         {
+            id:8,
             category: "식사",
             title:"울릉도 딱새우 먹으러 갈 사람",
             who:"말랑말랑 해파리",
@@ -80,6 +82,7 @@
             hashtag:["식사", "울릉도", "새우"]
         },
         {
+            id:9,
             category: "취미",
             title:"혜화역 근처에서 카공 할 사람",
             who:"cxz6854",
@@ -89,6 +92,7 @@
             hashtag:["카공","혜화"]
         },
         {
+            id:10,
             category: "공연",
             title:"새로 나온 산타 탕후루 먹으러 갈 사람",
             who:"liilililli",
@@ -98,6 +102,7 @@
             hashtag:["탕후루", "간식"]
         },
         {
+            id:11,
             category: "공연",
             title:"평창 리조트 스키타러 갈 사람",
             who:"tzsdqw1712",
@@ -107,6 +112,7 @@
             hashtag:["운동", "스키", "리조트"]
         },
         {
+            id:12,
             category: "공연",
             title:"울릉도 딱새우 먹으러 갈 사람",
             who:"말랑말랑 해파리",
@@ -116,6 +122,7 @@
             hashtag:["식사", "울릉도", "새우"]
         },
         {
+            id:13,
             category: "공연",
             title:"혜화역 근처에서 카공 할 사람",
             who:"cxz6854",
@@ -125,6 +132,7 @@
             hashtag:["카공","혜화"]
         },
         {
+            id:14,
             category: "취미",
             title:"새로 나온 산타 탕후루 먹으러 갈 사람",
             who:"liilililli",
