@@ -6,6 +6,7 @@ import profilePicture from '../assets/profile.png';
 import { FaStar } from 'react-icons/fa';
 import '../style/MyPage.css';
 import { dummy } from '../MemberDummy';
+import { PostStatus } from '../components/PostStatus';
 
 export default function MyPage() {
     const { nickname, gender, age, residence, review } = dummy.results[0];
@@ -92,7 +93,8 @@ export default function MyPage() {
                     {currentPosts.map((post, index) => (
                         <div key={index}>
                             <div className="mypage-wrap">
-                                {post.title} {post.content}
+                                <div className="mypage-writtenpost">{post.title}</div>
+                                <div className="mypage-writtenpost-status"><PostStatus status={post.status} /> </div>
                             </div>
                         </div>
                     ))}
@@ -101,8 +103,15 @@ export default function MyPage() {
 
                 <div className="mypage-post">
                     <div className="mypage-title"> 작성한 댓글</div>
-
+                    {/* {currentComments.map((comment, index) => (
+                        <div key={index}>
+                            <div className="mypage-wrap">
+                                {comment.title}
+                            </div>
+                        </div>
+                    ))} */}
                 </div>
+
 
                 <div className="mypage-post">
                     <div className="mypage-title"> 작성한 후기</div>
