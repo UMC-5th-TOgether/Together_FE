@@ -13,15 +13,10 @@ import { ModalContent1, ModalContent2, ModalContent3 } from '../elements/TermsOf
 export default function SignUp() {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState('');
-  const [birthdate, setBirthdate] = useState('');
-  const [age, setAge] = useState('');
-  const [station, setStation] = useState('');
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
 
   const [nicknameError, setNicknameError] = useState('');
-  const [birthdateError, setBirthdateError] = useState('');
-  const [stationError, setStationError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [pwError, setPwError] = useState('');
 
@@ -76,29 +71,6 @@ export default function SignUp() {
     }
   };
 
-  function calculateAge(birthdate) {
-    const today = new Date();
-
-    let age = (today.getFullYear() - parseInt(birthdate.slice(0, 4)) + 1).toString();
-
-    return age;
-  }
-
-  const handleBirthdate = (e) => {
-    const value = e.target.value;
-    setBirthdate(value);
-
-    if (!validateBirthdate(value)) {
-      setBirthdateError('생년월일 8자리를 입력하세요.');
-      setAge('');
-    } else {
-      setBirthdateError('');
-      const age = calculateAge(value);
-      setAge(age);
-      console.log("age:", age);
-    }
-  };
-
   const handleEmail = (e) => {
     const value = e.target.value;
     setEmail(value);
@@ -120,14 +92,14 @@ export default function SignUp() {
   };
 
   const onClickConfirmButton = async (e) => {
-    if (email === '' || pw === '') {
-      alert('이메일, 비밀번호를 모두 입력해주세요.');
+    if (email === '' || pw === '' || nickname === '') {
+      alert('닉네임, 이메일, 비밀번호를 모두 입력해주세요.');
       return;
     }
 
     console.log(emailError)
-    if (emailError || pwError) {
-      alert('이메일 또는 비밀번호 형식이 틀렸습니다.');
+    if (emailError || pwError || nicknameError) {
+      alert('양식을 올바르게 입력하세요.');
       return;
     }
 
@@ -139,19 +111,19 @@ export default function SignUp() {
     try {
       setIsLoading(true);
 
-      const res = await axios.post("http://hyeonjo.shop/api/auth/signup", {
-        // nickname: nickname,
-        email: email,
-        password: pw,
-        // age: age,
-        // gender: gender,
-        // station: station
-      });
+      const userData = {
+        nickname,
+        email,
+        pw
+      };
+
+      const res = await axios.get(`https://hyeonjo.shop/api/auth/checkEmail?email=${email}`);
+      console.log(res.data);
 
       if (res.data.isSuccess) {
         setTimeout(() => {
           setIsLoading(false);
-          navigate('/signup/Authentication ');
+          navigate('/authentication', { state: userData });
         }, 1500);
       } else {
         setIsLoading(false);
@@ -160,7 +132,7 @@ export default function SignUp() {
 
       // setTimeout(() => {
       //   setIsLoading(false);
-      //   navigate('/signup/Authentication');
+      //   navigate('/authentication', { state: userData });
       // }, 1500);
     }
     catch (err) {
@@ -179,9 +151,11 @@ export default function SignUp() {
 
       <div className="login-content-wrap">
 
+        <div className="login-title-wrap">회원가입</div>
+
         <div className="hr-sect"> 이메일로 가입하기</div>
         <br />
-        {/* <div className="login-input-title">닉네임</div>
+        <div className="login-input-title">닉네임</div>
         <div className="login-input-wrap">
           <input
             className="login-input"
@@ -192,18 +166,6 @@ export default function SignUp() {
           />
         </div>
         {nicknameError && <div className="error">{nicknameError}</div>}
-
-        <div className="login-input-title">생년월일</div>
-        <div className="login-input-wrap">
-          <input
-            className="login-input"
-            type="text"
-            value={birthdate}
-            placeholder="생년월일 8자리를 입력하세요."
-            onChange={handleBirthdate}
-          />
-        </div>
-        {birthdateError && <div className="error">{birthdateError}</div>} */}
 
         <div className="login-input-title">이메일</div>
         <div className="login-input-wrap">
@@ -275,6 +237,9 @@ export default function SignUp() {
         <button onClick={onClickConfirmButton} className="login-bottom-button" disabled={isLoading}>
           {isLoading ? 'Loading...' : '다음'}
         </button>
+        <br />
+        <br />
+        <br />
 
         <div className="hr-sect">소셜 계정으로 가입하기</div>
 
