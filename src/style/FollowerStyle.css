@@ -53,7 +53,7 @@
   padding-right: 30px;
 }
 
-.friend-introduction {
+.title {
   font-size: 24px;
   font-weight: bold;
   margin-left: 40px;
@@ -81,7 +81,7 @@
   margin-top: 72px;
   margin-bottom: 104px;
   text-align: center;
-  background-color: #808080;
+  background-color: #f3f3f3;
   text-decoration: none;
   color: black;
   line-height: 2.5;
@@ -93,4 +93,35 @@
 
 .user-profile-link {
   text-decoration: none;
+}
+
+.follower-btn {
+  position: absolute;
+  left: 1140px;
+  display: flex;
+}
+.follower-btn button:nth-child(1) {
+  background-color: #f3f3f3;
+  color: black;
+  border-radius: 8px;
+  width: 75px;
+  height: 32px;
+  border: none;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.follower-btn button:nth-child(2) {
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  width: 75px;
+  height: 32px;
+  border: none;
+  font-weight: bold;
+}
+
+.follower-profile {
+  display: flex;
+  align-items: center;
 }

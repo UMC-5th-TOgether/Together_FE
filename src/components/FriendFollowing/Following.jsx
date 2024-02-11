@@ -1,30 +1,34 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import usersData from "../../data/UserProfileData.json";
-import "../../style/FriendStyle.css";
+import "../../style/FollowingStyle.css";
 import defaultAvatar from "../../assets/프로필.png";
 
-const UserProfile = ({ image, nickname, introduction, sex, age }) => {
-  return (
-    <div className="user-profile">
-      <div className="avatar-container">
-        {image ? (
-          <img src={image} alt={`Profile of ${nickname}`} className="avatar" />
-        ) : (
-          <img src={defaultAvatar} alt="profile" className="avatar" />
-        )}
+export default function Following() {
+  const UserProfile = ({ image, nickname, following, sex, age }) => {
+    return (
+      <div className="follower-profile">
+        <div className="avatar-container">
+          {image ? (
+            <img
+              src={image}
+              alt={`Profile of ${nickname}`}
+              className="avatar"
+            />
+          ) : (
+            <img src={defaultAvatar} alt="profile" className="avatar" />
+          )}
+        </div>
+        <div className="nickname">
+          {nickname}
+          <p>
+            ({sex}/{age})
+          </p>
+        </div>
+        <div className="following-introduction">{following}</div>
       </div>
-      <div className="nickname">
-        {nickname}
-        <p>
-          ({sex}/{age})
-        </p>
-      </div>
-      <div className="friend-introduction">"{introduction}"</div>
-    </div>
-  );
-};
-const Friend = () => {
+    );
+  };
   const activeStyle = {
     color: "white",
     backgroundColor: "black",
@@ -58,24 +62,19 @@ const Friend = () => {
         </div>
         <div className="user-list">
           {usersData.map((user) => (
-            <Link
-              to={`/FriendProfile/${user.id}`}
-              className="user-profile-link"
-              key={user.id}
-            >
+            <div className="user-profile">
               <UserProfile
                 image={user.image}
                 nickname={user.nickname}
-                introduction={user.introduction}
+                following={user.following}
                 sex={user.sex}
                 age={user.age}
               />
-            </Link>
+              <div className="following-notice">요청 보냄</div>
+            </div>
           ))}
         </div>
       </main>
     </div>
   );
-};
-
-export default Friend;
+}

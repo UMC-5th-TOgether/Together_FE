@@ -42,6 +42,7 @@
   font-size: 32px;
   font-weight: 600;
   margin-top: 16px;
+  line-height: 120%;
 }
 
 .location {
@@ -50,14 +51,14 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
-  line-height: 140%; /* 28px */
+  line-height: 200%; /* 28px */
   letter-spacing: -1px;
 }
 
 .introduction {
   font-size: 16px;
   font-weight: 500;
-  line-height: 140%;
+  line-height: 160%;
   color: #666;
 }
 
@@ -83,7 +84,7 @@
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 140%; /* 28px */
   letter-spacing: -1px;
   float: left;
@@ -91,5 +92,26 @@
 
 .pointDetail-container {
   display: flex;
-  justify-content: space-between;
+}
+
+.average-container {
+  position: relative;
+  display: flex;
+  width: max-content;
+  unicode-bidi: bidi-override;
+  align-items: center;
+}
+
+.full-star-box {
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.empty-star-box {
+  z-index: 0;
+  display: flex;
+  padding: 0;
 }
