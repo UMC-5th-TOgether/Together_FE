@@ -11,16 +11,11 @@ import '../style/Posting.css';
 
 export default function PostUser() {
     const token = localStorage.getItem('token');
-
     const location = useLocation();
     const postData = location.state.postData;
 
-    // const [postData, setPostData] = useState(null);
-
     const { id } = useParams();
     const postId = parseInt(id);
-
-    // const filteredPosts = dummy.results.filter(post => post.id === postId);
 
     const [comments, setComments] = useState([]);
 
@@ -77,22 +72,42 @@ export default function PostUser() {
                         }
                     });
                 setComments(res.data);
-                console.log(comments);
+
             } catch (error) {
                 console.error('Error fetching comments:', error);
             }
         };
 
         fetchComments();
-    }, [postId, token]);
+    }, [postId, token, comments]);
 
 
-    // const { author, dateCreated, comment } = filteredPosts[0];
+    const handleCommentSubmit = async (e) => {
+        if (newComment.trim() == '') {
+            return;
+        }
 
-    const handleCommentSubmit = () => {
-        if (newComment.trim() !== '') {
-            setComments(prevComments => [...prevComments, newComment]);
+        try {
+            console.log(token);
+            console.log(newComment);
+
+            const commentData = {
+                post: id,
+                content: newComment,
+                parent: "-1"
+            }
+
+            const res = await axios.post(`https://hyeonjo.shop/api/post/comment`,
+                commentData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+
             setNewComment('');
+        } catch (err) {
+            alert(err);
         }
     };
 
@@ -110,6 +125,7 @@ export default function PostUser() {
     };
 
 
+
     return (
         <div className="posting-page">
             <div className="banner-image-container">
@@ -120,8 +136,8 @@ export default function PostUser() {
                 <div className="posting-author-profile">
                     <img className="posting-profile-picture" src={profilePicture} alt="Profile" />
                     <div className="posting-profile">
-                        {/* <span className="posting-nickname">{author.nickname} ({author.authorGender}/{author.age})</span> */}
-                        {/* <span className="posting-date-created">{dateCreated}</span> */}
+                        {/* <span className="posting-nickname">{postData.nickname} ({postData.authorGender}/{postData.age})</span>
+                        <span className="posting-date-created">{postData.dateCreated}</span> */}
                     </div>
                 </div>
             </div>
@@ -169,8 +185,10 @@ export default function PostUser() {
                         <div className="posting-comment-profile">
                             <img className="posting-profile-picture" src={profilePicture} alt="Profile" />
                             <div className="posting-profile">
-                                <span className="posting-nickname">{comments.writer.nickname} ({comments.writer.gender}/{comments.writer.age})</span>
-                                {/* <span className="posting-date-created">{comments.commentDateCreated}</span> */}
+                                <span className="posting-nickname">
+                                    {comments.writer.nickname} ({comments.writer.gender === "FEMALE" ? '여성' : '남성'}/{comments.writer.age})
+                                </span>
+                                <span className="posting-date-created">{comments.commentDateCreated}</span>
                             </div>
                         </div>
                     </div>
@@ -225,6 +243,3 @@ export default function PostUser() {
         </div>
     );
 };
-
-
-
