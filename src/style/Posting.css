@@ -1,0 +1,149 @@
+.posting-page {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  position: absolute;
+  position: absolute;
+  width: 100%;
+  padding: 0 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 50px;
+}
+
+.posting-title-wrap {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333333;
+  width: 1320px;
+  text-align: start;
+}
+
+.posting-content-wrap {
+  width: 1320px;
+  max-width: 1500px;
+  margin-top: 30px;
+  flex: 1;
+}
+
+.posting-input-title {
+  width: 100px;
+  font-size: 18px;
+  font-weight: 560;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.posting-input-p {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 3px;
+}
+
+.posting-input-wrap {
+  display: flex;
+  border-radius: 8px;
+  padding: 12px 20px;
+  background-color: #f3f3f3;
+}
+.posting-input-wrap:focus-within {
+  border: 1px solid #015ffa;
+}
+
+.posting-input {
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 15px;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: #f3f3f3;
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-size: 15px;
+  color: #cccccc;
+}
+
+.posting-wrap {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.posting-upload {
+  display: flex;
+  width: 1320px;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+label button {
+  border-style: solid;
+  font-size: 15px;
+  color: #015ffa;
+  border-color: #015ffa;
+  border-radius: 16px;
+  background-color: white;
+  padding: 2px 13px 2px 13px;
+  margin-right: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.posting-category-buttons.selected,
+.posting-gender-buttons.selected {
+  background-color: #015ffa;
+  color: #fff;
+}
+
+.posting-bottom-button {
+  width: 200px;
+  margin-left: 10px;
+}
+
+.posting-selected-image {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 10px;
+}
+
+.posting-image-preview {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.remove-image-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 0 3px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.posting-image-preview:hover .remove-image-button {
+  opacity: 1;
+}
+
+.posting-reply-wrap {
+  display: flex;
+  justify-content: flex-end;
+}

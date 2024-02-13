@@ -9,6 +9,20 @@ export default function Review() {
     <div className="Rectangle">
       <div className="Yudeng"></div>
       <div className="Box">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            style={{ width: "67px", height: "19px" }}
+            src="/Review.png"
+            alt="로고"
+          />
+        </div>
+        <br />
         <div className="Rectangle-font1">
           동반인 만남 이후 솔직한 후기를 만나보세요
         </div>

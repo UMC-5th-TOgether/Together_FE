@@ -1,0 +1,86 @@
+.category-page {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  position: absolute;
+  width: 100%;
+  padding: 0 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+}
+
+.black-button {
+  width: 300px;
+  height: 60px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 0.5em;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  background-color: #e6e6e6;
+  color: #222222;
+  transition: background-color 0.1s ease;
+  margin: 0 10px;
+}
+
+.black-button.selected,
+.black-button.selected {
+  background-color: #222222;
+  color: #fff;
+}
+
+.category-button-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.category-title {
+  display: flex;
+  width: 1260px;
+  justify-content: flex-start;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 70px 0 40px 20px;
+}
+
+.category-only {
+  border-style: solid;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  background-color: #222222;
+  padding: 5px 20px;
+  margin-right: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.category-only.selected {
+  background-color: #015ffa;
+}
+
+.category-bottom-button {
+  border-radius: 10px;
+}
+
+.category-posting-button {
+  display: flex;
+  width: 1260px;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
