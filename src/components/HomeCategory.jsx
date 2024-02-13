@@ -6,14 +6,24 @@ import '../style/Category.css'
 
 export default function HomeCategory() {
   const categories = ['공연', '운동', '식사', '취미'];
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('공연');
 
   const handleCategoryChange = (selectedCategory) => {
     setSelectedCategory(selectedCategory);
   };
 
-  return (
+  let categoryValue;
+  if (selectedCategory === '공연') {
+    categoryValue = 'PLAY';
+  } else if (selectedCategory === '운동') {
+    categoryValue = 'EXERCISE';
+  } else if (selectedCategory === '식사') {
+    categoryValue = 'EAT';
+  } else if (selectedCategory === '취미') {
+    categoryValue = 'HOBBY';
+  }
 
+  return (
     <>
       <div className="Category-Info">
 
@@ -112,7 +122,7 @@ export default function HomeCategory() {
       <br />
       <br />
 
-      <CategoryPosting selectedCategory={selectedCategory} />
+      <CategoryPosting selectedCategory={categoryValue} />
 
     </>
   )

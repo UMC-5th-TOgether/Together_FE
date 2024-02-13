@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { FaQuoteLeft } from 'react-icons/fa6';
 import { FaQuoteRight } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import { dummy } from '../CategoryDummy';
 import axios from 'axios';
 
 const CategoryPosting = ({ selectedCategory }) => {
   const token = localStorage.getItem('token');
   const [postData, setPostData] = useState(null);
+  const [postList, setPostList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -20,14 +20,42 @@ const CategoryPosting = ({ selectedCategory }) => {
     alignItems: 'flex-end',
   };
 
-  const filteredPosts = selectedCategory
-    ? dummy.results.filter((post) => post.category === selectedCategory).slice(0, 12)
-    : dummy.results.slice(0, 8);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await axios.get(`https://hyeonjo.shop/api/guest?category=${selectedCategory}`);
+        if (res.data.isSuccess) {
+          const reversedPostList = res.data.data.postList.reverse().map(post => {
+            if (post.gender === 'NONE') {
+              post.gender = '제한 없음';
+            } else if (post.gender === 'FEMALE') {
+              post.gender = '여성';
+            } else if (post.gender === 'MALE') {
+              post.gender = '남성';
+            }
+            return post;
+          });
+          setPostList(reversedPostList);
+        } else {
+          console.error('Failed to fetch posts:', res.data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
 
+    if (selectedCategory) {
+      fetchPosts();
+    }
+  }, [selectedCategory]);
 
   const handleClick = async (postId) => {
+    if (!token) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
     try {
-      const res = await axios.get(`https://hyeonjo.shop/api/posts/id?postId=${postId}`, {
+      const res = await axios.get(`https://hyeonjo.shop/api/posts/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         }
@@ -45,15 +73,10 @@ const CategoryPosting = ({ selectedCategory }) => {
     }
   }, [postData, navigate]);
 
-
-  // const handleClick = async (postId) => {
-  //   navigate(`/postuser/${postId}`);
-  // };
-
   return (
     <div className="home-container">
-      {filteredPosts.map(({ id, title, who, date, headcount, gender, hashtag }, index) => (
-        <div key={id} className="home-post" onClick={() => handleClick(id)}>
+      {postList.map(({ postId, title, writerNickname, accompaniedDate, personNumMin, personNumMax, gender, hashtagList }, index) => (
+        <div key={postId} className="home-post" onClick={() => handleClick(postId)}>
           <br />
           <div className="home-post-title">
             <span style={iconStyle}>
@@ -70,15 +93,15 @@ const CategoryPosting = ({ selectedCategory }) => {
           <div className="home-post-content">
             <div className="js-content-wrap">
               동행자
-              <span className="js-content"> {who}</span>
+              <span className="js-content"> {writerNickname}</span>
             </div>
             <div className="js-content-wrap">
               일자
-              <span className="js-content"> {date}</span>
+              <span className="js-content"> {accompaniedDate}</span>
             </div>
             <div className="js-content-wrap">
               모집
-              <span className="js-content"> {headcount}</span>
+              <span className="js-content"> {personNumMin}명 ~ {personNumMax}명</span>
             </div>
             <div>
               성별
@@ -86,7 +109,7 @@ const CategoryPosting = ({ selectedCategory }) => {
             </div>
           </div>
           <div className="home-post-hashtag">
-            {hashtag.map((tag, tagIndex) => (
+            {hashtagList.map((tag, tagIndex) => (
               <div key={tagIndex} className="hashtag">
                 #{tag}
               </div>
@@ -99,3 +122,4 @@ const CategoryPosting = ({ selectedCategory }) => {
 };
 
 export default CategoryPosting;
+
