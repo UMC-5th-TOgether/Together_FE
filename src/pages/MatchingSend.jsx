@@ -30,7 +30,8 @@ export default function MatchingSend() {
         }
     };
 
-    const handleRemoveImage = (index) => {
+    const handleRemoveImage = (e, index) => {
+        e.stopPropagation();
         const newImages = [...selectedImages];
         newImages.splice(index, 1);
         setSelectedImages(newImages);
@@ -85,7 +86,7 @@ export default function MatchingSend() {
                 >
                     {selectedImages.map((image, index) => (
                         <div key={index} className="matching-image-preview">
-                            <button className="remove-image-button" onClick={() => handleRemoveImage(index)}>x</button>
+                            <button className="remove-image-button" onClick={(e) => handleRemoveImage(e, index)}>x</button>
                             <img src={image.preview} alt={`Selected ${index + 1}`} className="matching-selected-image" />
                         </div>
                     ))}
