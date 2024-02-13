@@ -20,6 +20,7 @@ import SignUpAuthenticationCheck from "./pages/SignUpAuthenticationCheck";
 import FindEmail from "./pages/FindEmail";
 import FindPassword from "./pages/FindPassword";
 import Footer from "./components/ListFooter/Footer";
+import ChatRoom from "./components/Chat/ChatRoom";
 
 function App() {
   return (

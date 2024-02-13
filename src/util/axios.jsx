@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://your-api-url.com";
+const API_BASE_URL = "ws://hyunjin.link/ws/chat";
 
 // 기존 메시지 불러오기
 async function fetchMessages(roomId) {

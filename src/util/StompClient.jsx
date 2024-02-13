@@ -14,6 +14,10 @@ class StompClient {
     this.subscriptions = {}; // 구독 관리를 위한 객체
   }
 
+  get isConnected() {
+    return this.client.connected; // 수정된 부분: 연결 상태 확인
+  }
+
   activate() {
     this.client.activate();
   }
@@ -24,15 +28,14 @@ class StompClient {
 
   subscribe(destination, callback) {
     const subscription = this.client.subscribe(destination, callback);
-    // 구독 ID를 사용하여 구독 객체 저장
     this.subscriptions[subscription.id] = subscription;
-    return subscription.id; // 구독 ID 반환
+    return subscription.id;
   }
 
   unsubscribe(subscriptionId) {
     if (this.subscriptions[subscriptionId]) {
-      this.subscriptions[subscriptionId].unsubscribe(); // 구독 해제
-      delete this.subscriptions[subscriptionId]; // 저장된 구독 객체 삭제
+      this.subscriptions[subscriptionId].unsubscribe();
+      delete this.subscriptions[subscriptionId];
     } else {
       console.error("Subscription not found:", subscriptionId);
     }
@@ -40,6 +43,7 @@ class StompClient {
 
   sendMessage(destination, body) {
     if (this.client.connected) {
+      // 수정된 부분: 연결 상태 확인
       this.client.publish({ destination, body: JSON.stringify(body) });
     } else {
       console.error("STOMP client is not connected.");
