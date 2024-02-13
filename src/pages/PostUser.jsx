@@ -42,6 +42,18 @@ export default function PostUser() {
         postData.category = '취미';
     }
 
+    const formatTime = (datetimeString) => {
+        if (!datetimeString) return '';
+        const updateYear = datetimeString.slice(0, 4);
+        const updateMonth = datetimeString.slice(5, 7);
+        const updateDate = datetimeString.slice(8, 10);
+        const updateTime = datetimeString.slice(11, 16);
+
+        const timeString = updateYear + "." + updateMonth + "." + updateDate + " " + updateTime
+
+        return timeString;
+    };
+
 
     // useEffect(() => {
     //     const fetchPostData = async () => {
@@ -136,8 +148,8 @@ export default function PostUser() {
                 <div className="posting-author-profile">
                     <img className="posting-profile-picture" src={profilePicture} alt="Profile" />
                     <div className="posting-profile">
-                        {/* <span className="posting-nickname">{postData.nickname} ({postData.authorGender}/{postData.age})</span>
-                        <span className="posting-date-created">{postData.dateCreated}</span> */}
+                        <span className="posting-nickname">{postData.memberDTO.nickname} ({postData.memberDTO.gender === 'FEMALE' ? '여성' : '남성'}/{postData.memberDTO.age})</span>
+                        <span className="posting-date-created">{formatTime(postData.createdAt)}</span>
                     </div>
                 </div>
             </div>
@@ -151,9 +163,9 @@ export default function PostUser() {
                                 <div className="posting-hashtag-wrap">카테고리  </div>
                                 <span className="posting-li"> {postData.category}</span>
                                 <div className="posting-hashtag-wrap">일자</div>
-                                <span className="posting-li"> {postData.date}</span>
+                                <span className="posting-li"> {postData.meetTime}</span>
                                 <div className="posting-hashtag-wrap">모집</div>
-                                <span className="posting-li"> {postData.personNum}명</span>
+                                <span className="posting-li"> {postData.personNumMin}명</span>
                                 <div className="posting-hashtag-wrap">성별</div>
                                 <span className="posting-li"> {postData.gender}</span>
                             </div>
@@ -188,7 +200,7 @@ export default function PostUser() {
                                 <span className="posting-nickname">
                                     {comments.writer.nickname} ({comments.writer.gender === "FEMALE" ? '여성' : '남성'}/{comments.writer.age})
                                 </span>
-                                <span className="posting-date-created">{comments.commentDateCreated}</span>
+                                <span className="posting-date-created">{formatTime(comments.createdAt)}</span>
                             </div>
                         </div>
                     </div>
