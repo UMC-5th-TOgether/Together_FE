@@ -7,12 +7,23 @@ import postingButton from '../assets/posting-button.png'
 
 export default function Category() {
   const categories = ['공연', '운동', '식사', '취미'];
-  const [selectedCategory, setSelectedCategory] = useState('');
 
+  const [selectedCategory, setSelectedCategory] = useState('공연');
 
   const handleCategoryChange = (selectedCategory) => {
     setSelectedCategory(selectedCategory);
   };
+
+  let categoryValue;
+  if (selectedCategory === '공연') {
+    categoryValue = 'PLAY';
+  } else if (selectedCategory === '운동') {
+    categoryValue = 'EXERCISE';
+  } else if (selectedCategory === '식사') {
+    categoryValue = 'EAT';
+  } else if (selectedCategory === '취미') {
+    categoryValue = 'HOBBY';
+  }
 
   return (
     <>
@@ -40,7 +51,7 @@ export default function Category() {
 
         <div className="category-title">인기 포스트</div>
 
-        <CategoryPagePosting selectedCategory={selectedCategory} />
+        <CategoryPagePosting selectedCategory={categoryValue} />
 
         <div className="category-posting-button">
           <Link to="/Posting">
