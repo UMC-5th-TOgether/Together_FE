@@ -5,7 +5,7 @@ import profileImage from "../../assets/프로필_blue.png"; // 프로필 이미�
 
 // StompClient 인스턴스를 생성합니다.
 // 이 인스턴스는 WebSocket 연결과 메시지 구독 및 발행을 관리합니다.
-const stompClient = new StompClient("ws://localhost:8080/ws");
+const stompClient = new StompClient("ws://hyunjin.link/ws/chat");
 
 // ChatRoom 컴포넌트 정의
 const ChatRoom = ({ selectedRoomId }) => {

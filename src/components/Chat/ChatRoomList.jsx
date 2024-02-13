@@ -13,7 +13,7 @@ const ChatRoomList = ({ onSelectRoom }) => {
   useEffect(() => {
     const stompClient = new Client({
       // STOMP 서버의 웹소켓 엔드포인트를 설정해 주세요.
-      brokerURL: "wss://your-websocket-server-url",
+      brokerURL: "ws://hyunjin.link/ws/chat",
       onConnect: () => {
         // 채팅방 목록에 대한 구독을 설정합니다.
         stompClient.subscribe("/topic/chatRoom/list", (message) => {
