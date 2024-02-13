@@ -1,54 +1,47 @@
+import React, { useEffect, useRef, useState } from "react";
 import { Client } from "@stomp/stompjs";
 
-class StompClient {
-  constructor(brokerURL) {
-    this.client = new Client({
-      brokerURL,
+function WsTest() {
+  const clientRef = useRef(null); //Stomp 연결
+  const [isConnect, setIsConnect] = useState(null);
+
+  const connect = (url) => {
+    clientRef.current = new Client({
+      brokerURL: url,
+      //connectHeaders: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaXNzIjoiZGVtbyBhcHAiLCJpYXQiOjE3MDc4NDg3OTUsImV4cCI6MTcwNzkzNTE5NX0.u_dWx4SebzJDVSHFFs753kWnRenviBEnKDQZwodPLgWdzcz8CpMIiHpkHeodzbHMLQ8Q-hhTjzzOj5uLwptW6Q`,
       onConnect: () => {
-        console.log("Connected to STOMP server");
+        console.log(clientRef.current.connected);
+        setIsConnect(true);
+        if (clientRef.current && clientRef.current.connected) {
+          console.log("Chat WebSocket Connected");
+        }
       },
       onDisconnect: () => {
-        console.log("Disconnected from STOMP server");
+        setIsConnect(false);
+        console.log("Disconnected from WebSocket");
       },
+      onStompError: (frame) => {
+        console.error("STOMP Error:", frame.headers.message);
+        // 여기에 에러 처리 로직 추가 가능
+      },
+      reconnectDelay: 5000,
+      heartbeatIncoming: 30000,
+      heartbeatOutgoing: 30000,
     });
-    this.subscriptions = {}; // 구독 관리를 위한 객체
-  }
+    console.log(clientRef.current.connected);
+    clientRef.current.activate();
+    console.log(clientRef.current.connected);
+  };
 
-  get isConnected() {
-    return this.client.connected; // 수정된 부분: 연결 상태 확인
-  }
+  useEffect(() => {
+    const url = "ws://localhost:8080/ws/chat";
+    connect(url);
+  }, []);
 
-  activate() {
-    this.client.activate();
-  }
-
-  deactivate() {
-    this.client.deactivate();
-  }
-
-  subscribe(destination, callback) {
-    const subscription = this.client.subscribe(destination, callback);
-    this.subscriptions[subscription.id] = subscription;
-    return subscription.id;
-  }
-
-  unsubscribe(subscriptionId) {
-    if (this.subscriptions[subscriptionId]) {
-      this.subscriptions[subscriptionId].unsubscribe();
-      delete this.subscriptions[subscriptionId];
-    } else {
-      console.error("Subscription not found:", subscriptionId);
-    }
-  }
-
-  sendMessage(destination, body) {
-    if (this.client.connected) {
-      // 수정된 부분: 연결 상태 확인
-      this.client.publish({ destination, body: JSON.stringify(body) });
-    } else {
-      console.error("STOMP client is not connected.");
-    }
-  }
+  useEffect(() => {
+    console.log(isConnect);
+  }, [isConnect]);
+  return <></>;
 }
 
-export default StompClient;
+export default WsTest;
