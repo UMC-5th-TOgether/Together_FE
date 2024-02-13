@@ -8,14 +8,18 @@ export const LoginControl = () => {
     const navigate = useNavigate();
     const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            dispatch(setIsLoggedIn(true));
+        }
+    }, [dispatch]);
+
     const handleToggleClick = async () => {
         if (isLoggedIn) {
             navigate('/login');
             localStorage.removeItem('token');
-            localStorage.removeItem('isLoggedIn');
             dispatch(setIsLoggedIn(false));
-            // setAuthHeader(null);
-
         } else {
             navigate('/login');
         }
