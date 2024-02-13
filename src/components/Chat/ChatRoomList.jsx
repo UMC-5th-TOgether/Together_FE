@@ -9,10 +9,10 @@ const ChatRoomList = ({ onSelectRoom }) => {
 
   useEffect(() => {
     const stompClient = new Client({
-      brokerURL: "ws://hyunjin.link/ws/chat",
+      brokerURL: "https://hyunjin.link/ws/chat",
       onConnect: () => {
         console.log("Connected to STOMP server");
-        stompClient.subscribe("/topic/chatRoom/list", (message) => {
+        stompClient.subscribe("/chatRoom/list", (message) => {
           const roomList = JSON.parse(message.body);
           setRooms(roomList);
         });

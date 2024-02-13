@@ -3,20 +3,20 @@ import axios from "axios";
 import StompClient from "../../util/StompClient"; // 경로는 프로젝트에 맞게 조정하세요.
 import profileImage from "../../assets/프로필_blue.png"; // 프로필 이미지 경로 확인
 
-const ChatRoom = ({ selectedRoomId }) => {
+const ChatRoom = ({ receiverId }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [stompClient, setStompClient] = useState(null);
 
   useEffect(() => {
-    const client = new StompClient("ws://hyunjin.link/ws/chat");
+    const client = new StompClient("https://hyunjin.link/ws/chat");
     setStompClient(client);
 
     return () => client.deactivate();
   }, []);
 
   useEffect(() => {
-    if (!stompClient || !selectedRoomId) return;
+    if (!stompClient || !receiverId) return;
 
     if (!stompClient.isConnected) {
       stompClient.activate();
@@ -27,13 +27,13 @@ const ChatRoom = ({ selectedRoomId }) => {
         stompClient.deactivate();
       }
     };
-  }, [stompClient, selectedRoomId]);
+  }, [stompClient, receiverId]);
 
   useEffect(() => {
-    if (!stompClient || !stompClient.isConnected || !selectedRoomId) return;
+    if (!stompClient || !stompClient.isConnected || !receiverId) return;
 
     const subscriptionId = stompClient.subscribe(
-      `/topic/chat/${selectedRoomId}`,
+      `/chatRoom/enter/${receiverId}`,
       (message) => {
         const newMessage = JSON.parse(message.body);
         setMessages((prevMessages) => [...prevMessages, newMessage]);
@@ -41,12 +41,12 @@ const ChatRoom = ({ selectedRoomId }) => {
     );
 
     return () => stompClient.unsubscribe(subscriptionId);
-  }, [stompClient, selectedRoomId]);
+  }, [stompClient, receiverId]);
 
   const handleSendMessage = async () => {
     if (
       !newMessage.trim() ||
-      !selectedRoomId ||
+      !receiverId ||
       !stompClient ||
       !stompClient.isConnected
     )
@@ -55,7 +55,7 @@ const ChatRoom = ({ selectedRoomId }) => {
     const messagePayload = {
       content: newMessage,
       timestamp: new Date().toISOString(),
-      roomId: selectedRoomId,
+      roomId: receiverId,
     };
 
     try {

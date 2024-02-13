@@ -15,7 +15,7 @@ const ChattingPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     // 토큰 설정 (이 부분에서 실제 로그인 로직을 구현하거나, 사전에 알고 있는 토큰을 사용)
-    const hardcodedToken = "your_hardcoded_or_fetched_token_here";
+    const hardcodedToken = "SET_IS_LOGGED_IN";
 
     // Redux 스토어에 토큰 저장
     dispatch(setAuthToken(hardcodedToken));
