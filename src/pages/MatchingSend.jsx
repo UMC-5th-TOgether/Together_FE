@@ -3,8 +3,11 @@ import matchingSend from '../assets/matching-send.png';
 import matchingSendButton from '../assets/matching-send-button.png';
 import '../style/Matching.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default function MatchingSend() {
+    const token = localStorage.getItem('token');
+
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [selectedImages, setSelectedImages] = useState([]);
@@ -38,9 +41,30 @@ export default function MatchingSend() {
     };
 
     const handleSubmit = () => {
-        console.log('Title:', title);
-        console.log('Content:', content);
-        console.log('Selected Images:', selectedImages);
+        const formData = new FormData();
+
+        selectedImages.forEach(image => {
+            formData.append('requestImages', image.file);
+        });
+
+        let jsonData = JSON.stringify({ receiverId: 1, title: title, content: content });
+
+        let blob = new Blob([jsonData], { type: 'application/json' });
+
+        formData.append('request', blob, 'data.json');
+
+        axios.post('https://hyeonjo.shop/api/matching', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     };
 
     return (
@@ -104,7 +128,7 @@ export default function MatchingSend() {
                 </div>
             </div>
             <div className="posting-upload">
-                <Link to="/postuser/:id" onClick={handleSubmit}>
+                <Link to='/' onClick={handleSubmit}>
                     <img className="posting-bottom-button" src={matchingSendButton}></img>
                 </Link>
             </div>
