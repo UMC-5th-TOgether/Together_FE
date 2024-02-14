@@ -9,7 +9,7 @@ const ChatRoom = ({ receiverId }) => {
   const [stompClient, setStompClient] = useState(null);
 
   useEffect(() => {
-    const client = new StompClient("ws://hyunjin.link/ws/chat");
+    const client = new StompClient("wss://hyunjin.link/ws/chat");
     setStompClient(client);
 
     return () => client.deactivate();

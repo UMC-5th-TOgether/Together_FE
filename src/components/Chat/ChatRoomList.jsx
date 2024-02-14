@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Client } from "@stomp/stompjs";
 import "../../style/ChatStyle.css"; // 해당 CSS 파일의 경로를 확인해 주세요.
 import ChatRoomListSample from "./ChatRoomListSample";
+import ReactDOM from "react-dom";
 
 const ChatRoomList = ({ onSelectRoom }) => {
   const [rooms, setRooms] = useState([]);
@@ -9,7 +10,7 @@ const ChatRoomList = ({ onSelectRoom }) => {
 
   useEffect(() => {
     const stompClient = new Client({
-      brokerURL: "ws://hyunjin.link/ws/chat",
+      brokerURL: "wss://hyunjin.link/ws/chat",
       onConnect: () => {
         console.log("Connected to STOMP server");
         stompClient.subscribe("/chatRoom/list", (message) => {
