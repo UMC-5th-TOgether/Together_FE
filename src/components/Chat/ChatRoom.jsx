@@ -7,7 +7,7 @@ const ChatRoom = ({ receiverId }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   // useWebSocket 훅을 사용하여 WebSocket 연결 상태 및 클라이언트 객체를 관리합니다.
-  const { isConnected, client } = useWebSocket("ws://hyunjin.link/ws/chat");
+  const { isConnected, client } = useWebSocket("wss://hyunjin.link/ws/chat");
 
   useEffect(() => {
     // WebSocket 연결이 활성화되었고, receiverId가 유효한 경우에만 구독을 설정합니다.
