@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../style/Category.css'
 import categoryImg from '../assets/category.png'
 import postingButton from '../assets/posting-button.png'
+import CategoryRecentPosting from '../components/CategoryRecentPosting';
 
 export default function Category() {
   const categories = ['공연', '운동', '식사', '취미'];
@@ -52,6 +53,17 @@ export default function Category() {
         <div className="category-title">인기 포스트</div>
 
         <CategoryPagePosting selectedCategory={categoryValue} />
+
+        <div className="category-posting-button">
+          <Link to="/Posting">
+            <img className="category-bottom-button" src={postingButton}></img>
+          </Link>
+        </div>
+
+
+        <div className="category-title">최신 포스트</div>
+
+        <CategoryRecentPosting selectedCategory={categoryValue} />
 
         <div className="category-posting-button">
           <Link to="/Posting">
