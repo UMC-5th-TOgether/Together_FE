@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react-dom.production.min";
 import axios from "axios";
 import StompClient from "../../util/StompClient"; // 경로는 프로젝트에 맞게 조정하세요.
 import profileImage from "../../assets/프로필_blue.png"; // 프로필 이미지 경로 확인

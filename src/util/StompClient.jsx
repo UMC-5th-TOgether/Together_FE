@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react-dom.production.min";
 import { Client } from "@stomp/stompjs";
 
 function WsTest() {
