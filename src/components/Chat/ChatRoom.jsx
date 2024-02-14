@@ -1,56 +1,34 @@
-import { useState, useEffect } from "react-dom.production.min";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import StompClient from "../../util/StompClient"; // 경로는 프로젝트에 맞게 조정하세요.
+import useWebSocket from "../../util/useWebSocket"; // 경로는 실제 파일 위치에 맞게 조정하세요.
 import profileImage from "../../assets/프로필_blue.png"; // 프로필 이미지 경로 확인
 
 const ChatRoom = ({ receiverId }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [stompClient, setStompClient] = useState(null);
+  // useWebSocket 훅을 사용하여 WebSocket 연결 상태 및 클라이언트 객체를 관리합니다.
+  const { isConnected, client } = useWebSocket("wss://hyunjin.link/ws/chat");
 
   useEffect(() => {
-    const client = new StompClient("wss://hyunjin.link/ws/chat");
-    setStompClient(client);
+    // WebSocket 연결이 활성화되었고, receiverId가 유효한 경우에만 구독을 설정합니다.
+    if (isConnected && receiverId) {
+      const subscription = client.subscribe(
+        `/chatRoom/enter/${receiverId}`,
+        (message) => {
+          const newMessage = JSON.parse(message.body);
+          setMessages((prevMessages) => [...prevMessages, newMessage]);
+        }
+      );
 
-    return () => client.deactivate();
-  }, []);
-
-  useEffect(() => {
-    if (!stompClient || !receiverId) return;
-
-    if (!stompClient.isConnected) {
-      stompClient.activate();
+      // 구독 해지 로직을 반환하여, 컴포넌트가 언마운트될 때 구독을 자동으로 해지합니다.
+      return () => {
+        subscription.unsubscribe();
+      };
     }
-
-    return () => {
-      if (stompClient.isConnected) {
-        stompClient.deactivate();
-      }
-    };
-  }, [stompClient, receiverId]);
-
-  useEffect(() => {
-    if (!stompClient || !stompClient.isConnected || !receiverId) return;
-
-    const subscriptionId = stompClient.subscribe(
-      `/chatRoom/enter/${receiverId}`,
-      (message) => {
-        const newMessage = JSON.parse(message.body);
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
-      }
-    );
-
-    return () => stompClient.unsubscribe(subscriptionId);
-  }, [stompClient, receiverId]);
+  }, [client, isConnected, receiverId]);
 
   const handleSendMessage = async () => {
-    if (
-      !newMessage.trim() ||
-      !receiverId ||
-      !stompClient ||
-      !stompClient.isConnected
-    )
-      return;
+    if (!newMessage.trim() || !receiverId || !isConnected) return;
 
     const messagePayload = {
       content: newMessage,
@@ -59,7 +37,13 @@ const ChatRoom = ({ receiverId }) => {
     };
 
     try {
-      stompClient.sendMessage(`/pub/chat/message`, messagePayload);
+      // 메시지 발행
+      client.publish({
+        destination: `/pub/chat/message`,
+        body: JSON.stringify(messagePayload),
+      });
+
+      // 서버에 메시지 저장을 위한 API 요청 (옵션)
       await axios.post(`/pub/chat/message`, messagePayload);
       setMessages((prevMessages) => [...prevMessages, messagePayload]);
     } catch (error) {
