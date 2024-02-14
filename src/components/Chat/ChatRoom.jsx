@@ -1,56 +1,71 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import useWebSocket from "../../util/useWebSocket"; // 경로는 실제 파일 위치에 맞게 조정하세요.
-import profileImage from "../../assets/프로필_blue.png"; // 프로필 이미지 경로 확인
+// import axios from "axios";
+import useWebSocket from "../../util/useWebSocket"; // 실제 경로에 맞게 조정하세요.
+import profileImage from "../../assets/프로필_blue.png"; // 실제 경로에 맞게 조정하세요.
+import { fetchMessages, saveMessage } from "../../util/ChatApi"; // 실제 경로에 맞게 조정하세요.
 
-const ChatRoom = ({ receiverId }) => {
+const ChatRoom = ({ receiverId, senderId, chatRoomId }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  // useWebSocket 훅을 사용하여 WebSocket 연결 상태 및 클라이언트 객체를 관리합니다.
   const { isConnected, client } = useWebSocket("wss://hyunjin.link/ws/chat");
 
   useEffect(() => {
-    // WebSocket 연결이 활성화되었고, receiverId가 유효한 경우에만 구독을 설정합니다.
+    if (chatRoomId) {
+      fetchMessages(chatRoomId)
+        .then((fetchedMessages) => {
+          console.log("Fetched messages:", fetchedMessages); // 콘솔 로그 추가
+          setMessages(fetchedMessages);
+        })
+        .catch((error) => console.error("Fetching messages failed:", error));
+    }
+
     if (isConnected && receiverId) {
       const subscription = client.subscribe(
         `/chatRoom/enter/${receiverId}`,
         (message) => {
-          const newMessage = JSON.parse(message.body);
-          setMessages((prevMessages) => [...prevMessages, newMessage]);
+          const newMsg = JSON.parse(message.body);
+          console.log("New message received:", newMsg); // 콘솔 로그 추가
+          setMessages((prevMessages) => [...prevMessages, newMsg]);
         }
       );
 
-      // 구독 해지 로직을 반환하여, 컴포넌트가 언마운트될 때 구독을 자동으로 해지합니다.
-      return () => {
-        subscription.unsubscribe();
-      };
+      return () => subscription.unsubscribe();
     }
-  }, [client, isConnected, receiverId]);
+  }, [client, isConnected, receiverId, chatRoomId]);
 
   const handleSendMessage = async () => {
     if (!newMessage.trim() || !receiverId || !isConnected) return;
 
     const messagePayload = {
-      content: newMessage,
-      timestamp: new Date().toISOString(),
-      roomId: receiverId,
+      message: newMessage,
+      senderId,
+      receiverId,
+      chatRoomId,
     };
+
+    console.log("Sending message:", messagePayload); // 콘솔 로그 추가
 
     try {
       // 메시지 발행
       client.publish({
-        destination: `/pub/chat/message`,
+        destination: "/pub/chat/message",
         body: JSON.stringify(messagePayload),
       });
 
-      // 서버에 메시지 저장을 위한 API 요청 (옵션)
-      await axios.post(`/pub/chat/message`, messagePayload);
-      setMessages((prevMessages) => [...prevMessages, messagePayload]);
+      // 서버에 메시지 저장
+      await saveMessage(chatRoomId, messagePayload);
+      console.log("Message sent and saved:", messagePayload); // 콘솔 로그 추가
+
+      // 화면에 메시지 렌더링
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { ...messagePayload, timestamp: new Date().toISOString() },
+      ]);
+
+      setNewMessage(""); // 입력 필드 초기화
     } catch (error) {
       console.error("Message sending failed:", error);
     }
-
-    setNewMessage("");
   };
 
   return (
@@ -58,7 +73,7 @@ const ChatRoom = ({ receiverId }) => {
       <div className="chat-messages">
         {messages.map((msg, index) => (
           <div key={index} className="message">
-            <div className="message-content">{msg.content}</div>
+            <div className="message-content">{msg.message}</div>
             <div className="message-meta">
               <span className="message-time">
                 {new Date(msg.timestamp).toLocaleTimeString()}

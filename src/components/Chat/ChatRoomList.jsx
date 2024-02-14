@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Client } from "@stomp/stompjs";
-import "../../style/ChatStyle.css"; // 해당 CSS 파일의 경로를 확인해 주세요.
+import "../../style/ChatStyle.css";
 import ChatRoomListSample from "./ChatRoomListSample";
 
 const ChatRoomList = ({ onSelectRoom }) => {
   const [rooms, setRooms] = useState([]);
   const [selectedRoomId, setSelectedRoomId] = useState(null);
+  const stompClient = useRef(null);
+  const currentSubscription = useRef(null);
 
   useEffect(() => {
-    const stompClient = new Client({
+    stompClient.current = new Client({
       brokerURL: "wss://hyunjin.link/ws/chat",
       onConnect: () => {
         console.log("Connected to STOMP server");
-        stompClient.subscribe("/chatRoom/list", (message) => {
-          const roomList = JSON.parse(message.body);
-          setRooms(roomList);
-        });
       },
       onDisconnect: () => {
         console.log("Disconnected from STOMP server");
@@ -26,12 +24,38 @@ const ChatRoomList = ({ onSelectRoom }) => {
       },
     });
 
-    stompClient.activate();
+    stompClient.current.activate();
 
     return () => {
-      stompClient.deactivate();
+      stompClient.current.deactivate();
     };
   }, []);
+
+  useEffect(() => {
+    // 새로운 roomId에 대한 구독 설정
+    if (selectedRoomId) {
+      // 이전 구독이 있다면 해지
+      if (currentSubscription.current) {
+        currentSubscription.current.unsubscribe();
+      }
+
+      // 새로운 roomId에 대한 구독 설정
+      currentSubscription.current = stompClient.current.subscribe(
+        `/chatRoom/list/${selectedRoomId}`,
+        (message) => {
+          const roomList = JSON.parse(message.body);
+          setRooms(roomList);
+        }
+      );
+    }
+
+    return () => {
+      // 컴포넌트 언마운트 시 현재 구독 해지
+      if (currentSubscription.current) {
+        currentSubscription.current.unsubscribe();
+      }
+    };
+  }, [selectedRoomId]);
 
   const handleRoomSelect = (roomId) => {
     setSelectedRoomId(roomId);
