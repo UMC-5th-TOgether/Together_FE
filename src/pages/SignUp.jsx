@@ -65,7 +65,7 @@ export default function SignUp() {
     const value = e.target.value;
     setNickname(value);
     if (!validateNickname(value)) {
-      setNicknameError('2글자 이상 8글자 이하로 입력해주세요.');
+      setNicknameError('2글자 이상 16글자 이하로 입력해주세요.');
     } else {
       setNicknameError('');
     }
@@ -117,6 +117,7 @@ export default function SignUp() {
         pw
       };
 
+      // const res = await axios.get(`https://hyunjin.link/api/auth/checkEmail?email=${email}`);
       const res = await axios.get(`https://hyeonjo.shop/api/auth/checkEmail?email=${email}`);
       console.log(res.data);
 
@@ -136,7 +137,7 @@ export default function SignUp() {
       // }, 1500);
     }
     catch (err) {
-      alert(err);
+      alert('존재하는 이메일입니다.');
       setIsLoading(false);
     }
   };
