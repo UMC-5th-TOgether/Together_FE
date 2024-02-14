@@ -25,28 +25,39 @@ const ChattingPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="chat-page">
-      <header style={{ marginBottom: "72px" }}>
-        <img
-          src={BannerImage}
-          alt="Banner"
-          style={{ width: "100%", height: "400px" }}
-        />
-      </header>
-      <div className="chat-container">
-        <ChatRoomList />
-        <ChatRoom />
-      </div>
+    <>
+      {" "}
+      <meta
+        http-equiv="Content-Security-Policy"
+        content="upgrade-insecure-requests"
+      ></meta>
+      <div className="chat-page">
+        <header style={{ marginBottom: "72px" }}>
+          <img
+            src={BannerImage}
+            alt="Banner"
+            style={{ width: "100%", height: "400px" }}
+          />
+        </header>
+        <div className="chat-container">
+          <ChatRoomList />
+          <ChatRoom />
+        </div>
 
-      <div className="posting-button-wrap">
-        <Link to="/posting">
-          <img className="chatting-list" src={chattinglist} alt="Post Check" />
-        </Link>
-        <Link to="/posting">
-          <img className="post-check" src={postcheck} alt="Post Check" />
-        </Link>
+        <div className="posting-button-wrap">
+          <Link to="/posting">
+            <img
+              className="chatting-list"
+              src={chattinglist}
+              alt="Post Check"
+            />
+          </Link>
+          <Link to="/posting">
+            <img className="post-check" src={postcheck} alt="Post Check" />
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
