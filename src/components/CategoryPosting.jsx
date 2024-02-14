@@ -59,7 +59,7 @@ const CategoryPosting = ({ selectedCategory }) => {
         headers: {
           Authorization: `Bearer ${token}`,
         }
-      );
+      });
       console.log(res.data.data);
       setPostData(res.data.data);
     } catch (error) {

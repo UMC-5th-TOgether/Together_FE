@@ -9,8 +9,8 @@ const ChatRoom = ({ chatRoomId }) => {
   const [newMessage, setNewMessage] = useState("");
   const { isConnected, client } = useWebSocket("wss://hyunjin.link/ws/chat");
 
-  const senderId = Number(1);
-  const receiverId = Number(2);
+  const senderId = Number(2);
+  const receiverId = Number(1);
 
   useEffect(() => {
     if (chatRoomId) {
