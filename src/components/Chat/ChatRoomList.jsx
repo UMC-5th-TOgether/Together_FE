@@ -47,6 +47,22 @@ const ChatRoomList = ({ onSelectRoom }) => {
           setRooms(roomList);
         }
       );
+
+      // 기존 코드
+      stompClient.current.publish({
+        destination: "/sub/chat/room",
+        body: JSON.stringify({ chatRoomId: 0 }),
+      });
+
+      // 수정한 코드
+      // axios
+      //   .post("/sub/chat/room", { chatRoomId: "null" })
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
     }
 
     return () => {

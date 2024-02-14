@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
-import useWebSocket from "../../util/useWebSocket"; // 실제 경로에 맞게 조정하세요.
-import profileImage from "../../assets/프로필_blue.png"; // 실제 경로에 맞게 조정하세요.
-import { fetchMessages, saveMessage } from "../../util/ChatApi"; // 실제 경로에 맞게 조정하세요.
+import { Client } from "@stomp/stompjs";
+import useWebSocket from "../../util/useWebSocket";
+import profileImage from "../../assets/프로필_blue.png";
+import { fetchMessages, saveMessage } from "../../util/ChatApi";
 
-const ChatRoom = ({ receiverId, senderId, chatRoomId }) => {
+const ChatRoom = ({ chatRoomId }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { isConnected, client } = useWebSocket("wss://hyunjin.link/ws/chat");
+
+  const senderId = Number(1);
+  const receiverId = Number(2);
 
   useEffect(() => {
     if (chatRoomId) {
       fetchMessages(chatRoomId)
         .then((fetchedMessages) => {
-          console.log("Fetched messages:", fetchedMessages); // 콘솔 로그 추가
           setMessages(fetchedMessages);
         })
         .catch((error) => console.error("Fetching messages failed:", error));
@@ -24,7 +26,6 @@ const ChatRoom = ({ receiverId, senderId, chatRoomId }) => {
         `/chatRoom/enter/${receiverId}`,
         (message) => {
           const newMsg = JSON.parse(message.body);
-          console.log("New message received:", newMsg); // 콘솔 로그 추가
           setMessages((prevMessages) => [...prevMessages, newMsg]);
         }
       );
@@ -33,39 +34,29 @@ const ChatRoom = ({ receiverId, senderId, chatRoomId }) => {
     }
   }, [client, isConnected, receiverId, chatRoomId]);
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+
     if (!newMessage.trim() || !receiverId || !isConnected) return;
 
     const messagePayload = {
       message: newMessage,
-      senderId,
-      receiverId,
+      senderId: Number(senderId),
+      receiverId: Number(receiverId),
       chatRoomId,
     };
 
-    console.log("Sending message:", messagePayload); // 콘솔 로그 추가
-
-    try {
-      // 메시지 발행
+    // WebSocket을 통해 실시간으로 메시지 발행
+    if (client && isConnected) {
       client.publish({
         destination: "/pub/chat/message",
         body: JSON.stringify(messagePayload),
       });
-
-      // 서버에 메시지 저장
-      await saveMessage(chatRoomId, messagePayload);
-      console.log("Message sent and saved:", messagePayload); // 콘솔 로그 추가
-
-      // 화면에 메시지 렌더링
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { ...messagePayload, timestamp: new Date().toISOString() },
-      ]);
-
-      setNewMessage(""); // 입력 필드 초기화
-    } catch (error) {
-      console.error("Message sending failed:", error);
     }
+
+    // 화면에 메시지 렌더링
+    setMessages((prevMessages) => [...prevMessages, messagePayload]);
+    setNewMessage(""); // 메시지 입력 필드 초기화
   };
 
   return (
@@ -94,7 +85,7 @@ const ChatRoom = ({ receiverId, senderId, chatRoomId }) => {
           placeholder="메시지를 입력하세요..."
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+          onKeyPress={(e) => e.key === "Enter" && handleSendMessage(e)}
         />
         <button className="send-button" onClick={handleSendMessage}>
           전송
