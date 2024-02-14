@@ -5,19 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const CategoryPosting = ({ selectedCategory }) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const [postData, setPostData] = useState(null);
   const [postList, setPostList] = useState([]);
 
   const navigate = useNavigate();
 
   const iconStyle = {
-    display: 'flex',
-    alignItems: 'flex-start',
+    display: "flex",
+    alignItems: "flex-start",
   };
   const iconStyle2 = {
-    display: 'flex',
-    alignItems: 'flex-end',
+    display: "flex",
+    alignItems: "flex-end",
   };
 
   useEffect(() => {
@@ -59,11 +59,11 @@ const CategoryPosting = ({ selectedCategory }) => {
         headers: {
           Authorization: `Bearer ${token}`,
         }
-      });
+      );
       console.log(res.data.data);
       setPostData(res.data.data);
     } catch (error) {
-      console.error('Error fetching post data:', error);
+      console.error("Error fetching post data:", error);
     }
   };
 

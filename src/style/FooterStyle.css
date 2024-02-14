@@ -1,0 +1,14 @@
+/* FooterStyle.css */
+.footer {
+  height: 80px; /* 높이 설정 */
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333333;
+  color: white;
+  text-align: center; /* 텍스트 수평 중앙 정렬 */
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* Flexbox를 사용한 수평 중앙 정렬 */
+  align-items: center; /* Flexbox를 사용한 수직 중앙 정렬 */
+}

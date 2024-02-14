@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import CategoryPosting from '../components/CategoryPosting'
-import '../style/Category.css'
-
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import CategoryPosting from "../components/CategoryPosting";
+import "../style/Category.css";
 
 export default function HomeCategory() {
   const categories = ['공연', '운동', '식사', '취미'];
@@ -26,9 +25,14 @@ export default function HomeCategory() {
   return (
     <>
       <div className="Category-Info">
-
         <br />
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <img
             style={{ width: "92px", height: "19px" }}
             src="/Category.png"
@@ -37,49 +41,48 @@ export default function HomeCategory() {
         </div>
 
         <br />
-        <h1 style={{ fontFamily: '"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif', fontWeight: 'bold', fontSize: '1.4rem' }}>
+        <h1
+          style={{
+            fontFamily:
+              '"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif',
+            fontWeight: "bold",
+            fontSize: "1.4rem",
+          }}
+        >
           4가지 카테고리로 원하는 매칭을 찾아보세요 !
         </h1>
         <br />
         <div className="Category-Container-Wrapper">
           <div className="Category-Container">
             <div className="Category-Wrap">
-              <Link className="Category-Button" to="/Category">식사
+              <Link className="Category-Button" to="/Category">
+                식사
                 <div>
-                  <img
-                    src="/Arrow.png"
-                    alt="로고"
-                  />
+                  <img src="/Arrow.png" alt="로고" />
                 </div>
               </Link>
             </div>
             <div className="Category-Wrap">
-              <Link className="Category-Button" to="/Category">운동
+              <Link className="Category-Button" to="/Category">
+                운동
                 <div>
-                  <img
-                    src="/Arrow.png"
-                    alt="로고"
-                  />
+                  <img src="/Arrow.png" alt="로고" />
                 </div>
               </Link>
             </div>
             <div className="Category-Wrap">
-              <Link className="Category-Button" to="/Category">공연
+              <Link className="Category-Button" to="/Category">
+                공연
                 <div>
-                  <img
-                    src="/Arrow.png"
-                    alt="로고"
-                  />
+                  <img src="/Arrow.png" alt="로고" />
                 </div>
               </Link>
             </div>
             <div className="Category-Wrap">
-              <Link className="Category-Button" to="/Category">취미
+              <Link className="Category-Button" to="/Category">
+                취미
                 <div>
-                  <img
-                    src="/Arrow.png"
-                    alt="로고"
-                  />
+                  <img src="/Arrow.png" alt="로고" />
                 </div>
               </Link>
             </div>
@@ -89,7 +92,13 @@ export default function HomeCategory() {
         <br />
         <br />
         <br />
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <img
             style={{ width: "77px", height: "19px" }}
             src="/Posting.png"
@@ -97,7 +106,14 @@ export default function HomeCategory() {
           />
         </div>
         <br />
-        <h1 style={{ fontFamily: '"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif', fontWeight: 'bold', fontSize: '1.4rem' }}>
+        <h1
+          style={{
+            fontFamily:
+              '"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif',
+            fontWeight: "bold",
+            fontSize: "1.4rem",
+          }}
+        >
           한눈에 보는 카테고리별 인기 포스트
         </h1>
         <br />
@@ -107,7 +123,8 @@ export default function HomeCategory() {
             {categories.map((cat) => (
               <label key={cat}>
                 <button
-                  className={`category-only ${selectedCategory === cat ? 'selected' : ''}`}
+                  className={`category-only ${selectedCategory === cat ? "selected" : ""
+                    }`}
                   key={cat}
                   onClick={() => handleCategoryChange(cat)}
                 >
@@ -117,7 +134,6 @@ export default function HomeCategory() {
             ))}
           </div>
         </div>
-
       </div>
       <br />
       <br />
@@ -125,5 +141,5 @@ export default function HomeCategory() {
       <CategoryPosting selectedCategory={categoryValue} />
 
     </>
-  )
+  );
 }

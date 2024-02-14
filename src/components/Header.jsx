@@ -1,14 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import { SearchBar } from './SearchBar';
-import { LoginControl } from '../util/LoginControl';
+import React from "react";
+import { Link } from "react-router-dom";
+import { SearchBar } from "./SearchBar";
+import { LoginControl } from "../util/LoginControl";
 
 export default function Header() {
   return (
     <div className="header-container">
       <div className="header-wrap">
         <div className="header-left-wrap">
-          <Link style={{ display: 'flex', marginTop: '8px', marginRight: '20px' }} to='/'>
+          <Link
+            style={{ display: "flex", marginTop: "8px", marginRight: "20px" }}
+            to="/"
+          >
             <img
               style={{ width: "130px", height: "27px" }}
               src="/logo_together.png"
@@ -60,5 +63,5 @@ export default function Header() {
         </div>
       </div>
     </div>
-  )
+  );
 }
