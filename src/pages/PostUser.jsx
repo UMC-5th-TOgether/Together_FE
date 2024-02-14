@@ -179,7 +179,7 @@ export default function PostUser() {
                         <div className="posting-wrap">
                             {/* {images} */}
                         </div>
-                        <div className="posting-button-wrap">
+                        <div className="postuser-button-wrap">
                             <Link to="/chatting">
                                 <img className="posting-bottom-button" src={chatting} alt="chatting" />
                             </Link>
