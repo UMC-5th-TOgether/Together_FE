@@ -1,47 +1,49 @@
-import { useEffect, useRef, useState } from "react-dom.production.min";
+import React, { useEffect, useRef, useState } from "react";
 import { Client } from "@stomp/stompjs";
 
 function WsTest() {
-  const clientRef = useRef(null); //Stomp 연결
-  const [isConnect, setIsConnect] = useState(null);
-
-  const connect = (url) => {
-    clientRef.current = new Client({
-      brokerURL: url,
-      //connectHeaders: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaXNzIjoiZGVtbyBhcHAiLCJpYXQiOjE3MDc4NDg3OTUsImV4cCI6MTcwNzkzNTE5NX0.u_dWx4SebzJDVSHFFs753kWnRenviBEnKDQZwodPLgWdzcz8CpMIiHpkHeodzbHMLQ8Q-hhTjzzOj5uLwptW6Q`,
-      onConnect: () => {
-        console.log(clientRef.current.connected);
-        setIsConnect(true);
-        if (clientRef.current && clientRef.current.connected) {
-          console.log("Chat WebSocket Connected");
-        }
-      },
-      onDisconnect: () => {
-        setIsConnect(false);
-        console.log("Disconnected from WebSocket");
-      },
-      onStompError: (frame) => {
-        console.error("STOMP Error:", frame.headers.message);
-        // 여기에 에러 처리 로직 추가 가능
-      },
-      reconnectDelay: 5000,
-      heartbeatIncoming: 30000,
-      heartbeatOutgoing: 30000,
-    });
-    console.log(clientRef.current.connected);
-    clientRef.current.activate();
-    console.log(clientRef.current.connected);
-  };
+  const clientRef = useRef(null); // Stomp 연결
+  const [isConnect, setIsConnect] = useState(false);
 
   useEffect(() => {
-    const url = "ws://localhost:8080/ws/chat";
-    connect(url);
+    const url = "ws://hyunjin.link/ws/chat";
+    if (!clientRef.current) {
+      clientRef.current = new Client({
+        brokerURL: url,
+        //connectHeaders: `Bearer ...`, // 필요한 경우 활성화
+        onConnect: () => {
+          console.log("Chat WebSocket Connected");
+          setIsConnect(true);
+        },
+        onDisconnect: () => {
+          console.log("Disconnected from WebSocket");
+          setIsConnect(false);
+        },
+        onStompError: (frame) => {
+          console.error("STOMP Error:", frame.headers.message);
+          // 에러 처리 로직 추가 가능
+        },
+        reconnectDelay: 5000,
+        heartbeatIncoming: 4000,
+        heartbeatOutgoing: 4000,
+      });
+
+      clientRef.current.activate();
+    }
+
+    return () => {
+      if (clientRef.current) {
+        clientRef.current.deactivate();
+      }
+    };
   }, []);
 
+  // 연결 상태 로깅
   useEffect(() => {
-    console.log(isConnect);
+    console.log("WebSocket connection status:", isConnect);
   }, [isConnect]);
-  return <></>;
+
+  return <div></div>;
 }
 
 export default WsTest;
