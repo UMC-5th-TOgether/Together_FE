@@ -5,7 +5,7 @@ import ChatRoomListSample from "./ChatRoomListSample";
 
 const ChatRoomList = ({ onSelectRoom }) => {
   const [rooms, setRooms] = useState([]);
-  const [selectedRoomId, setSelectedRoomId] = useState(null);
+  const [selectedRoomId, setSelectedRoomId] = useState();
   const stompClient = useRef(null);
   const currentSubscription = useRef(null);
 
@@ -51,7 +51,7 @@ const ChatRoomList = ({ onSelectRoom }) => {
       // 기존 코드
       stompClient.current.publish({
         destination: "/sub/chat/room",
-        body: JSON.stringify({ chatRoomId: 0 }),
+        body: JSON.stringify({ chatRoomId: selectedRoomId }),
       });
 
       // 수정한 코드

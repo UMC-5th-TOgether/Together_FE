@@ -63,7 +63,12 @@ const ChatRoom = ({ chatRoomId }) => {
     <div className="chat-room">
       <div className="chat-messages">
         {messages.map((msg, index) => (
-          <div key={index} className="message">
+          <div
+            key={index}
+            className={`message ${
+              msg.senderId === senderId ? "sent" : "received"
+            }`}
+          >
             <div className="message-content">{msg.message}</div>
             <div className="message-meta">
               <span className="message-time">
