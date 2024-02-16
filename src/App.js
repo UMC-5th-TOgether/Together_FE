@@ -25,40 +25,26 @@ import Footer from './components/ListFooter/Footer';
 function App() {
   return (
     <div className="root-wrap">
-      <BrowserRouter>
-        <Provider store={store}>
-          <Routes>
-            <Route
-              path="/*"
-              element={
-                <div>
-                  <Header />
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/category" element={<Category />} />
-                    <Route path="/chatting" element={<Chatting />} />
-                    <Route path="/friend" element={<Friend />} />
-                    <Route path="/posting" element={<Posting />} />
-                    <Route path="/postuser/:id" element={<PostUser />} />
-                    <Route path="/mypage" element={<MyPage />} />
-                    <Route path="/notification" element={<Notification />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/findEmail" element={<FindEmail />} />
-                    <Route path="/findPassword" element={<FindPassword />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/authentication" element={<SignUpAuthentication />} />
-                    <Route path="/checkSms" element={<SignUpAuthenticationCheck />} />
-                    <Route path="/matching" element={<MatchingSend />} />
-                    <Route path="/review" element={<Review />} />
-                    <Route path="/*" element={<NotFound />} />
-                  </Routes>
-                  {/* <Footer /> */}
-                </div>
-              }
-            />
-          </Routes>
-        </Provider>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element= {<Home/>} />
+        <Route path="/category" element= {<Category/>} />
+        <Route path="/chatting" element= {<Chatting/>} />
+        <Route path="/friend" element= {<Friend/>} />
+        <Route path="/follower" element={<FriendFollower />} />
+          <Route path="/following" element={<FriendFollowing />} />
+          <Route path="/matching" element={<FriendMatching />} />
+          <Route path="/FriendProfile" element={<FriendProfile />} />
+        <Route path="/posting" element= {<Posting/>} />
+        <Route path="/mypage" element= {<MyPage/>} />
+        <Route path="/notification" element= {<Notification/>} />
+        <Route path="/login" element= {<Login/>} />
+        <Route path="/*" element= {<NotFound/>} />
+      </Routes>
+      <Footer />
+
+    </BrowserRouter>
     </div>
   );
 }
