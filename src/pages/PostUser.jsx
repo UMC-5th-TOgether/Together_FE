@@ -84,7 +84,6 @@ export default function PostUser() {
                         }
                     });
                 setComments(res.data);
-
             } catch (error) {
                 console.error('Error fetching comments:', error);
             }
@@ -92,7 +91,6 @@ export default function PostUser() {
 
         fetchComments();
     }, [postId, token, comments]);
-
 
     const handleCommentSubmit = async (e) => {
         if (newComment.trim() == '') {
@@ -179,7 +177,7 @@ export default function PostUser() {
                         <div className="posting-wrap">
                             {/* {images} */}
                         </div>
-                        <div className="posting-button-wrap">
+                        <div className="postuser-button-wrap">
                             <Link to="/chatting">
                                 <img className="posting-bottom-button" src={chatting} alt="chatting" />
                             </Link>
@@ -200,7 +198,7 @@ export default function PostUser() {
                                 <span className="posting-nickname">
                                     {comments.writer.nickname} ({comments.writer.gender === "FEMALE" ? '여성' : '남성'}/{comments.writer.age})
                                 </span>
-                                <span className="posting-date-created">{formatTime(comments.createdAt)}</span>
+                                <span className="posting-date-created">2024.02.14 16:35{formatTime(comments.createdAt)}</span>
                             </div>
                         </div>
                     </div>

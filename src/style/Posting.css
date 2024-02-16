@@ -148,3 +148,8 @@ label button {
   display: flex;
   justify-content: flex-end;
 }
+
+.review-fastar {
+  margin-top: 10px;
+  size: 24;
+}
