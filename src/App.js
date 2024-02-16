@@ -19,6 +19,7 @@ import SignUpAuthentication from './pages/SignUpAuthentication';
 import SignUpAuthenticationCheck from './pages/SignUpAuthenticationCheck';
 import FindEmail from './pages/FindEmail';
 import FindPassword from './pages/FindPassword';
+import Review from './pages/Review';
 import Footer from './components/ListFooter/Footer';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
                     <Route path="/authentication" element={<SignUpAuthentication />} />
                     <Route path="/checkSms" element={<SignUpAuthenticationCheck />} />
                     <Route path="/matching" element={<MatchingSend />} />
+                    <Route path="/review" element={<Review />} />
                     <Route path="/*" element={<NotFound />} />
                   </Routes>
                   {/* <Footer /> */}
