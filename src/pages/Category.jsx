@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CategoryPagePosting from '../components/CategoryPagePosting'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import '../style/Category.css'
 import categoryImg from '../assets/category.png'
 import postingButton from '../assets/posting-button.png'
@@ -9,7 +9,19 @@ import CategoryRecentPosting from '../components/CategoryRecentPosting';
 export default function Category() {
   const categories = ['공연', '운동', '식사', '취미'];
 
-  const [selectedCategory, setSelectedCategory] = useState('공연');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const location = useLocation();
+
+  useEffect(() => {
+    setSelectedCategory('공연');
+  }, []);
+
+  useEffect(() => {
+    if (location.state && location.state.selectedCategory) {
+      setSelectedCategory(location.state.selectedCategory);
+    }
+  }, [location.state]);
+
 
   const handleCategoryChange = (selectedCategory) => {
     setSelectedCategory(selectedCategory);
