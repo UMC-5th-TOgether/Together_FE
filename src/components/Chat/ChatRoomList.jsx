@@ -50,7 +50,7 @@ const ChatRoomList = ({ onSelectRoom }) => {
 
       // 기존 코드
       stompClient.current.publish({
-        destination: "/sub/chat/room",
+        destination: `/sub/chat/room/{chatRoomId}`,
         body: JSON.stringify({ chatRoomId: selectedRoomId }),
       });
 

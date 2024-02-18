@@ -13,16 +13,14 @@ const ChatRoom = ({ chatRoomId }) => {
   const receiverId = Number(2); // 메시지를 받는 사람 ID
 
   useEffect(() => {
-    // selectedRoomId가 변경될 때마다 해당 채팅방의 메시지를 가져와 상태 업데이트
     if (chatRoomId) {
       fetchMessages(chatRoomId)
         .then((fetchedMessages) => {
-          setMessages(fetchedMessages);
+          setMessages(fetchedMessages); // 새로운 chatRoomId에 대한 메시지로 상태 업데이트
         })
         .catch((error) => console.error("Fetching messages failed:", error));
     } else {
-      // chatRoomId가 null인 경우 메시지 배열 초기화
-      setMessages([]);
+      setMessages([]); // chatRoomId가 null인 경우 메시지 배열 초기화
     }
 
     // WebSocket 연결이 활성화되고 receiverId가 설정된 경우 해당 채널을 구독하여 메시지 수신
@@ -38,7 +36,7 @@ const ChatRoom = ({ chatRoomId }) => {
       // 컴포넌트가 언마운트되면 구독 취소
       return () => subscription.unsubscribe();
     }
-  }, [client, isConnected, receiverId, chatRoomId]);
+  }, [client, isConnected, receiverId, chatRoomId]); // chatRoomId가 변경될 때마다 효과 실행
 
   // 새로운 메시지를 전송하는 함수
   const handleSendMessage = (e) => {
