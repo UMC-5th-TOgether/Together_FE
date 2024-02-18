@@ -5,7 +5,7 @@ import { dummy } from '../PostUserDummy';
 import postUser from '../assets/post-user.png';
 import matching from '../assets/matching-application-button.png';
 import chatting from '../assets/chatting-button.png';
-import profilePicture from '../assets/profile.png';
+import profilePicture from '../assets/프로필.png';
 import '../style/PostUser.css';
 import '../style/Posting.css';
 
@@ -49,11 +49,10 @@ export default function PostUser() {
         const updateDate = datetimeString.slice(8, 10);
         const updateTime = datetimeString.slice(11, 16);
 
-        const timeString = updateYear + "." + updateMonth + "." + updateDate + " " + updateTime
+        const timeString = updateYear + '.' + updateMonth + '.' + updateDate + ' ' + updateTime;
 
         return timeString;
     };
-
 
     // useEffect(() => {
     //     const fetchPostData = async () => {
@@ -73,16 +72,14 @@ export default function PostUser() {
     //     fetchPostData();
     // }, [postId, token]);
 
-
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const res = await axios.get(`https://hyeonjo.shop/api/post/comment/id?id=${postId}`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        }
-                    });
+                const res = await axios.get(`https://hyeonjo.shop/api/post/comment/id?id=${postId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
                 setComments(res.data);
             } catch (error) {
                 console.error('Error fetching comments:', error);
@@ -104,16 +101,14 @@ export default function PostUser() {
             const commentData = {
                 post: id,
                 content: newComment,
-                parent: "-1"
-            }
+                parent: '-1',
+            };
 
-            const res = await axios.post(`https://hyeonjo.shop/api/post/comment`,
-                commentData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    }
-                });
+            const res = await axios.post(`https://hyeonjo.shop/api/post/comment`, commentData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
 
             setNewComment('');
         } catch (err) {
@@ -134,8 +129,6 @@ export default function PostUser() {
         }
     };
 
-
-
     return (
         <div className="posting-page">
             <div className="banner-image-container">
@@ -146,7 +139,10 @@ export default function PostUser() {
                 <div className="posting-author-profile">
                     <img className="posting-profile-picture" src={profilePicture} alt="Profile" />
                     <div className="posting-profile">
-                        <span className="posting-nickname">{postData.memberDTO.nickname} ({postData.memberDTO.gender === 'FEMALE' ? '여성' : '남성'}/{postData.memberDTO.age})</span>
+                        <span className="posting-nickname">
+                            {postData.memberDTO.nickname} ({postData.memberDTO.gender === 'FEMALE' ? '여성' : '남성'}/
+                            {postData.memberDTO.age})
+                        </span>
                         <span className="posting-date-created">{formatTime(postData.createdAt)}</span>
                     </div>
                 </div>
@@ -158,7 +154,7 @@ export default function PostUser() {
                         <br />
                         <div className="posting-post-content">
                             <div className="posting-wrap">
-                                <div className="posting-hashtag-wrap">카테고리  </div>
+                                <div className="posting-hashtag-wrap">카테고리 </div>
                                 <span className="posting-li"> {postData.category}</span>
                                 <div className="posting-hashtag-wrap">일자</div>
                                 <span className="posting-li"> {postData.meetTime}</span>
@@ -171,12 +167,12 @@ export default function PostUser() {
                         </div>
                         <div className="posting-wrap">
                             {postData.postHashtagList.map((tag, tagIndex) => (
-                                <div key={tagIndex} className="posting-hashtag">#{tag}</div>
+                                <div key={tagIndex} className="posting-hashtag">
+                                    #{tag}
+                                </div>
                             ))}
                         </div>
-                        <div className="posting-wrap">
-                            {/* {images} */}
-                        </div>
+                        <div className="posting-wrap">{/* {images} */}</div>
                         <div className="postuser-button-wrap">
                             <Link to="/chatting">
                                 <img className="posting-bottom-button" src={chatting} alt="chatting" />
@@ -196,9 +192,10 @@ export default function PostUser() {
                             <img className="posting-profile-picture" src={profilePicture} alt="Profile" />
                             <div className="posting-profile">
                                 <span className="posting-nickname">
-                                    {comments.writer.nickname} ({comments.writer.gender === "FEMALE" ? '여성' : '남성'}/{comments.writer.age})
+                                    {comments.writer.nickname} ({comments.writer.gender === 'FEMALE' ? '여성' : '남성'}/
+                                    {comments.writer.age})
                                 </span>
-                                <span className="posting-date-created">2024.02.14 16:35{formatTime(comments.createdAt)}</span>
+                                <span className="posting-date-created"></span>
                             </div>
                         </div>
                     </div>
@@ -208,7 +205,8 @@ export default function PostUser() {
                         </div>
                         <button
                             className="posting-comment-button posting-comment-button-right"
-                            onClick={() => handleReplyButtonClick(id)}>
+                            onClick={() => handleReplyButtonClick(id)}
+                        >
                             답글
                         </button>
                     </div>
@@ -226,7 +224,8 @@ export default function PostUser() {
                                     type="submit"
                                     className="posting-comment-button"
                                     disabled={replyContent.trim() === ''}
-                                    onClick={() => handleReplySubmit(id)}>
+                                    onClick={() => handleReplySubmit(id)}
+                                >
                                     전송
                                 </button>
                             </div>
@@ -246,10 +245,11 @@ export default function PostUser() {
                     type="submit"
                     className="posting-comment-button"
                     disabled={newComment.trim() === ''}
-                    onClick={handleCommentSubmit}>
+                    onClick={handleCommentSubmit}
+                >
                     전송
                 </button>
             </div>
         </div>
     );
-};
+}
