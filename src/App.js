@@ -19,8 +19,10 @@ import SignUpAuthentication from "./pages/SignUpAuthentication";
 import SignUpAuthenticationCheck from "./pages/SignUpAuthenticationCheck";
 import FindEmail from "./pages/FindEmail";
 import FindPassword from "./pages/FindPassword";
+import Review from "./pages/Review";
 import Footer from "./components/ListFooter/Footer";
-import ChatRoom from "./components/Chat/ChatRoom";
+import LoadingGoogle from "./pages/LoadingGoogle";
+import LoadingKakao from "./pages/LoadingKakao";
 
 function App() {
   return (

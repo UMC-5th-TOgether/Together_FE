@@ -13,6 +13,8 @@ const ChatRoom = ({ chatRoomId }) => {
   const receiverId = Number(2); // 메시지를 받는 사람 ID
 
   useEffect(() => {
+    setMessages([]); // 이전 메시지 초기화
+
     if (chatRoomId) {
       fetchMessages(chatRoomId)
         .then((fetchedMessages) => {
@@ -40,12 +42,10 @@ const ChatRoom = ({ chatRoomId }) => {
 
   // 새로운 메시지를 전송하는 함수
   const handleSendMessage = (e) => {
-    e.preventDefault(); // 기본 동작 방지
+    e.preventDefault();
 
-    // 입력한 메시지가 비어있거나 receiverId가 설정되지 않았거나 WebSocket이 연결되지 않은 경우 종료
     if (!newMessage.trim() || !receiverId || !isConnected) return;
 
-    // 메시지 페이로드 생성
     const messagePayload = {
       message: newMessage,
       senderId: Number(senderId),
@@ -53,17 +53,24 @@ const ChatRoom = ({ chatRoomId }) => {
       chatRoomId,
     };
 
-    // WebSocket을 통해 메시지 발행
     if (client && isConnected) {
       client.publish({
-        destination: "/pub/chat/message", // 발행할 채널
-        body: JSON.stringify(messagePayload), // 메시지 내용
+        destination: "/pub/chat/message",
+        body: JSON.stringify(messagePayload),
       });
     }
 
-    // 화면에 메시지 렌더링
+    // 데이터베이스에 메시지 저장
+    saveMessage(messagePayload)
+      .then(() => {
+        console.log("Message saved to the database.");
+      })
+      .catch((error) => {
+        console.error("Failed to save the message:", error);
+      });
+
     setMessages((prevMessages) => [...prevMessages, messagePayload]);
-    setNewMessage(""); // 입력 필드 초기화
+    setNewMessage("");
   };
 
   return (

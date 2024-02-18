@@ -152,7 +152,7 @@
 .posting-button-wrap {
   display: flex;
   justify-content: flex-end;
-  margin-right: 0px;
+  margin-right: 240px;
   margin-top: 80px;
   margin-left: 400px;
   position: relative; /* 상대 위치 지정 */

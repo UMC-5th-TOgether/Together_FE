@@ -13,9 +13,21 @@ export function fetchMessages(chatRoomId) {
   });
 }
 
-export function saveMessage(messagePayload) {
-  stompClient.publish({
-    destination: "/chat/message",
-    body: JSON.stringify(messagePayload),
-  });
-}
+// Function to save a message to the database
+export const saveMessage = async (messagePayload) => {
+  try {
+    const response = await fetch("/api/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(messagePayload),
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok.");
+    }
+    return await response.json(); // or `response.statusText` if the API doesn't return a body
+  } catch (error) {
+    throw error;
+  }
+};
