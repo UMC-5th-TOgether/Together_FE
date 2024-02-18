@@ -5,7 +5,7 @@ import "../../style/FollowingStyle.css";
 import defaultAvatar from "../../assets/프로필.png";
 
 export default function Following() {
-  const UserProfile = ({ image, nickname, following, sex, age }) => {
+  const UserProfile = ({ image, nickname, following, gender, age }) => {
     return (
       <div className="follower-profile">
         <div className="avatar-container">
@@ -22,7 +22,7 @@ export default function Following() {
         <div className="nickname">
           {nickname}
           <p>
-            ({sex}/{age})
+            ({gender}/{age})
           </p>
         </div>
         <div className="following-introduction">{following}</div>
@@ -67,7 +67,7 @@ export default function Following() {
                 image={user.image}
                 nickname={user.nickname}
                 following={user.following}
-                sex={user.sex}
+                gender={user.gender}
                 age={user.age}
               />
               <div className="following-notice">요청 보냄</div>

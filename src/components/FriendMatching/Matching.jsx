@@ -5,7 +5,7 @@ import MailImg from "../../assets/mail icon.png";
 import defaultAvatar from "../../assets/프로필.png";
 
 export default function Matching() {
-  const { image, nickname, introduction, sex, age } = usersData[0];
+  const { image, nickname, introduction, gender, age } = usersData[0];
 
   return (
     <div className="matching-container">
@@ -35,7 +35,7 @@ export default function Matching() {
           />
           <div className="matching-detail">
             <p className="matching-nickname">
-              {nickname} ({sex}/{age})
+              {nickname} ({gender}/{age})
             </p>
             <p className="write-time"> {introduction}</p>
           </div>
@@ -52,7 +52,7 @@ export default function Matching() {
             console.log("click!");
           }}
         >
-          <span>매칭 수락</span> <span>→</span>
+          <span onClick={() => {}}>매칭 수락</span> <span>→</span>
         </div>
       </div>
     </div>

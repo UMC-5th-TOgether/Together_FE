@@ -4,7 +4,7 @@ import usersData from "../../data/UserProfileData.json";
 import "../../style/FriendStyle.css";
 import defaultAvatar from "../../assets/프로필.png";
 
-const UserProfile = ({ image, nickname, introduction, sex, age }) => {
+const UserProfile = ({ image, nickname, introduction, gender, age }) => {
   return (
     <div className="user-profile">
       <div className="avatar-container">
@@ -17,7 +17,7 @@ const UserProfile = ({ image, nickname, introduction, sex, age }) => {
       <div className="nickname">
         {nickname}
         <p>
-          ({sex}/{age})
+          ({gender}/{age})
         </p>
       </div>
       <div className="friend-introduction">"{introduction}"</div>
@@ -67,7 +67,7 @@ const Friend = () => {
                 image={user.image}
                 nickname={user.nickname}
                 introduction={user.introduction}
-                sex={user.sex}
+                gender={user.gender}
                 age={user.age}
               />
             </Link>

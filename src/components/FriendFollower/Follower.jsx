@@ -5,7 +5,7 @@ import "../../style/FollowerStyle.css";
 import defaultAvatar from "../../assets/프로필.png";
 
 export default function Follower() {
-  const UserProfile = ({ image, nickname, title, sex, age }) => {
+  const UserProfile = ({ image, nickname, title, gender, age }) => {
     return (
       <div className="follower-profile">
         <div className="avatar-container">
@@ -22,7 +22,7 @@ export default function Follower() {
         <div className="nickname">
           {nickname}
           <p>
-            ({sex}/{age})
+            ({gender}/{age})
           </p>
         </div>
         <div className="title">{title}</div>
@@ -72,7 +72,7 @@ export default function Follower() {
                   image={user.image}
                   nickname={user.nickname}
                   title={user.title}
-                  sex={user.sex}
+                  gender={user.gender}
                   age={user.age}
                 />
               </Link>
