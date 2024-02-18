@@ -162,3 +162,4 @@ const CategoryPagePosting = ({ selectedCategory }) => {
 };
 
 export default CategoryPagePosting;
+export default CategoryPagePosting;

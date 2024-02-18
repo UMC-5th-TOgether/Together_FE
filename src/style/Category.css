@@ -15,6 +15,16 @@
   padding-bottom: 50px;
 }
 
+.category-container {
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: repeat(3, 300px);
+  justify-content: center;
+  margin-bottom: 110px;
+  align-items: center;
+  gap: 20px;
+}
+
 .banner-image {
   width: 100%;
   height: auto;
@@ -26,7 +36,7 @@
   border: none;
   font-size: 20px;
   font-weight: bold;
-  border-radius: 0.5em;
+  border-radius: 12px;
   margin-top: 40px;
   margin-bottom: 40px;
   cursor: pointer;
@@ -75,7 +85,8 @@
 }
 
 .category-bottom-button {
-  border-radius: 10px;
+  width: 250px;
+  border-radius: 15px;
 }
 
 .category-posting-button {

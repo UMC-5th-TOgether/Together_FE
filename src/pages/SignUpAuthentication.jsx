@@ -7,7 +7,8 @@ import '../style/Login.css';
 export default function SignUpAuthentication() {
     const navigate = useNavigate();
     const location = useLocation();
-    const userData = location.state;
+    const userData = location.state.data;
+    const provider = location.state.provider;
 
     const [name, setName] = useState('');
     const [residentNumber1, setResidentNumber1] = useState('');
@@ -18,6 +19,8 @@ export default function SignUpAuthentication() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [phoneNumber1, setPhoneNumber1] = useState('');
     const [phoneNumber2, setPhoneNumber2] = useState('');
+
+    const [smsData, setSmsData] = useState('');
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -34,10 +37,10 @@ export default function SignUpAuthentication() {
         const birthdayString = residentNumber1;
         let yearPrefix;
 
-        if (residentNumber2 === '1' || residentNumber2 === '2') {
-            yearPrefix = 1900;
-        } else if (residentNumber2 === '3' || residentNumber2 === '4') {
+        if (parseInt(birthdayString.substr(0, 2)) < 23) {
             yearPrefix = 2000;
+        } else {
+            yearPrefix = 1900;
         }
 
         const birthday = new Date(
@@ -50,7 +53,7 @@ export default function SignUpAuthentication() {
 
         let age = today.getFullYear() - birthday.getFullYear();
         if (
-            today.getMonth() < birthday.getMonth() ||
+            (today.getMonth() < birthday.getMonth()) ||
             (today.getMonth() === birthday.getMonth() && today.getDate() < birthday.getDate())
         ) {
             age--;
@@ -126,24 +129,55 @@ export default function SignUpAuthentication() {
         try {
             setIsLoading(true);
 
-            const res = await axios.post("https://hyeonjo.shop/api/auth/signup", {
-                nickname: userData.nickname,
-                email: userData.email,
-                password: userData.pw,
-                name: name,
-                age: age,
-                gender: gender,
-                phoneNumber: phoneNumber,
-            });
+            let res = null;
+            if (provider === 'local') {
+                // const res = await axios.post("https://hyunjin.link/api/auth/signup", {
+                res = await axios.post("https://hyeonjo.shop/api/auth/signup", {
+                    nickname: userData.nickname,
+                    email: userData.email,
+                    password: userData.pw,
+                    name: name,
+                    age: age,
+                    gender: gender,
+                    phoneNumber: phoneNumber,
+                });
+            } else if (provider === 'google') {
+                res = await axios.post("https://hyeonjo.shop/api/auth/socialSignup?provider=google", {
+                    nickname: userData.nickname,
+                    email: userData.email,
+                    password: userData.password,
+                    name: name,
+                    age: age,
+                    gender: gender,
+                    phoneNumber: phoneNumber,
+                });
+            } else if (provider === 'kakao') {
+                res = await axios.post("https://hyeonjo.shop/api/auth/socialSignup?provider=kakao", {
+                    nickname: userData.nickname,
+                    email: userData.email,
+                    password: userData.password,
+                    name: name,
+                    age: age,
+                    gender: gender,
+                    phoneNumber: phoneNumber,
+                });
+            }
 
-            if (res.data.isSuccess) {
-                setTimeout(() => {
-                    setIsLoading(false);
-                    navigate('/checkSms');
-                }, 1500);
 
+
+            if (res !== null && res.data.isSuccess) {
+                // const resSms = await axios.get(`https://hyunjin.link/api/auth/checkSms?phoneNumber=${phoneNumber}`);
                 const resSms = await axios.get(`https://hyeonjo.shop/api/auth/checkSms?phoneNumber=${phoneNumber}`);
                 console.log(resSms.data);
+                setSmsData(resSms.data.data);
+
+                setTimeout(() => {
+                    setIsLoading(false);
+                    navigate('/checkSms', { state: { smsData } });
+                }, 1500);
+
+                console.log(smsData);
+
             } else {
                 setIsLoading(false);
                 alert(res.data.message);

@@ -48,11 +48,11 @@ export default function Header() {
                 마이페이지
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link className="header-nav-item" to="/notification">
                 알림
               </Link>
-            </li>
+            </li> */}
             <li>
               <LoginControl />
             </li>

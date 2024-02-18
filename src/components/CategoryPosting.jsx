@@ -8,6 +8,7 @@ import axios from "axios";
 const CategoryPosting = ({ selectedCategory }) => {
   const token = localStorage.getItem("token");
   const [postData, setPostData] = useState(null);
+  const [postList, setPostList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -27,6 +28,10 @@ const CategoryPosting = ({ selectedCategory }) => {
     : dummy.results.slice(0, 8);
 
   const handleClick = async (postId) => {
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
     try {
       const res = await axios.get(
         `https://hyeonjo.shop/api/posts/id?postId=${postId}`,

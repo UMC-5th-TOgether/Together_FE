@@ -26,14 +26,18 @@ export const dummy = {
         { title: "오늘 오후 2시 서촌 전시회 보러 갈 사람", status: "매칭 전"},
         { title: "목요일 오후 3시 혜화 연극 보러 갈 사람", status: "매칭 전"},
         { title: "혜화역 근처에서 카공 할 사람", status: "매칭 전"},
-        { title: "Post 1", status: "매칭 전"},
-        { title: "Post 2", status: "매칭 전"},
+        { title: "목요일 오후 3시 혜화 연극 보러 갈 사람", status: "매칭 전"},
+        { title: "혜화역 근처에서 카공 할 사람", status: "매칭 전"},
       ],
       writtenComments:[
-        { title: "Comment 1"},
-        { title: "Comment 2"},
-        { title: "Comment 3"},
-        { title: "Comment 4"},
-        { title: "Comment 5"},
+        { title: "공연 30분 전 쯤 도착할 것 같아요~"},
+        { title: "저도 그 글 봤어요"},
+        { title: "팬미팅 함께 즐기면 좋을 것 같아요!"},
+        { title: "재미있을 것 같아요"},
+      ],
+      writtenReviews:[
+        { title: "함께 해서 즐거웠습니다~"},
+        { title: "다음에 기회가 된다면 또 봬요!"},
+        { title: "재미있었어요"},
       ]
 }

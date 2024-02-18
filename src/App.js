@@ -55,6 +55,9 @@ function App() {
                       element={<SignUpAuthenticationCheck />}
                     />
                     <Route path="/matching" element={<MatchingSend />} />
+                    <Route path="/review" element={<Review />} />
+                    <Route path="/google" element={<LoadingGoogle />} />
+                    <Route path="/kakao" element={<LoadingKakao />} />
                     <Route path="/*" element={<NotFound />} />
                   </Routes>
                   {/* <Footer /> */}
