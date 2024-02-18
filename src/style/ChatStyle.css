@@ -6,10 +6,9 @@
 
 .chat-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: 20px; /* Optional: space between columns */
-  /* Other styling as needed */
-  margin-bottom: 100px;
+  grid-template-columns: 1fr 3fr; /* ChatRoom이 표시될 때의 컬럼 비율 */
+  grid-gap: 16px; /* 컬럼 사이의 간격 */
+  transition: grid-template-columns 0.3s ease-out; /* 컬럼 비율 변경에 애니메이션 적용 */
 }
 
 .chat-room,
@@ -153,7 +152,9 @@
 .posting-button-wrap {
   display: flex;
   justify-content: flex-end;
-  margin-right: 232px;
+  margin-right: 0px;
+  margin-top: 80px;
+  margin-left: 400px;
   position: relative; /* 상대 위치 지정 */
   top: -110px; /* 위로 50px 옮김 */
 }
@@ -419,4 +420,119 @@
   flex-grow: 1;
   overflow-y: auto; /* 스크롤바가 필요할 때만 나타나도록 설정 */
   margin-bottom: 10px; /* 입력 필드와의 간격 */
+}
+
+/**/
+
+/* 확장될 때 ChatRoomList 컨테이너의 스타일 */
+.chat-container.expand {
+  grid-template-columns: 1fr; /* ChatRoomList가 전체 너비를 차지 */
+  padding: 0; /* 패딩 제거 */
+}
+
+/* 확장된 ChatRoomList의 스타일 */
+.chat-container.expand .chat-room-list {
+  margin-left: 296px;
+  /*왼쪽마진*/
+  margin-right: 240px;
+  /*오른쪽마진*/
+  width: auto;
+  /*너비를자동으로설정하여남은공간을모두사용*/
+  transition: margin 0.3s ease-out, width 0.3s ease-out;
+  -webkit-transition: margin 0.3s ease-out, width 0.3s ease-out;
+  -moz-transition: margin 0.3s ease-out, width 0.3s ease-out;
+  -ms-transition: margin 0.3s ease-out, width 0.3s ease-out;
+  -o-transition: margin 0.3s ease-out, width 0.3s ease-out;
+}
+
+/* ChatRoomList 내부의 각 entry 스타일 */
+.chat-container.expand .chat-room-list .chat-room-entry {
+  width: 97%; /* 부모의 너비에 맞춰서 조정 */
+  margin-left: 8px; /* 왼쪽 마진 고정 */
+  margin-right: 8px; /* 오른쪽 마진 고정 */
+  transition: width 0.3s ease-out; /* 너비 변경에 애니메이션 적용 */
+}
+
+/* 숨겨진 ChatRoom에 대한 스타일 */
+.chat-container .chat-room {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.chat-container.expand .chat-room {
+  transform: scale(0);
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0; /* 마진을 0으로 설정 */
+  padding: 0; /* 패딩을 0으로 설정 */
+}
+
+/**/
+
+/**/
+
+/* 숨겨진 ChatRoom에 대한 스타일 */
+.chat-room.hide {
+  display: none; /* ChatRoom을 완전히 숨김 */
+}
+
+/* ChatRoomList 확장/축소 버튼 */
+.chatting-list {
+  cursor: pointer; /* 버튼처럼 보이게 함 */
+  transition: transform 0.3s ease; /* 클릭 시 트랜스폼 효과 */
+}
+
+.chatting-list:active {
+  transform: scale(0.95); /* 클릭 시 약간 축소되는 효과 */
+}
+
+/* 게시물 확인 버튼은 ChatRoom이 보이는 경우에만 표시됨 */
+.post-check {
+  display: block;
+}
+
+/**/
+
+/* When ChatRoomList is collapsing (not expanded) */
+.chat-container.notexpand .chat-room {
+  /* Styles for collapsing state */
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in, width 0.3s ease-in,
+    height 0.3s ease-in;
+  transform: scale(1);
+  opacity: 1;
+  width: 656px; /* Original width */
+  height: 1062px; /* Original height */
+  transition-delay: 0.3s; /* Delay to let ChatRoomList collapse before expanding ChatRoom */
+}
+
+/* 숨겨진 상태에서 ChatRoom이 다시 나타날 때의 스타일 */
+.chat-container.notexpand .chat-room {
+  transform: scale(1);
+  opacity: 1;
+  width: 656px; /* 원래 너비로 복원 */
+  height: 1062px; /* 원래 높이로 복원 */
+  transition-delay: 0.3s; /* ChatRoomList가 축소된 후에 나타나도록 지연 시간 설정 */
+}
+
+/* Apply the transitions to the .chat-room-list as well */
+.chat-container.expand .chat-room-list,
+.chat-container.notexpand .chat-room-list {
+  transition: margin 0.3s, width 0.3s;
+}
+
+/* Ensure that transition effects are applied to the .chat-room-entry elements */
+.chat-container .chat-room-list .chat-room-entry {
+  transition: margin 1s, width 0.3s;
+  -webkit-transition: margin 1s, width 0.3s;
+  -moz-transition: margin 1s, width 0.3s;
+  -ms-transition: margin 1s, width 0.3s;
+  -o-transition: margin 1s, width 0.3s;
+}
+@media (max-width: 768px) {
+  .chat-app {
+    grid-template-columns: 1fr;
+  }
 }

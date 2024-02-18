@@ -71,7 +71,7 @@ const CategoryRecentPosting = ({ selectedCategory }) => {
 
     console.log(postId);
     try {
-      const res = await axios.get(`https://hyeonjo.shop/api/posts/${postId}`, {
+      const res = await axios.get(`https://hyunjin.link/api/posts/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

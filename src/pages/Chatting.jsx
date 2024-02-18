@@ -1,6 +1,4 @@
-// pages/chatting.jsx
-
-import React, { useEffect } from "react"; // 'useState'와 'useEffect'는 현재 사용되지 않으므로 제거합니다.
+import React, { useEffect, useState } from "react"; // 'useState'와 'useEffect'는 현재 사용되지 않으므로 제거합니다.
 import { Link } from "react-router-dom"; // 'Link'를 'react-router-dom'에서 올바르게 가져옵니다.
 import ChatRoom from "../components/Chat/ChatRoom";
 import ChatRoomList from "../components/Chat/ChatRoomList";
@@ -12,6 +10,11 @@ import { useDispatch } from "react-redux";
 import { setAuthToken, setIsLoggedIn } from "../store/LoginActions"; // 액션 크리에이터 경로는 실제 프로젝트 구조에 맞게 조정해야 함
 
 const ChattingPage = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const handleToggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   const dispatch = useDispatch();
   useEffect(() => {
     // 토큰 설정 (이 부분에서 실제 로그인 로직을 구현하거나, 사전에 알고 있는 토큰을 사용)
@@ -26,10 +29,12 @@ const ChattingPage = () => {
 
   return (
     <>
-      <meta
-        http-equiv="Content-Security-Policy"
-        content="upgrade-insecure-requests"
-      ></meta>
+      <head>
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        ></meta>
+      </head>
       <div className="chat-page">
         <header style={{ marginBottom: "72px" }}>
           <img
@@ -38,19 +43,20 @@ const ChattingPage = () => {
             style={{ width: "100%", height: "400px" }}
           />
         </header>
-        <div className="chat-container">
+        <div
+          className={`chat-container ${isExpanded ? "expand" : "notexpand"}`}
+        >
           <ChatRoomList />
-          <ChatRoom />
+          {!isExpanded && <ChatRoom />}
         </div>
 
         <div className="posting-button-wrap">
-          <Link to="/posting">
-            <img
-              className="chatting-list"
-              src={chattinglist}
-              alt="Post Check"
-            />
-          </Link>
+          <img
+            className="chatting-list"
+            src={chattinglist}
+            alt="Expand ChatRoomList"
+            onClick={handleToggleExpand}
+          />
           <Link to="/posting">
             <img className="post-check" src={postcheck} alt="Post Check" />
           </Link>
