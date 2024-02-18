@@ -124,7 +124,7 @@ export default function SignUp() {
       if (res.data.isSuccess) {
         setTimeout(() => {
           setIsLoading(false);
-          navigate('/authentication', { state: userData });
+          navigate('/authentication', { state: {data: userData, provider: 'local'}});
         }, 1500);
       } else {
         setIsLoading(false);

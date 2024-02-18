@@ -21,6 +21,8 @@ import FindEmail from './pages/FindEmail';
 import FindPassword from './pages/FindPassword';
 import Review from './pages/Review';
 import Footer from './components/ListFooter/Footer';
+import LoadingGoogle from "./pages/LoadingGoogle";
+import LoadingKakao from "./pages/LoadingKakao";
 
 function App() {
   return (
@@ -50,6 +52,8 @@ function App() {
                     <Route path="/checkSms" element={<SignUpAuthenticationCheck />} />
                     <Route path="/matching" element={<MatchingSend />} />
                     <Route path="/review" element={<Review />} />
+                    <Route path="/google" element={<LoadingGoogle />}/>
+                    <Route path="/kakao" element={<LoadingKakao />}/>
                     <Route path="/*" element={<NotFound />} />
                   </Routes>
                   {/* <Footer /> */}

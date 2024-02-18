@@ -7,7 +7,8 @@ import '../style/Login.css';
 export default function SignUpAuthentication() {
     const navigate = useNavigate();
     const location = useLocation();
-    const userData = location.state;
+    const userData = location.state.data;
+    const provider = location.state.provider;
 
     const [name, setName] = useState('');
     const [residentNumber1, setResidentNumber1] = useState('');
@@ -128,18 +129,43 @@ export default function SignUpAuthentication() {
         try {
             setIsLoading(true);
 
-            // const res = await axios.post("https://hyunjin.link/api/auth/signup", {
-            const res = await axios.post("https://hyeonjo.shop/api/auth/signup", {
-                nickname: userData.nickname,
-                email: userData.email,
-                password: userData.pw,
-                name: name,
-                age: age,
-                gender: gender,
-                phoneNumber: phoneNumber,
-            });
+            let res = null;
+            if (provider === 'local') {
+                // const res = await axios.post("https://hyunjin.link/api/auth/signup", {
+                res = await axios.post("https://hyeonjo.shop/api/auth/signup", {
+                    nickname: userData.nickname,
+                    email: userData.email,
+                    password: userData.pw,
+                    name: name,
+                    age: age,
+                    gender: gender,
+                    phoneNumber: phoneNumber,
+                });
+            } else if (provider === 'google') {
+                res = await axios.post("https://hyeonjo.shop/api/auth/socialSignup?provider=google", {
+                    nickname: userData.nickname,
+                    email: userData.email,
+                    password: userData.password,
+                    name: name,
+                    age: age,
+                    gender: gender,
+                    phoneNumber: phoneNumber,
+                });
+            } else if (provider === 'kakao') {
+                res = await axios.post("https://hyeonjo.shop/api/auth/socialSignup?provider=kakao", {
+                    nickname: userData.nickname,
+                    email: userData.email,
+                    password: userData.password,
+                    name: name,
+                    age: age,
+                    gender: gender,
+                    phoneNumber: phoneNumber,
+                });
+            }
 
-            if (res.data.isSuccess) {
+
+
+            if (res !== null && res.data.isSuccess) {
                 // const resSms = await axios.get(`https://hyunjin.link/api/auth/checkSms?phoneNumber=${phoneNumber}`);
                 const resSms = await axios.get(`https://hyeonjo.shop/api/auth/checkSms?phoneNumber=${phoneNumber}`);
                 console.log(resSms.data);
