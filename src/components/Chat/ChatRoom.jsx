@@ -68,7 +68,7 @@ const ChatRoom = ({ chatRoomId, MY_TOKEN }) => {
       message: newMessage,
       senderId: Number(1), // 예시로 1을 사용
       receiverId: Number(2), // 예시로 2를 사용
-      chatRoomId,
+      chatRoomId: Number(1),
       status: Status.MESSAGE, // 여기에서 메시지의 상태를 설정
       timestamp: new Date().toISOString(), // 메시지 객체에 현재 시각 추가
 
@@ -83,13 +83,13 @@ const ChatRoom = ({ chatRoomId, MY_TOKEN }) => {
     }
 
     // 데이터베이스에 메시지 저장
-    // saveMessage(messagePayload)
-    //   .then(() => {
-    //     console.log("Message saved to the database.");
-    //   })
-    //   .catch((error) => {
-    //     console.error("Failed to save the message:", error);
-    //   });
+    saveMessage(messagePayload)
+      .then(() => {
+        console.log("Message saved to the database.");
+      })
+      .catch((error) => {
+        console.error("Failed to save the message:", error);
+      });
 
     setMessages((prevMessages) => [...prevMessages, messagePayload]);
     setNewMessage("");
