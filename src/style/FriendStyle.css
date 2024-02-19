@@ -1,0 +1,212 @@
+.my-page {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  position: absolute;
+  width: 100%;
+  min-height: 1300px;
+  padding: 0 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+}
+
+.mypage-profile-wrap {
+  display: flex;
+  margin: 40px;
+}
+
+.mypage-profile-picture {
+  width: 114px;
+  height: 114px;
+  border-radius: 50%;
+}
+
+.mypage-profile {
+  margin-left: 40px;
+  letter-spacing: -1px;
+}
+
+.frined-profile-nickname {
+  font-size: 32px;
+  line-height: 1.8;
+  font-weight: bold;
+}
+
+.frined-profile-residence {
+  color: #cccccc;
+  text-align: left;
+  font-size: 20px;
+}
+
+.friend-profile-introduction {
+  font-size: 16px;
+  color: #666666;
+  float: left;
+
+  margin-top: 10px;
+
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -1px;
+}
+
+.friend-profileMessage {
+  font-size: 24px;
+  line-height: 3;
+  color: black;
+  font-weight: 700;
+
+  margin-left: 60px;
+}
+
+.friend-profile-detail {
+  line-height: 2;
+  margin-left: 65px;
+}
+
+.mypage-wrap {
+  display: flex;
+  margin: 10px;
+}
+
+.mypage-post {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.2);
+  padding: 30px 25px;
+  text-align: left;
+  margin: 15px;
+}
+
+.mypage-review-wrap {
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+  font-size: 18px;
+}
+
+.friend-profile-detail-font1 {
+  color: #999999;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.mypage-review-content1 {
+  margin-left: 24px;
+}
+.mypage-review-content2 {
+  margin-left: 24px;
+}
+.mypage-review-content3 {
+  margin-left: 40px;
+}
+
+.mypage-title {
+  font-size: 27px;
+  font-weight: bold;
+  margin-bottom: 45px;
+  height: 45px;
+  line-height: 45px;
+}
+
+.pagination {
+  display: flex;
+  margin-left: 10px;
+  margin-top: -3px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.pagination-label {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #222222;
+  color: #fff;
+  margin: 7px 8px;
+  cursor: pointer;
+}
+
+.pagination-info {
+  margin: 0 5px;
+  /* line-height: 25px; */
+}
+
+.pagination-link {
+  cursor: pointer;
+  margin: 0 5px;
+  line-height: 35px;
+  font-size: 20px;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.mypage-writtenpost {
+  display: flex;
+  justify-content: flex-start;
+  width: 265px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.mypage-writtenpost-status {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -2px;
+}
+
+.mypage-writtenpost-status-pending {
+  background-color: #e5efff;
+  color: #015ffa;
+  font-size: 13px;
+  font-weight: 700;
+  width: 50px;
+  height: 23px;
+  text-align: center;
+  line-height: 23px;
+  padding: 2px 3px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.mypage-writtenpost-status-complete {
+  background-color: #ffe2e8;
+  color: #ff4e78;
+  font-size: 13px;
+  font-weight: 700;
+  width: 60px;
+  height: 23px;
+  text-align: center;
+  line-height: 23px;
+  padding: 2px 3px;
+  border-radius: 5px;
+}
+
+.friend-profile-container {
+  display: flex;
+
+  width: 1260px;
+  height: 194px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.2);
+
+  margin-top: 72px;
+}

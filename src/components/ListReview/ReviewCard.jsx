@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ReviewCard.css";
-import profileImg from "../../assets/profile.png";
+import profileImg from "../../assets/프로필.png";
 import fullStarImg from "../../assets/fullstar.png";
 import emptyStarImg from "../../assets/emptystar.png";
 //UserIconImg server에게 get,post 요청 해서 이미지 받아야함.

@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
-import {Link, useLocation, useNavigate, useParams} from 'react-router-dom';
-import {dummy} from '../PostUserDummy';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { dummy } from '../PostUserDummy';
 import postUser from '../assets/post-user.png';
 import matching from '../assets/matching-application-button.png';
 import chatting from '../assets/chatting-button.png';
@@ -18,7 +18,7 @@ export default function PostUser() {
     const postData = location.state.postData;
     const [isOptionOn, setIsOptionOn] = useState(false);
 
-    const {id} = useParams();
+    const { id } = useParams();
     const postId = parseInt(id);
     console.log(postId);
 
@@ -54,11 +54,10 @@ export default function PostUser() {
         const updateDate = datetimeString.slice(8, 10);
         const updateTime = datetimeString.slice(11, 16);
 
-        const timeString = updateYear + "." + updateMonth + "." + updateDate + " " + updateTime
+        const timeString = updateYear + '.' + updateMonth + '.' + updateDate + ' ' + updateTime;
 
         return timeString;
     };
-
 
     // useEffect(() => {
     //     const fetchPostData = async () => {
@@ -111,8 +110,8 @@ export default function PostUser() {
             const commentData = {
                 post: id,
                 content: newComment,
-                parent: "-1"
-            }
+                parent: '-1',
+            };
 
             await axios.post(`https://hyeonjo.shop/api/post/comment`,
                 commentData,
@@ -170,55 +169,55 @@ export default function PostUser() {
                     navigate('/Category');
                 }
             })
-            .catch(err =>{
+            .catch(err => {
                 console.log(err);
             })
     }
 
     const handelEditPost = async () => {
-        navigate('/posting', {state: {edit: true, postData: postData}});
+        navigate('/posting', { state: { edit: true, postData: postData } });
     }
 
     return (
         <div className="posting-page">
             <div className="banner-image-container">
-                <img className="banner-image" src={postUser} alt="Posting img"/>
+                <img className="banner-image" src={postUser} alt="Posting img" />
             </div>
-            <br/>
+            <br />
             <div className="posting-post">
                 {postData && (
                     <div>
                         <div className="posting-top-container">
                             <div className="posting-post-title">{postData.title}</div>
                             {postData.writer.isWriter
-                                ?<>
+                                ? <>
                                     <div className={`posting-top-option-wrap ${isOptionOn ? 'on' : ''}`} onClick={() => setIsOptionOn(!isOptionOn)}>
-                                        <img className="posting-top-option" src={option} alt="더보기"/>
+                                        <img className="posting-top-option" src={option} alt="더보기" />
                                     </div>
                                     {isOptionOn
-                                        ?<>
+                                        ? <>
                                             <div className='posting-top-option-pannel'>
                                                 <div className='poting-top-option-pannel-btn' onClick={handelEditPost}>포스팅 수정</div>
-                                                <hr/>
+                                                <hr />
                                                 <div className='poting-top-option-pannel-btn' onClick={handelDeletePost}>포스팅 삭제</div>
                                             </div>
                                         </>
-                                        :<></>
+                                        : <></>
                                     }
                                 </>
-                                :<></>
+                                : <></>
                             }
                         </div>
                         <div className="posting-wrap">
                             <div className="posting-author-profile">
-                                <img className="posting-profile-picture" src={postData.writer.image ? postData.writer.image : profilePicture} alt="Profile"/>
+                                <img className="posting-profile-picture" src={postData.writer.image ? postData.writer.image : profilePicture} alt="Profile" />
                                 <div className="posting-profile">
                                     <span className="posting-nickname">{postData.writer.nickname} ({postData.writer.gender === 'FEMALE' ? '여성' : '남성'}/{postData.writer.age})</span>
                                     <span className="posting-date-created">{formatTime(postData.createdAt)}</span>
                                 </div>
                             </div>
                         </div>
-                        <br/>
+                        <br />
                         <div className="posting-post-content">
                             <div className="posting-wrap">
                                 <div className="posting-hashtag-wrap">카테고리</div>
@@ -234,7 +233,9 @@ export default function PostUser() {
                         </div>
                         <div className="posting-wrap">
                             {postData.postHashtagList.map((tag, tagIndex) => (
-                                <div key={tagIndex} className="posting-hashtag">#{tag}</div>
+                                <div key={tagIndex} className="posting-hashtag">
+                                    #{tag}
+                                </div>
                             ))}
                         </div>
                         {Array.isArray(postData.postImages) && postData.postImages.length > 0 && (
@@ -246,27 +247,28 @@ export default function PostUser() {
                         )}
                         <div className="postuser-button-wrap">
                             <Link to="/chatting">
-                                <img className="posting-bottom-button" src={chatting} alt="chatting"/>
+                                <img className="posting-bottom-button" src={chatting} alt="chatting" />
                             </Link>
                             {postData.writer.isWriter
-                            ? <></>
-                            : <Link to="/matching">
-                                    <img className="posting-bottom-button" src={matching} alt="matching"/>
+                                ? <></>
+                                : <Link to="/matching">
+                                    <img className="posting-bottom-button" src={matching} alt="matching" />
                                 </Link>
                             }
                         </div>
                     </div>
                 )}
             </div>
-            <br/>
+            <br />
             {comments.map((comments, id) => (
                 <div className="posting-comment-post" key={id}>
                     <div className="posting-wrap">
                         <div className="posting-comment-profile">
-                            <img className="posting-profile-picture" src={comments.writer.image ? comments.writer.image : profilePicture} alt="Profile"/>
+                            <img className="posting-profile-picture" src={comments.writer.image ? comments.writer.image : profilePicture} alt="Profile" />
                             <div className="posting-profile">
                                 <span className="posting-nickname">
-                                    {comments.writer.nickname} ({comments.writer.gender === "FEMALE" ? '여성' : '남성'}/{comments.writer.age})
+                                    {comments.writer.nickname} ({comments.writer.gender === 'FEMALE' ? '여성' : '남성'}/
+                                    {comments.writer.age})
                                 </span>
                                 <span className="posting-date-created">{formatTime(comments.createdAt)}</span>
                             </div>
@@ -278,7 +280,8 @@ export default function PostUser() {
                         </div>
                         <button
                             className="posting-comment-button posting-comment-button-right"
-                            onClick={() => handleReplyButtonClick(id)}>
+                            onClick={() => handleReplyButtonClick(id)}
+                        >
                             답글
                         </button>
                     </div>
@@ -288,11 +291,11 @@ export default function PostUser() {
                                 return (
                                     <>
                                         <div className="posting-child-comment-horizontal-wrap">
-                                            <BsArrowReturnRight style={{color: "#B3B3B3"}} size="20" className="posting-child-comment-icon"/>
+                                            <BsArrowReturnRight style={{ color: "#B3B3B3" }} size="20" className="posting-child-comment-icon" />
                                             <div className="posting-child-comment-wrap">
                                                 <div className="posting-wrap">
                                                     <div className="posting-comment-profile">
-                                                        <img className="posting-profile-picture" src={child.writer.image ? child.writer.image : profilePicture} alt="Profile"/>
+                                                        <img className="posting-profile-picture" src={child.writer.image ? child.writer.image : profilePicture} alt="Profile" />
                                                         <div className="posting-profile">
                                                             <span className="posting-nickname">
                                                                 {child.writer.nickname} ({child.writer.gender === "FEMALE" ? '여성' : '남성'}/{child.writer.age})
@@ -322,13 +325,14 @@ export default function PostUser() {
                                     value={replyContent}
                                     placeholder="답글을 남겨보세요."
                                     onChange={(e) => setReplyContent(e.target.value)}
-                                    style={{height: '40px', width: '1120px', padding: '0 20px', borderRadius: '8px'}}
+                                    style={{ height: '40px', width: '1120px', padding: '0 20px', borderRadius: '8px' }}
                                 />
                                 <button
                                     type="submit"
                                     className="posting-comment-button"
                                     disabled={replyContent.trim() === ''}
-                                    onClick={() => handleReplySubmit(id)}>
+                                    onClick={() => handleReplySubmit(id)}
+                                >
                                     전송
                                 </button>
                             </div>
@@ -342,16 +346,17 @@ export default function PostUser() {
                     value={newComment}
                     placeholder="댓글을 남겨보세요."
                     onChange={(e) => setNewComment(e.target.value)}
-                    style={{height: '40px', width: '1203px'}}
+                    style={{ height: '40px', width: '1203px' }}
                 />
                 <button
                     type="submit"
                     className="posting-comment-button"
                     disabled={newComment.trim() === ''}
-                    onClick={handleCommentSubmit}>
+                    onClick={handleCommentSubmit}
+                >
                     전송
                 </button>
             </div>
         </div>
     );
-};
+}

@@ -1,0 +1,36 @@
+[
+    {
+        "friendId": "",
+        "profileImg": "",
+        "nickname": "User 1",
+        "gender": "여성",
+        "age": 20,
+        "location": "합정역 2호선",
+        "profileMessage": "안녕 난 유저 1이야",
+        "following": "문도엔도 전시 갈 사람",
+        "title": "뉴진스 팬미팅 동행 구합니다",
+        "post": "뉴진스 팬미팅 동행 모집글 보고 연락드립니다.",
+        "posts": ["User 1's post 1", "User 1's post 2"],
+        "comments": ["User 1's comment 1", "User 1's comment 2"],
+        "reviews": ["User 1's review 1", "User 1's review 2"],
+        "matching": false,
+        "manners": 3.5
+    },
+    {
+        "friendId": 1,
+        "profileImg": "",
+        "nickname": "User 2",
+        "gender": "남성",
+        "age": 22,
+        "location": "강남역 2호선",
+        "profileMessage": "안녕 난 유저 2여",
+        "following": "강원도 스키 3개월클래스, 같이 배워요!장비 무료 제공해드립니다!",
+        "title": "2024년 2월 27일, 난타 공연 보러가용",
+        "post": "뉴진스 팬미팅 동행 모집글 보고 연락드립니다.",
+        "posts": ["User 2's post 1", "User 2's post 2"],
+        "comments": ["User 2's comment 1", "User 2's comment 2"],
+        "reviews": ["User 2's review 1", "User 2's review 2"],
+        "matching": true,
+        "manners": 4.7
+    }
+]

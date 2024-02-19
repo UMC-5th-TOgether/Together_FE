@@ -40,12 +40,12 @@ export default function MyPage() {
                 console.log(res.data);
 
                 if (res.data.isSuccess) {
-                    console.log(res.data.data)
+                    console.log(res.data.data);
                     const data = res.data.data;
                     setMyInfo(data.memberInfo);
                 }
             } catch (error) {
-                console.error('Error fetching my info:', error);
+                console.error("Error fetching my info:", error);
             }
         };
 
@@ -61,14 +61,17 @@ export default function MyPage() {
         reviewAll: 8,
         reviewEmotionYes: 7,
         avgScore: 4,
-        responseRate: 99.5
+        responseRate: 99.5,
     };
 
     const writtenPosts = [];
 
     const indexOfLastPost = (currentPage + 1) * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = dummy.writtenPosts.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = dummy.writtenPosts.slice(
+        indexOfFirstPost,
+        indexOfLastPost
+    );
     const currentComments = dummy.writtenComments;
     const currentReviews = dummy.writtenReviews;
 
@@ -80,20 +83,24 @@ export default function MyPage() {
 
             {myInfo && (
                 <div className="mypage-profile-wrap">
-                    <img className="mypage-profile-picture" src={profilePicture} alt="Profile" />
+                    <img
+                        className="mypage-profile-picture"
+                        src={profilePicture}
+                        alt="Profile"
+                    />
                     <div className="mypage-profile">
-                        <span className="mypage-nickname">{myInfo.nickname} ({myInfo.gender === 'FEMALE' ? '여성' : '남성'} / {myInfo.age})</span>
+                        <span className="mypage-nickname">
+                            {myInfo.nickname} ({myInfo.gender === "FEMALE" ? "여성" : "남성"}{" "}
+                            / {myInfo.age})
+                        </span>
                     </div>
                     <div className="mypage-residence">{myInfo.station}</div>
                 </div>
             )}
 
-
             <div className="mypage-wrap">
                 <div className="mypage-review-wrap">
-                    <span className="mypage-review-content">
-                        매너 별점
-                    </span>
+                    <span className="mypage-review-content">매너 별점</span>
                     <span className="mypage-review-content">
                         {ARRAY.map((el, index) => (
                             <FaStar
@@ -102,10 +109,10 @@ export default function MyPage() {
                                 color={index < review.avgScore ? "#007bff" : "#e4e5e9"}
                             />
                         ))}
-
                     </span>
                     <span className="mypage-review-content">
-                        {review.reviewAll}명 중 {review.reviewEmotionYes}명의 이용자가 다시 만나고 싶어해요.
+                        {review.reviewAll}명 중 {review.reviewEmotionYes}명의 이용자가 다시
+                        만나고 싶어해요.
                     </span>
                     <span className="mypage-review-content">
                         응답률 {review.responseRate}%
@@ -116,41 +123,32 @@ export default function MyPage() {
             <div className="mypage-wrap">
                 <div className="mypage-post">
                     <div className="mypage-wrap">
-
                         <div className="mypage-title"> 작성한 글</div>
                         <ReactPaginate
-                            previousLabel={
-                                <div className="pagination-label">
-                                    {'<'}
-                                </div>
-                            }
-                            nextLabel={
-                                <div className="pagination-label">
-                                    {'>'}
-                                </div>
-                            }
+                            previousLabel={<div className="pagination-label">{"<"}</div>}
+                            nextLabel={<div className="pagination-label">{">"}</div>}
                             breakLabel={<div className="pagination-label">...</div>}
                             pageCount={Math.ceil(dummy.writtenPosts.length / postsPerPage)}
                             marginPagesDisplayed={2}
                             pageRangeDisplayed={5}
                             onPageChange={handlePageClick}
-                            containerClassName={'pagination'}
-                            subContainerClassName={'pages pagination'}
-                            activeClassName={'active'}
-                            pageLinkClassName={'pagination-link'}
+                            containerClassName={"pagination"}
+                            subContainerClassName={"pages pagination"}
+                            activeClassName={"active"}
+                            pageLinkClassName={"pagination-link"}
                         />
-
                     </div>
 
                     {currentPosts.map((post, index) => (
                         <div key={index}>
                             <div className="mypage-wrap">
                                 <div className="mypage-writtenpost">{post.title}</div>
-                                <div className="mypage-writtenpost-status"><PostStatus status={post.status} /> </div>
+                                <div className="mypage-writtenpost-status">
+                                    <PostStatus status={post.status} />{" "}
+                                </div>
                             </div>
                         </div>
                     ))}
-
                 </div>
 
                 <div className="mypage-post">
@@ -165,7 +163,6 @@ export default function MyPage() {
                         </div>
                     ))}
                 </div>
-
 
                 <div className="mypage-post">
                     <div className="mypage-wrap">
