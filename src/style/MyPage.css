@@ -43,8 +43,16 @@
 
 .mypage-wrap {
   display: flex;
-  margin: 10px;
+  align-items: center;
 }
+
+.mypage-top-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 10px 45px 10px;
+}
+
 
 .mypage-post {
   width: 400px;
@@ -71,8 +79,8 @@
 .mypage-title {
   font-size: 27px;
   font-weight: bold;
-  margin-bottom: 45px;
   height: 45px;
+  margin: 0 !important;
   line-height: 45px;
 }
 
@@ -151,4 +159,54 @@
   line-height: 23px;
   padding: 2px 3px;
   border-radius: 5px;
+}
+
+.pagination-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.previousLabel, .nextLabel {
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  background: black;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.previousLabel_first, .nextLabel_last {
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  background: #F3F3F3;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.myPage-post-pagination-container {
+  display: flex;
+  align-items: center;
+}
+
+.myPage-post-pagination-container > span {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 15px;
+}
+
+.element-blank {
+  margin: 70px 0 0 10px;
+  text-align: center;
+}
+
+.mypage-wrap.click {
+  cursor: pointer;
 }
