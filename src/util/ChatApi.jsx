@@ -46,29 +46,29 @@ export const sendMessage = async (chatRoomId, message, status, token) => {
   }
 };
 
-export function fetchMessages(chatRoomId) {
-  stompClient.subscribe(`/app/chat/{chatRoomId}`, (message) => {
-    // 메시지 처리
-    console.log(JSON.parse(message.body));
+export const fetchMessages = (chatRoomId) => {
+  return fetch(`/app/${chatRoomId}/message`).then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
   });
-}
-
+};
 // Function to save a message to the database
 // 데이터베이스에 메시지를 저장하는 함수
-export const saveMessage = async (messagePayload) => {
-  try {
-    const response = await fetch("/app/message", {
-      method: "POST", // 데이터를 보내기 때문에 메소드를 POST로 변경
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(messagePayload),
-    });
+export const saveMessage = (messagePayload) => {
+  return fetch("/app/message", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // If you're using a token, include it in the headers
+      // 'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify(messagePayload),
+  }).then((response) => {
     if (!response.ok) {
-      throw new Error("Network response was not ok.");
+      throw new Error("Network response was not ok");
     }
-    return await response.json();
-  } catch (error) {
-    throw error;
-  }
+    return response.json();
+  });
 };

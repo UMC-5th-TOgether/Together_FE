@@ -3,7 +3,7 @@ import useWebSocket from "../../util/useWebSocket"; // WebSocket 연결을 관�
 import profileImage from "../../assets/프로필_blue.png"; // 프로필 이미지 경로
 import { fetchMessages, saveMessage } from "../../util/ChatApi"; // 채팅 메시지 관련 API 호출
 
-const ChatRoom = ({ chatRoomId, MY_TOKEN }) => {
+const ChatRoom = ({ chatRoomId }) => {
   const [messages, setMessages] = useState([]); // 채팅 메시지 상태
   const [newMessage, setNewMessage] = useState(""); // 입력한 새로운 메시지 상태
   const { isConnected, client } = useWebSocket("wss://hyunjin.link/ws/chat"); // WebSocket 연결 상태 및 클라이언트
@@ -11,6 +11,7 @@ const ChatRoom = ({ chatRoomId, MY_TOKEN }) => {
 
   const senderId = Number(1); // 메시지를 보내는 사람 ID
   const receiverId = Number(2); // 메시지를 받는 사람 ID
+  // const chatRoomId = Number(1);
 
   useEffect(() => {
     // 메시지 목록이 업데이트될 때마다 스크롤을 조정
@@ -53,9 +54,7 @@ const ChatRoom = ({ chatRoomId, MY_TOKEN }) => {
 
   // Status를 나타내는 문자열 상수
   const Status = {
-    JOIN: "JOIN",
     MESSAGE: "MESSAGE",
-    LEAVE: "LEAVE",
   };
 
   // 새로운 메시지를 전송하는 함수
@@ -83,13 +82,13 @@ const ChatRoom = ({ chatRoomId, MY_TOKEN }) => {
     }
 
     // 데이터베이스에 메시지 저장
-    saveMessage(messagePayload)
-      .then(() => {
-        console.log("Message saved to the database.");
-      })
-      .catch((error) => {
-        console.error("Failed to save the message:", error);
-      });
+    // saveMessage(messagePayload)
+    //   .then(() => {
+    //     console.log("Message saved to the database.");
+    //   })
+    //   .catch((error) => {
+    //     console.error("Failed to save the message:", error);
+    //   });
 
     setMessages((prevMessages) => [...prevMessages, messagePayload]);
     setNewMessage("");
