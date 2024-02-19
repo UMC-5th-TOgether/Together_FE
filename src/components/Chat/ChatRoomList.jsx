@@ -14,6 +14,17 @@ const ChatRoomList = ({ onSelectRoom }) => {
       brokerURL: "wss://hyunjin.link/ws/chat",
       onConnect: () => {
         console.log("Connected to STOMP server");
+        // 사용자의 채팅방 목록을 조회하기 위한 구독 설정
+        stompClient.current.subscribe("/rooms/me", (message) => {
+          const userRooms = JSON.parse(message.body);
+          setRooms(userRooms); // 받아온 채팅방 목록으로 상태 업데이트
+        });
+
+        // 초기 채팅방 목록 조회 요청
+        stompClient.current.publish({
+          destination: "/app/rooms/me",
+          body: "{}", // 필요한 경우 추가 데이터 전송
+        });
       },
       onDisconnect: () => {
         console.log("Disconnected from STOMP server");
@@ -31,53 +42,14 @@ const ChatRoomList = ({ onSelectRoom }) => {
     };
   }, []);
 
-  useEffect(() => {
-    // 새로운 roomId에 대한 구독 설정
-    if (selectedRoomId) {
-      // 이전 구독이 있다면 해지
-      if (currentSubscription.current) {
-        currentSubscription.current.unsubscribe();
-      }
-
-      // 새로운 roomId에 대한 구독 설정
-      currentSubscription.current = stompClient.current.subscribe(
-        `/chatRoom/list/${selectedRoomId}`,
-        (message) => {
-          const roomList = JSON.parse(message.body);
-          setRooms(roomList);
-        }
-      );
-
-      // 기존 코드
-      stompClient.current.publish({
-        destination: `/topic/{chatRoomId}/message`,
-        body: JSON.stringify({ chatRoomId: selectedRoomId }),
-      });
-
-      // 수정한 코드
-      // axios
-      //   .post("/sub/chat/room", { chatRoomId: "null" })
-      //   .then((response) => {
-      //     console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
-    }
-
-    return () => {
-      // 컴포넌트 언마운트 시 현재 구독 해지
-      if (currentSubscription.current) {
-        currentSubscription.current.unsubscribe();
-      }
-    };
-  }, [selectedRoomId]);
-
   const handleRoomSelect = (roomId) => {
     setSelectedRoomId(roomId);
     if (typeof onSelectRoom === "function") {
       onSelectRoom(roomId);
     }
+
+    // 선택한 채팅방에 대한 구독 설정 또는 업데이트 로직을 여기에 추가할 수 있습니다.
+    // 예를 들어, 선택된 채팅방의 실시간 메시지를 받기 위한 구독 등
   };
 
   return (

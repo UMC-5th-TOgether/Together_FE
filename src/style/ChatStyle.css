@@ -88,7 +88,7 @@
 .message {
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #e0e0e0;
+  background-color: white;
   border-radius: 10px;
 }
 
@@ -370,6 +370,11 @@
 }
 
 .message-content {
+  height: 38px;
+  font-size: 22px;
+  justify-content: center; /* 수직 방향으로 가운데 정렬 */
+  align-items: center; /* 수평 방향으로 가운데 정렬 */
+
   background: #007bff;
   /*Bluebackgroundforthechatbubble*/
   color: white;
@@ -384,9 +389,15 @@
 }
 
 .message-profile {
-  width: 30px; /* Adjust the size of the profile image */
-  height: 30px;
+  margin-bottom: 15px;
+  width: 60px;
+  /*Adjustthesizeoftheprofileimage*/
+  height: 60px;
   border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .message-meta {
@@ -394,12 +405,13 @@
   align-items: center;
   justify-content: space-between; /* Space between time and profile image */
   margin-top: 5px; /* Space above the meta information */
+  gap: 10px;
 }
 
 .message-time {
   font-size: 0.8rem;
   color: #666;
-  margin-right: 8px;
+  margin: 8px;
 }
 
 .message-input-area {
