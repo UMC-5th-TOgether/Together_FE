@@ -1,0 +1,64 @@
+.matching-page {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  position: absolute;
+  width: 100%;
+  padding: 0 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.matching-images-wrap {
+  /* position: relative; */
+  display: flex;
+  width: 1257px;
+  height: 200px;
+  border: 1px solid #d2d2d2;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+.matching-images-wrap:hover {
+  background-color: #f0f0f0;
+  box-shadow: rgba(0, 0, 0, 0.1);
+}
+
+.matching-image-label {
+  cursor: pointer;
+  color: #d2d2d2;
+}
+
+.matching-selected-image {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 10px;
+}
+
+.matching-image-preview {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.remove-image-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 0 3px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.matching-image-preview:hover .remove-image-button {
+  opacity: 1;
+}

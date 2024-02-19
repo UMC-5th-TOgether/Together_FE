@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import profilePicture from "../assets/프로필.png";
 import BannerImage from "../assets/friend-Profile.png";
@@ -7,10 +7,47 @@ import { FaStar } from "react-icons/fa";
 import "../style/FriendStyle.css";
 import { dummy } from "../data/MemberDummy";
 import { PostStatus } from "../components/PostStatus";
+import axios from "axios";
 
 export default function FriendProfile() {
   const { nickname, gender, age, residence, review, introduction } =
     dummy.results[0];
+  const location = useLocation();
+  const friendInfo = location.state.user;
+  const friendId = friendInfo.friendId;
+
+  // friendInfo -> friendProfile로 모두 변경해야함.
+  const [friendProfile, setFrindProfile] = useState(null);
+
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const fetchFriendProfile = async () => {
+      try {
+        const res = await axios.get(
+          `https://hyeonjo.shop/api/friends/${friendId}/info`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        console.log(res.data);
+
+        if (res.data.isSuccess) {
+          console.log(res.data.data);
+          const data = res.data.data;
+          setFrindProfile(data.memberInfo);
+        }
+      } catch (error) {
+        console.error("Error fetching friendProfile info:", error);
+      }
+    };
+
+    fetchFriendProfile();
+  }, []);
+
   const ARRAY = [0, 1, 2, 3, 4];
   const postsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(0);
@@ -41,11 +78,13 @@ export default function FriendProfile() {
           />
           <div className="mypage-profile">
             <span className="frined-profile-nickname">
-              {nickname} ({gender} / {age})
+              {friendInfo.nickname} (
+              {friendInfo.gender === "FEMALE" ? "여성" : "남성"} /{" "}
+              {friendInfo.age})
             </span>
             <div className="frined-profile-residence">{residence}</div>
-            <span className="frined-profile-introduction">
-              "{introduction}"
+            <span className="friend-profile-introduction">
+              "{friendInfo.profileMessage}"
             </span>
           </div>
         </div>
@@ -54,14 +93,14 @@ export default function FriendProfile() {
           <div className="mypage-review-wrap">
             <div className="friend-profile-review-content">
               <span className="friend-profile-detail-font1">동행 횟수</span>
-              <span className="mypage-review-content">
+              <span className="mypage-review-content1">
                 {review.num_of_people}명 중 {review.num_of_people}명의 이용자가
                 다시 만나고 싶어해요.
               </span>
             </div>
             <div className="friend-profile-review-content">
               <span className="friend-profile-detail-font1">매너 별점</span>
-              <span className="mypage-review-content">
+              <span className="mypage-review-content2">
                 {ARRAY.map((el, index) => (
                   <FaStar
                     key={index}
@@ -73,7 +112,7 @@ export default function FriendProfile() {
             </div>
             <div className="friend-profile-review-content">
               <span className="friend-profile-detail-font1">응답률</span>{" "}
-              <span className="mypage-review-content">
+              <span className="mypage-review-content3">
                 {review.response_rate}%
               </span>
             </div>
@@ -125,6 +164,7 @@ export default function FriendProfile() {
 
         <div className="mypage-post">
           <div className="mypage-title"> 작성한 후기</div>
+          {}
         </div>
       </div>
     </div>

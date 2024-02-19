@@ -27,6 +27,7 @@
 
 .mypage-profile-picture {
   width: 114px;
+  height: 114px;
   border-radius: 50%;
 }
 
@@ -43,14 +44,29 @@
 
 .frined-profile-residence {
   color: #cccccc;
+  text-align: left;
   font-size: 20px;
 }
 
-.frined-profile-introduction {
+.friend-profile-introduction {
   font-size: 16px;
-  line-height: 3;
   color: #666666;
+  float: left;
+
+  margin-top: 10px;
+
   font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -1px;
+}
+
+.friend-profileMessage {
+  font-size: 24px;
+  line-height: 3;
+  color: black;
+  font-weight: 700;
+
+  margin-left: 60px;
 }
 
 .friend-profile-detail {
@@ -89,7 +105,14 @@
   font-size: 20px;
 }
 
-.mypage-review-content {
+.mypage-review-content1 {
+  margin-left: 24px;
+}
+.mypage-review-content2 {
+  margin-left: 24px;
+}
+.mypage-review-content3 {
+  margin-left: 40px;
 }
 
 .mypage-title {

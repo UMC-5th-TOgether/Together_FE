@@ -1,17 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import usersData from "../../data/UserProfileData.json";
+import { dummy } from "../../data/FollowingDummy";
 import "../../style/FollowingStyle.css";
 import defaultAvatar from "../../assets/프로필.png";
+import axios from "axios";
 
 export default function Following() {
-  const UserProfile = ({ image, nickname, following, gender, age }) => {
+  const token = localStorage.getItem("token");
+  const [FollowingData, setFollowingData] = useState(null);
+  const followings = dummy.followingList;
+  useEffect(() => {
+    const fetchFollowingData = async () => {
+      try {
+        const res = await axios.get(
+          "https://hyeonjo.shop/api/friends/following",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        console.log(res.data);
+
+        if (res.data.isSuccess) {
+          console.log(res.data.data);
+          const data = res.data.data;
+          setFollowingData(data.followingList);
+        }
+      } catch (error) {
+        console.error("Error fetching following data:", error);
+      }
+    };
+
+    fetchFollowingData();
+  }, []);
+  const UserProfile = ({ profileImg, nickname, title, gender, age }) => {
     return (
       <div className="follower-profile">
         <div className="avatar-container">
-          {image ? (
+          {profileImg ? (
             <img
-              src={image}
+              src={profileImg}
               alt={`Profile of ${nickname}`}
               className="avatar"
             />
@@ -22,10 +52,11 @@ export default function Following() {
         <div className="nickname">
           {nickname}
           <p>
-            ({gender}/{age})
+            ({gender === "FEMALE" ? "여성" : "남성"}/{age})
           </p>
         </div>
-        <div className="following-introduction">{following}</div>
+        <div className="following-introduction">{title}</div>
+        <div className="following-notice">요청 보냄</div>
       </div>
     );
   };
@@ -61,16 +92,16 @@ export default function Following() {
           </NavLink>
         </div>
         <div className="user-list">
-          {usersData.map((user) => (
+          {followings.map((user) => (
             <div className="user-profile">
               <UserProfile
-                image={user.image}
+                image={user.profileImg}
                 nickname={user.nickname}
-                following={user.following}
+                title={user.title}
                 gender={user.gender}
                 age={user.age}
+                key={user.matchingId}
               />
-              <div className="following-notice">요청 보냄</div>
             </div>
           ))}
         </div>

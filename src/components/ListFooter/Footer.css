@@ -1,0 +1,28 @@
+.footer {
+  /* Group 26 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 236px;
+  bottom: 0px;
+  background: #333333;
+}
+
+.footer-font {
+  /* FOOTER */
+  position: absolute;
+  width: 71px;
+  height: 21px;
+
+  /*font style*/
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+
+  /* White */
+  color: white;
+}

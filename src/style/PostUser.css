@@ -1,0 +1,133 @@
+.posting-post {
+  width: 1320px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.2);
+  padding: 30px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.posting-comment-post {
+  width: 1320px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.2);
+  padding: 15px 18px 5px 20px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.posting-post-title {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.posting-post-content {
+  font-size: 15px;
+  line-height: 140%;
+  letter-spacing: -1%;
+}
+
+.posting-li {
+  margin-right: 30px;
+  font-size: 16px;
+  padding: 1px;
+}
+
+.posting-hashtag-wrap {
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f3f3;
+
+  border-radius: 10%;
+  height: 20px;
+  margin-right: 5px;
+  padding: 2px 5px 2px 5px;
+
+  font-weight: 600;
+  color: #222222;
+}
+
+.posting-hashtag {
+  margin-top: 10px;
+  margin-right: 20px;
+  color: #808080;
+}
+
+.postuser-button-wrap {
+  display: flex;
+  justify-content: right;
+  width: 1265px;
+  bottom: 0;
+}
+
+.posting-comment-button {
+  height: 30px;
+  background-color: #222222;
+  color: #fff;
+  border-radius: 5px;
+  padding: 0px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 7px;
+}
+
+.posting-comment-button:disabled {
+  background-color: #ccc;
+  cursor: auto;
+}
+
+.posting-author-profile {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 1320px;
+}
+
+.posting-profile-picture {
+  width: 45px;
+}
+
+.posting-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 8px;
+  margin-left: 12px;
+}
+
+.posting-comment {
+  display: flex;
+  justify-content: left;
+  margin-top: 8px;
+  margin-left: 56px;
+  font-size: 15px;
+  width: 1100px;
+}
+
+.posting-comment-profile {
+  display: flex;
+}
+
+.posting-date-created {
+  padding-top: 5px;
+  font-size: 14px;
+  color: #808080;
+}
+
+.posting-comment-button-right {
+  margin-left: auto;
+}
+
+.posting-content {
+  padding: 30px 0 20px 0;
+  white-space: pre-line;
+}

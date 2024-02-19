@@ -1,10 +1,11 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import usersData from "../../data/UserProfileData.json";
+import { dummy } from "../../data/FriendListDummy";
 import "../../style/FriendStyle.css";
 import defaultAvatar from "../../assets/프로필.png";
 
-const UserProfile = ({ image, nickname, introduction, gender, age }) => {
+const UserProfile = ({ image, nickname, profileMessage, gender, age }) => {
   return (
     <div className="user-profile">
       <div className="avatar-container">
@@ -17,14 +18,43 @@ const UserProfile = ({ image, nickname, introduction, gender, age }) => {
       <div className="nickname">
         {nickname}
         <p>
-          ({gender}/{age})
+          ({gender === "FEMALE" ? "여성" : "남성"}/{age})
         </p>
       </div>
-      <div className="friend-introduction">"{introduction}"</div>
+      <div className="friend-profileMessage">"{profileMessage}"</div>
     </div>
   );
 };
 const Friend = () => {
+  const token = localStorage.getItem("token");
+
+  const [friendList, setFrindList] = useState(null);
+  const friends = dummy.friendList;
+
+  useEffect(() => {
+    const fetchFriendList = async () => {
+      try {
+        const res = await axios.get("https://hyeonjo.shop/api/friends", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        console.log(res.data);
+
+        if (res.data.isSuccess) {
+          console.log(res.data.data);
+          const data = res.data.data;
+          setFrindList(data.friendList);
+        }
+      } catch (error) {
+        console.error("Error fetching friendList info:", error);
+      }
+    };
+
+    fetchFriendList();
+  }, []);
+
   const activeStyle = {
     color: "white",
     backgroundColor: "black",
@@ -57,16 +87,17 @@ const Friend = () => {
           </NavLink>
         </div>
         <div className="user-list">
-          {usersData.map((user) => (
+          {friends.map((user) => (
             <Link
-              to={`/FriendProfile/${user.id}`}
+              to={`/FriendProfile/${user.friendId}`}
+              state={{ user: user }}
               className="user-profile-link"
-              key={user.id}
+              key={user.friendId}
             >
               <UserProfile
                 image={user.image}
                 nickname={user.nickname}
-                introduction={user.introduction}
+                profileMessage={user.profileMessage}
                 gender={user.gender}
                 age={user.age}
               />

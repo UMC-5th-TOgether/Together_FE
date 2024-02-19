@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import usersData from "../../data/UserProfileData.json";
+import { dummy } from "../../data/FollowerDummy";
 import "../../style/FollowerStyle.css";
 import defaultAvatar from "../../assets/프로필.png";
+import axios from "axios";
 
 export default function Follower() {
+  const token = localStorage.getItem("token");
+  const [FollowerData, setFollowerData] = useState(null);
+  const followers = dummy.followerList;
+  useEffect(() => {
+    const fetchFollowerData = async () => {
+      try {
+        const res = await axios.get(
+          "https://hyeonjo.shop/api/friends/follower",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        console.log(res.data);
+
+        if (res.data.isSuccess) {
+          console.log(res.data.data);
+          const data = res.data.data;
+          setFollowerData(data.followerList);
+        }
+      } catch (error) {
+        console.error("Error fetching following data:", error);
+      }
+    };
+
+    fetchFollowerData();
+  }, []);
   const UserProfile = ({ image, nickname, title, gender, age }) => {
     return (
       <div className="follower-profile">
@@ -22,7 +52,7 @@ export default function Follower() {
         <div className="nickname">
           {nickname}
           <p>
-            ({gender}/{age})
+            ({gender === "FEMALE" ? "여성" : "남성"}/{age})
           </p>
         </div>
         <div className="title">{title}</div>
@@ -61,12 +91,13 @@ export default function Follower() {
           </NavLink>
         </div>
         <div className="user-list">
-          {usersData.map((user) => (
+          {followers.map((user) => (
             <div className="user-profile">
               <Link
-                to={`/matching/${user.id}`}
+                to={`/matching/detail/${user.matchingId}`}
+                state={{ user: user }}
                 className="user-profile-link"
-                key={user.id}
+                key={user.matchingId}
               >
                 <UserProfile
                   image={user.image}
