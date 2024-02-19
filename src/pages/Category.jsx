@@ -8,13 +8,11 @@ import CategoryRecentPosting from '../components/CategoryRecentPosting';
 
 export default function Category() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const token = localStorage.getItem('token');
-
   const categories = ['공연', '운동', '식사', '취미'];
-
   const [selectedCategory, setSelectedCategory] = useState('');
-  const location = useLocation();
 
   useEffect(() => {
     if (!token) {
@@ -22,18 +20,21 @@ export default function Category() {
       navigate('/login')
       return;
     }
-    setSelectedCategory('공연');
-  }, []);
+    if (!selectedCategory) {
+      setSelectedCategory('공연');
+    }
+  }, [], navigate);
 
   useEffect(() => {
     if (location.state && location.state.selectedCategory) {
       setSelectedCategory(location.state.selectedCategory);
     }
-  }, [location.state]);
+  }, [location.state], navigate);
 
 
   const handleCategoryChange = (selectedCategory) => {
     setSelectedCategory(selectedCategory);
+    navigate(`/category`, { state: { selectedCategory: selectedCategory } });
   };
 
   let categoryValue;

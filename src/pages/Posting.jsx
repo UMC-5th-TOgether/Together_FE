@@ -147,9 +147,30 @@ export default function Posting() {
         }
       );
 
-      // const id = res.data.data.id;
       console.log("Response:", res.data);
-      // navigate(`/postuser/${id}`);
+
+      if (res.data.isSuccess) {
+        const formData = new FormData();
+
+        formData.append('post', res.data.data.id);
+
+        selectedImages.forEach(image => {
+          formData.append('files', image.file);
+        });
+
+        axios.post('https://hyeonjo.shop/api/posts/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${token}`
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
       setTimeout(() => {
         navigate(`/category`, { state: { selectedCategory: categoryValue } });
       }, 1500);
@@ -312,9 +333,11 @@ export default function Posting() {
                 <img src={image.preview} alt={`Selected ${index + 1}`} className="matching-selected-image" />
               </div>
             ))}
-            <label className="matching-image-label">
-              이미지 추가하기
-            </label>
+            {!selectedImages.length > 0 && (
+              <label className="matching-image-label">
+                이미지 추가하기
+              </label>
+            )}
             <input
               id="imageInput"
               type="file"

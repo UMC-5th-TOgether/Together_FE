@@ -146,7 +146,7 @@ export default function PostUser() {
                 <div className="posting-author-profile">
                     <img className="posting-profile-picture" src={profilePicture} alt="Profile" />
                     <div className="posting-profile">
-                        <span className="posting-nickname">{postData.memberDTO.nickname} ({postData.memberDTO.gender === 'FEMALE' ? '여성' : '남성'}/{postData.memberDTO.age})</span>
+                        <span className="posting-nickname">{postData.writer.nickname} ({postData.writer.gender === 'FEMALE' ? '여성' : '남성'}/{postData.writer.age})</span>
                         <span className="posting-date-created">{formatTime(postData.createdAt)}</span>
                     </div>
                 </div>
@@ -174,9 +174,13 @@ export default function PostUser() {
                                 <div key={tagIndex} className="posting-hashtag">#{tag}</div>
                             ))}
                         </div>
-                        <div className="posting-wrap">
-                            {/* {images} */}
-                        </div>
+                        {Array.isArray(postData.postImages) && postData.postImages.length > 0 && (
+                            <div className="posting-wrap">
+                                {postData.postImages.map((image, index) => (
+                                    <img key={index} className="posting-images" src={image} alt={`postImage-${index}`} />
+                                ))}
+                            </div>
+                        )}
                         <div className="postuser-button-wrap">
                             <Link to="/chatting">
                                 <img className="posting-bottom-button" src={chatting} alt="chatting" />
