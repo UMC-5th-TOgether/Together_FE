@@ -150,9 +150,9 @@ export default function Login() {
           <Link onClick={GoogleLoginButton}>
             <img src={googleIcon} alt="google" />
           </Link>
-          <Link onClick={NaverLoginButton}>
+          {/* <Link onClick={NaverLoginButton}>
             <img src={naverIcon} alt="naver" />
-          </Link>
+          </Link> */}
           <Link onClick={KakaoLoginButton}>
             <img src={kakaoIcon} alt="kakao" />
           </Link>

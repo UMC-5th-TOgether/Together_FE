@@ -1,60 +1,36 @@
-// import React, { useState } from 'react';
-// import { FaSearch } from "react-icons/fa";
-// import "./SearchBar.css";
-// export const SearchBar = () => {
-//     const [input, setInput] = useState("");
-
-//     const fetchData = (value) => {
-//         fetch("https://jsonplaceholder.typicode.com/users")
-//     }
-
-//     const handleChange = (value) => {
-//         setInput(value)
-//         fetchData(value)
-//     }
-//     return (
-//         <div className="input-wrapper">
-//             <input
-//                 className="search-bar-input"
-//                 placeholder="에스파 콘서트"
-//                 value={input}
-//                 onChange={(e) => handleChange(e.target.value)} /><FaSearch id="search-icon" />
-
-//         </div>
-
-//     );
-// };
-
 import React, { useState, useEffect } from 'react';
 import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css";
+import {useNavigate} from "react-router-dom";
 
 export const SearchBar = () => {
     const [input, setInput] = useState("");
-    const [data, setData] = useState([]);
-    const [filteredData, setFilteredData] = useState([]);
-    const [showDropdown, setShowDropdown] = useState(false);
+    const [isComposing, setIsComposing] = useState(false);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        const mockData = [
-            { id: 1, name: 'User 1' },
-            { id: 2, name: 'User 2' },
-        ];
-        setData(mockData);
-        setFilteredData(mockData);
-    }, []);
+    const isBlank = (query) => {
+        return !query.trim()
+    }
 
     const handleSearch = () => {
-        const filtered = data.filter(item =>
-            item.name.toLowerCase().includes(input.toLowerCase())
-        );
-        setFilteredData(filtered);
-        setShowDropdown(true);
+        if (isBlank(input)) {
+            alert('검색어를 입력해주세요.');
+        } else {
+            navigate(`/search?q=${input}`);
+        }
     };
+
+    const handelKeydown = (e) => {
+        if (isComposing) return;
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            setInput('');
+            handleSearch();
+        }
+    }
 
     const handleChange = (value) => {
         setInput(value);
-        handleSearch();
     };
 
     return (
@@ -64,19 +40,11 @@ export const SearchBar = () => {
                 placeholder="에스파 콘서트"
                 value={input}
                 onChange={(e) => handleChange(e.target.value)}
-                onBlur={() => setShowDropdown(false)}
+                onKeyDown={(e) => handelKeydown(e)}
+                onCompositionStart={() => setIsComposing(true)}
+                onCompositionEnd={() => setIsComposing(false)}
             />
-            <FaSearch id="search-icon" />
-
-            {showDropdown && (
-                <div className="dropdown">
-                    <ul>
-                        {filteredData.map(item => (
-                            <li key={item.id}>{item.name}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+            <FaSearch id="search-icon" onClick={handleSearch} />
         </div>
     );
 };

@@ -1,30 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import CategoryPagePosting from '../components/CategoryPagePosting'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../style/Category.css'
 import categoryImg from '../assets/category.png'
 import postingButton from '../assets/posting-button.png'
 import CategoryRecentPosting from '../components/CategoryRecentPosting';
 
 export default function Category() {
-  const categories = ['공연', '운동', '식사', '취미'];
-
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const navigate = useNavigate();
   const location = useLocation();
 
+  const token = localStorage.getItem('token');
+  const categories = ['공연', '운동', '식사', '취미'];
+  const [selectedCategory, setSelectedCategory] = useState('');
+
   useEffect(() => {
-    setSelectedCategory('공연');
-  }, []);
+    if (!token) {
+      alert('로그인이 필요합니다.');
+      navigate('/login')
+      return;
+    }
+    if (!selectedCategory) {
+      setSelectedCategory('공연');
+    }
+  }, [], navigate);
 
   useEffect(() => {
     if (location.state && location.state.selectedCategory) {
       setSelectedCategory(location.state.selectedCategory);
     }
-  }, [location.state]);
+  }, [location.state], navigate);
 
 
   const handleCategoryChange = (selectedCategory) => {
     setSelectedCategory(selectedCategory);
+    navigate(`/category`, { state: { selectedCategory: selectedCategory } });
   };
 
   let categoryValue;
@@ -37,6 +47,10 @@ export default function Category() {
   } else if (selectedCategory === '취미') {
     categoryValue = 'HOBBY';
   }
+
+  useEffect(() => {
+    console.log(`Current category: ${selectedCategory}`);
+  }, [selectedCategory]);
 
   return (
     <>

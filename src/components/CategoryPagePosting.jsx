@@ -30,7 +30,6 @@ const CategoryPagePosting = ({ selectedCategory }) => {
                         Authorization: `Bearer ${token}`,
                     }
                 });
-                console.log(res.data);
                 if (res.data.isSuccess) {
                     const updatedPostList = res.data.data.posts;
 
@@ -72,7 +71,6 @@ const CategoryPagePosting = ({ selectedCategory }) => {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            console.log(res.data.data);
             setPostData(res.data.data);
         } catch (error) {
             console.error('Error fetching post data:', error);
@@ -118,7 +116,7 @@ const CategoryPagePosting = ({ selectedCategory }) => {
                         </div>
                         <div className="js-content-wrap">
                             모집
-                            <span className="js-content"> {personNumMin}명 ~ {personNumMax}명</span>
+                            <span className="js-content"> {personNumMin}명 {personNumMax ? `~ ${personNumMax}명` : ''}</span>
                         </div>
                         <div>
                             성별

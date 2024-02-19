@@ -38,9 +38,11 @@
 }
 
 .matching-selected-image {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 300px;
+  min-height: 180px;
+  max-height: 180px;
   margin: 10px;
+  border-radius: 10px;
 }
 
 .matching-image-preview {

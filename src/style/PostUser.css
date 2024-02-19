@@ -24,7 +24,7 @@
 
 .posting-post-title {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 27px;
   margin-bottom: 10px;
 }
 
@@ -87,12 +87,11 @@
 
 .posting-author-profile {
   display: flex;
-  margin-top: 20px;
-  margin-bottom: 20px;
   width: 1320px;
 }
 
 .posting-profile-picture {
+  border-radius: 50%;
   width: 45px;
 }
 
@@ -128,6 +127,82 @@
 }
 
 .posting-content {
-  padding: 30px 0 20px 0;
+  padding: 10px 0 8px 0;
   white-space: pre-line;
+}
+
+.posting-child-comment-horizontal-wrap {
+  display: flex;
+  margin: 0 0 14px 0;
+}
+
+.posting-child-comment-icon {
+  margin: 15px 10px 0 0;
+}
+
+.posting-child-comment-wrap {
+  background: #F3F3F3;
+  border-radius: 16px;
+  padding: 15px;
+  width: 100%;
+}
+
+.posting-top-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.posting-top-option-wrap {
+  width: 25px;
+  padding: 2px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.posting-top-option-wrap.on{
+  padding: 2px;
+  border-radius: 8px;
+  background: #e6e6e6;
+  cursor: pointer;
+}
+
+.posting-top-option {
+  width: 25px;
+}
+
+.posting-top-option-pannel {
+  width: 125px;
+  height: fit-content;
+  top: 520px;
+  left: 1518px;
+  padding: 20px;
+  border-radius: 8px;
+  position: absolute;
+  background: white;
+  box-shadow: 0 4px 20px #33333333;
+}
+
+.posting-top-option-pannel > hr {
+  margin: 15px 0;
+}
+
+.poting-top-option-pannel-btn {
+  text-align: center;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.poting-top-option-pannel-btn:hover {
+  font-weight: 600;
+}
+
+.posting-images {
+    min-width: 100px;
+    max-width: 300px;
+    min-height: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+    margin: 10px;
 }

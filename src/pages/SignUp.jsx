@@ -124,7 +124,7 @@ export default function SignUp() {
       if (res.data.isSuccess) {
         setTimeout(() => {
           setIsLoading(false);
-          navigate('/authentication', { state: userData });
+          navigate('/authentication', { state: { data: userData, provider: 'local' } });
         }, 1500);
       } else {
         setIsLoading(false);
@@ -208,29 +208,33 @@ export default function SignUp() {
           <label onClick={handleModal3}> 위치 기반 서비스 이용약관에 동의합니다. <a href="/">내용 보기</a></label>
         </div>
 
-        {showModal1 && (
-          <div className="modal" onClick={handleCloseModal}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <ModalContent1 onClose={handleCloseModal} />
-            </div>
-          </div>
-        )}
+        {showModal1
+            ? <div className="modal" onClick={handleCloseModal}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                  <ModalContent1 onClose={handleCloseModal} />
+                </div>
+              </div>
+            : <></>
+        }
 
-        {showModal2 && (
-          <div className="modal" onClick={handleCloseModal}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <ModalContent2 onClose={handleCloseModal} />
-            </div>
-          </div>
-        )}
+        {showModal2
+            ? <div className="modal" onClick={handleCloseModal}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                  <ModalContent2 onClose={handleCloseModal} />
+                </div>
+              </div>
+            : <></>
+        }
 
-        {showModal3 && (
+        {showModal3
+            ?
           <div className="modal" onClick={handleCloseModal}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <ModalContent3 onClose={handleCloseModal} />
             </div>
           </div>
-        )}
+            : <></>
+        }
 
         <div className="to-login">
           <span>이미 계정이 있으신가요? <a href="/login">Log in</a> </span>
@@ -248,9 +252,9 @@ export default function SignUp() {
           <Link onClick={GoogleLoginButton}>
             <img src={googleIcon} alt="google" />
           </Link>
-          <Link onClick={NaverLoginButton}>
+          {/* <Link onClick={NaverLoginButton}>
             <img src={naverIcon} alt="naver" />
-          </Link>
+          </Link> */}
           <Link onClick={KakaoLoginButton}>
             <img src={kakaoIcon} alt="kakao" />
           </Link>

@@ -12,8 +12,9 @@ import axios from "axios";
 export default function FriendProfile() {
   const { residence, review } = dummy.results[0];
   const location = useLocation();
-  const friendInfo = location.state.user;
-  const friendId = friendInfo.friendId;
+  const { friendId } = location.state || {};
+  // console.log(friendInfo)
+  // const friendId = friendInfo ? friendInfo.friendId : null;
 
   // friendInfo -> friendProfile로 모두 변경해야함.
   const [friendProfile, setFrindProfile] = useState(null);
@@ -161,17 +162,27 @@ export default function FriendProfile() {
             src={profilePicture}
             alt="Profile"
           />
-          <div className="mypage-profile">
-            <span className="frined-profile-nickname">
-              {friendInfo.nickname} (
-              {friendInfo.gender === "FEMALE" ? "여성" : "남성"} /{" "}
-              {friendInfo.age})
-            </span>
-            <div className="frined-profile-residence">{residence}</div>
-            <span className="friend-profile-introduction">
-              "{friendInfo.profileMessage}"
-            </span>
-          </div>
+          {friendProfile && (
+            <div className="mypage-profile">
+              <span className="frined-profile-nickname">
+                {friendProfile.nickname} (
+                {friendProfile.gender === "FEMALE" ? "여성" : "남성"} /{" "}
+                {friendProfile.age})
+              </span>
+              <div className="frined-profile-residence">
+                {friendProfile.residence === undefined
+                  ? "미지정"
+                  : friendProfile.residence}
+              </div>
+              <span className="friend-profile-introduction">
+                "
+                {friendProfile.profileMessage === null
+                  ? "함께해요!"
+                  : friendProfile.profileMessage}
+                "
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="friend-profile-detail">

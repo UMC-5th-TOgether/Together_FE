@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import matchingSend from '../assets/matching-send.png';
 import matchingSendButton from '../assets/matching-send-button.png';
 import '../style/Matching.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 export default function MatchingSend() {
     const token = localStorage.getItem('token');
+
+    const location = useLocation();
+    const { postDataWriter } = location.state;
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -47,7 +50,7 @@ export default function MatchingSend() {
             formData.append('requestImages', image.file);
         });
 
-        let jsonData = JSON.stringify({ receiverId: 1, title: title, content: content });
+        let jsonData = JSON.stringify({ receiverId: postDataWriter.id, title: title, content: content });
 
         let blob = new Blob([jsonData], { type: 'application/json' });
 
@@ -114,9 +117,11 @@ export default function MatchingSend() {
                             <img src={image.preview} alt={`Selected ${index + 1}`} className="matching-selected-image" />
                         </div>
                     ))}
-                    <label className="matching-image-label">
-                        이미지 추가하기
-                    </label>
+                    {!selectedImages.length > 0 && (
+                        <label className="posting-image-label">
+                            이미지 추가하기
+                        </label>
+                    )}
                     <input
                         id="imageInput"
                         type="file"

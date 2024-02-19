@@ -21,14 +21,16 @@ const UserProfile = ({ image, nickname, profileMessage, gender, age }) => {
           ({gender === "FEMALE" ? "여성" : "남성"}/{age})
         </p>
       </div>
-      <div className="friend-profileMessage">"{profileMessage}"</div>
+      <div className="friend-profileMessage">
+        "{profileMessage === null ? "함께해요!" : profileMessage}"
+      </div>
     </div>
   );
 };
 const Friend = () => {
   const token = localStorage.getItem("token");
 
-  const [friendList, setFrindList] = useState(null);
+  const [friendList, setFriendList] = useState(null);
   const friends = dummy.friendList;
 
   useEffect(() => {
@@ -45,7 +47,7 @@ const Friend = () => {
         if (res.data.isSuccess) {
           console.log(res.data.data);
           const data = res.data.data;
-          setFrindList(data.friendList);
+          setFriendList(data.friendList);
         }
       } catch (error) {
         console.error("Error fetching friendList info:", error);
@@ -87,22 +89,26 @@ const Friend = () => {
           </NavLink>
         </div>
         <div className="user-list">
-          {friends.map((user) => (
-            <Link
-              to={`/FriendProfile/${user.friendId}`}
-              state={{ user: user }}
-              className="user-profile-link"
-              key={user.friendId}
-            >
-              <UserProfile
-                image={user.image}
-                nickname={user.nickname}
-                profileMessage={user.profileMessage}
-                gender={user.gender}
-                age={user.age}
-              />
-            </Link>
-          ))}
+          {friendList &&
+            friendList.map((friendList, index) => (
+              <div className="user-profile" key={index}>
+                <Link
+                  to={`/FriendProfile/${friendList.friendId}`}
+                  className="user-profile-link"
+                  state={{ friendId: friendList.friendId }}
+                  key={friendList.friendId}
+                >
+                  <UserProfile
+                    image={friendList.image}
+                    nickname={friendList.nickname}
+                    title={friendList.title}
+                    gender={friendList.gender}
+                    age={friendList.age}
+                    profileMessage={friendList.profileMessage}
+                  />
+                </Link>
+              </div>
+            ))}
         </div>
       </main>
     </div>

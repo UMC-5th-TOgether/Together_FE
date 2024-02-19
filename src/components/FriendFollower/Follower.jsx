@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { dummy } from "../../data/FollowerDummy";
+// import { dummy } from "../../data/FollowerDummy";
 import "../../style/FollowerStyle.css";
 import defaultAvatar from "../../assets/프로필.png";
 import axios from "axios";
@@ -10,7 +10,7 @@ export default function Follower() {
 
   //followers->FollowerData로 변경
   const [FollowerData, setFollowerData] = useState(null);
-  const followers = dummy.followerList;
+  // const followers = dummy.followerList;
   useEffect(() => {
     const fetchFollowerData = async () => {
       try {
@@ -37,6 +37,46 @@ export default function Follower() {
 
     fetchFollowerData();
   }, []);
+
+  const handleDecline = async (matchingId) => {
+    console.log(matchingId);
+    try {
+      const res = await axios.patch(
+        `https://hyeonjo.shop/api/matching/decline`,
+        {
+          matchingId: matchingId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Decline response:", res.data);
+    } catch (error) {
+      console.error("Error declining user:", error);
+    }
+  };
+
+  const handleAccept = async (matchingId) => {
+    try {
+      const res = await axios.patch(
+        `https://hyeonjo.shop/api/matching/accept`,
+        {
+          matchingId: matchingId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Accept response:", res.data);
+    } catch (error) {
+      console.error("Error accepting user:", error);
+    }
+  };
+
   const UserProfile = ({ image, nickname, title, gender, age }) => {
     return (
       <div className="follower-profile">
@@ -93,43 +133,34 @@ export default function Follower() {
           </NavLink>
         </div>
         <div className="user-list">
-          {followers.map((user) => (
-            <div className="user-profile">
-              <Link
-                to={`/matching/detail/${user.matchingId}`}
-                state={{ user: user }}
-                className="user-profile-link"
-                key={user.matchingId}
-              >
-                <UserProfile
-                  image={user.image}
-                  nickname={user.nickname}
-                  title={user.title}
-                  gender={user.gender}
-                  age={user.age}
-                />
-              </Link>
-              <div className="follower-btn">
-                <button
-                  onClick={() => {
-                    axios
-                      .patch("https://hyeonjo.shop/api/matching/decline", {
-                        matchingId: followers.matchingId,
-                      })
-                      .then(function (response) {
-                        console.log(response);
-                      })
-                      .catch(function (error) {
-                        console.log(error);
-                      });
-                  }}
+          {FollowerData &&
+            FollowerData.map((followerData, index) => (
+              <div className="user-profile" key={index}>
+                <Link
+                  to={`/matching/detail/${followerData.matchingId}`}
+                  className="user-profile-link"
+                  state={{ matchingInfo: followerData }}
                 >
-                  거절
-                </button>
-                <button>수락</button>
+                  <UserProfile
+                    image={followerData.image}
+                    nickname={followerData.nickname}
+                    title={followerData.title}
+                    gender={followerData.gender}
+                    age={followerData.age}
+                  />
+                </Link>
+                <div className="follower-btn">
+                  <button
+                    onClick={() => handleDecline(followerData.matchingId)}
+                  >
+                    거절
+                  </button>
+                  <button onClick={() => handleAccept(followerData.matchingId)}>
+                    수락
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </main>
     </div>
