@@ -1,0 +1,538 @@
+/**/
+
+.chat-app {
+  grid: 4fr 4fr;
+}
+
+.chat-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* ChatRoom이 표시될 때의 컬럼 비율 */
+  grid-gap: 16px; /* 컬럼 사이의 간격 */
+  transition: grid-template-columns 0.3s ease-out; /* 컬럼 비율 변경에 애니메이션 적용 */
+}
+
+.chat-room,
+.chat-room-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: white;
+  margin-bottom: 100px;
+}
+
+.chat-room-list {
+  grid-row: 1/1;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  width: 656px;
+  height: 1062px;
+  margin: 10px auto;
+  margin-left: 296px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 10px 0 15px -3px rgba(211, 211, 211, 0.5),
+    -10px 0 15px -3px rgba(211, 211, 211, 0.5),
+    0 -10px 15px -3px rgba(211, 211, 211, 0.5),
+    0 10px 15px -3px rgba(211, 211, 211, 0.5);
+  margin-bottom: 100px;
+}
+
+.chat-room {
+  grid-row: 1/2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 656px;
+  height: 1062px;
+  margin: 10px auto;
+  margin-right: 296px;
+  margin-left: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: white;
+  box-shadow: -10px 0 15px -3px rgba(211, 211, 211, 0.5),
+    10px 0 15px -3px rgba(211, 211, 211, 0.5),
+    0 -10px 15px -3px rgba(211, 211, 211, 0.5),
+    0 10px 15px -3px rgba(211, 211, 211, 0.5);
+  margin-bottom: 100px;
+  position: relative;
+}
+
+/***/
+
+/* Additional styles for chatroom entries */
+.chattingroom {
+  padding: 10px;
+  margin: 40px;
+  margin-bottom: 8px;
+  border: 1px solid #eee;
+}
+
+.post-title {
+  font-weight: bold;
+}
+
+.last-chat {
+  color: grey;
+  font-size: 0.9rem;
+}
+
+/* Styles for messages */
+.message {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+}
+
+.server-profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #bbb;
+  /* Add more styling for profile images */
+}
+
+.chat-content {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.chat-time {
+  text-align: right;
+  font-size: 0.8rem;
+  color: grey;
+}
+
+/* Styles for textarea and buttons */
+.textarea {
+  display: flex;
+  margin-top: auto;
+}
+
+.send {
+  padding: 10px 20px;
+  margin-left: auto;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.two-button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.two-button button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Add responsive behavior as necessary */
+@media (max-width: 768px) {
+  .chat-app {
+    grid-template-columns: 1fr;
+  }
+}
+
+.posting-button-wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 240px;
+  margin-top: 80px;
+  margin-left: 400px;
+  position: relative; /* 상대 위치 지정 */
+  top: -110px; /* 위로 50px 옮김 */
+}
+
+.posting-button-wrap a {
+  margin-left: 20px; /* 링크(버튼) 사이의 왼쪽 마진을 20px로 설정합니다. */
+}
+
+/* 첫 번째 버튼에는 마진을 주지 않습니다. */
+.posting-button-wrap a:first-child {
+  margin-left: 0;
+}
+
+/* 이미지에 대한 추가 스타일링이 필요한 경우 여기에 추가합니다. */
+.posting-button-wrap img {
+  width: auto; /* 원본 이미지 크기를 유지합니다. */
+  height: auto; /* 원본 이미지 크기를 유지합니다. */
+  cursor: pointer; /* 마우스 오버 시 포인터로 변경합니다. */
+}
+
+/* 메시지 입력 영역 스타일 */
+.message-input-area {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  /*좌우패딩을조금더줍니다*/
+  height: 80px;
+  /*높이를50px로설정*/
+  background-color: #f7f7f7;
+  /*회색계열의배경색*/
+  border-radius: 18px;
+  /*모서리를둥글게처리*/
+  margin: 30px;
+  /*마진을적절하게설정*/
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  /*그림자효과를추가*/
+  position: absolute;
+  /*절대위치*/
+  bottom: 0;
+  /*하단에고정*/
+  left: 0;
+  /*왼쪽에고정*/
+  right: 0;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+}
+
+/* 메시지 입력란 스타일 */
+.message-input {
+  height: 50px;
+  font-size: 30px;
+  flex-grow: 1; /* 가능한 모든 공간을 차지하도록 설정 */
+  border: none; /* 테두리 제거 */
+  outline: none; /* 포커스 아웃라인 제거 */
+  background-color: transparent; /* 배경색 투명 */
+  padding-left: 10px; /* 텍스트와 입력란 사이의 공간 */
+}
+
+/* '전송' 버튼 스타일 */
+.send-button {
+  font-size: 20px;
+  padding: 8px 16px;
+  /*패딩조정*/
+  width: 100px;
+  height: 40px;
+  background-color: #9a9a9a;
+  /*버튼배경색*/
+  border: none;
+  border-radius: 8px;
+  /*버튼의둥근모서리*/
+  color: white;
+  font-weight: bold;
+  /*폰트굵기*/
+  cursor: pointer;
+  /*마우스오버시커서변경*/
+  outline: none;
+  white-space: nowrap;
+  /*버튼의텍스트가줄바꿈되지않도록설정*/
+  margin-left: 10px;
+}
+/* 전송 버튼에 호버 효과 */
+.send-button:hover {
+  background-color: #9a9a9a; /* 호버시 버튼 색 변경 */
+}
+
+/* 메시지 입력란에 포커스시 테두리 및 그림자 효과 */
+.message-input:focus {
+  box-shadow: 0 0 0 2px rgba(242, 86, 86, 0.2); /* 포커스시 그림자 효과 */
+}
+
+/**/ /**/
+
+.chat-room-entry {
+  width: 605px;
+  height: 130px;
+  margin: 15px;
+  position: relative;
+  background: #e9e7e7;
+  border-radius: 16px;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  transition: background-color 0.2s;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}
+
+.chat-room-entry.selected {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* 선택된 항목의 배경색 */
+}
+
+.chat-room-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 25px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.chat-room-info {
+  flex-grow: 1;
+  height: 100px;
+}
+
+.chat-room-title {
+  font-weight: bold;
+  color: #333;
+  margin-left: 5px;
+  margin-top: 0px;
+}
+
+.chat-room-last-message {
+  color: #888;
+  font-size: 0.9em;
+  margin-top: 30px;
+  margin-left: 5px;
+}
+
+.chat-room-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.chat-room-username {
+  color: #a3a3a3;
+  font-size: 0.8em;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.chat-room-timestamp {
+  color: #888;
+  font-size: 0.9em;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+/**/
+.room-image {
+  display: flex; /* Enables Flexbox */
+  flex-direction: column; /* Stacks children vertically */
+  align-items: center; /* Aligns children in the center horizontally */
+}
+
+.matching-status,
+.chat-room-avatar {
+}
+
+.matching-status {
+  margin-top: 10px;
+}
+/**/
+
+/**/ /**/ /**/ /* ChatRoom.css */
+.chat-room {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-indicator {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.chat-messages {
+  max-height: 920px; /* or desired height */
+}
+
+.message {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.message.sent {
+  justify-content: flex-end;
+}
+
+.message.received {
+  justify-content: flex-start;
+}
+
+.message-content {
+  background: #007bff;
+  /*Bluebackgroundforthechatbubble*/
+  color: white;
+  /*Whitetextcolor*/
+  padding: 8px 16px;
+  border-radius: 8px;
+  max-width: 80%;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.message-profile {
+  width: 30px; /* Adjust the size of the profile image */
+  height: 30px;
+  border-radius: 50%;
+}
+
+.message-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between time and profile image */
+  margin-top: 5px; /* Space above the meta information */
+}
+
+.message-time {
+  font-size: 0.8rem;
+  color: #666;
+  margin-right: 8px;
+}
+
+.message-input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc; /* Separator line */
+}
+
+.message-input {
+  flex-grow: 1;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  overflow-y: auto; /* 스크롤바가 필요할 때만 나타나도록 설정 */
+  margin-bottom: 10px; /* 입력 필드와의 간격 */
+}
+
+/**/
+
+/* 확장될 때 ChatRoomList 컨테이너의 스타일 */
+.chat-container.expand {
+  grid-template-columns: 1fr; /* ChatRoomList가 전체 너비를 차지 */
+  padding: 0; /* 패딩 제거 */
+}
+
+/* 확장된 ChatRoomList의 스타일 */
+.chat-container.expand .chat-room-list {
+  margin-left: 296px;
+  /*왼쪽마진*/
+  margin-right: 240px;
+  /*오른쪽마진*/
+  width: auto;
+  /*너비를자동으로설정하여남은공간을모두사용*/
+  transition: margin 0.3s ease-out, width 0.3s ease-out;
+  -webkit-transition: margin 0.3s ease-out, width 0.3s ease-out;
+  -moz-transition: margin 0.3s ease-out, width 0.3s ease-out;
+  -ms-transition: margin 0.3s ease-out, width 0.3s ease-out;
+  -o-transition: margin 0.3s ease-out, width 0.3s ease-out;
+}
+
+/* ChatRoomList 내부의 각 entry 스타일 */
+.chat-container.expand .chat-room-list .chat-room-entry {
+  width: 97%; /* 부모의 너비에 맞춰서 조정 */
+  margin-left: 8px; /* 왼쪽 마진 고정 */
+  margin-right: 8px; /* 오른쪽 마진 고정 */
+  transition: width 0.3s ease-out; /* 너비 변경에 애니메이션 적용 */
+}
+
+/* 숨겨진 ChatRoom에 대한 스타일 */
+.chat-container .chat-room {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.chat-container.expand .chat-room {
+  transform: scale(0);
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0; /* 마진을 0으로 설정 */
+  padding: 0; /* 패딩을 0으로 설정 */
+}
+
+/**/
+
+/**/
+
+/* 숨겨진 ChatRoom에 대한 스타일 */
+.chat-room.hide {
+  display: none; /* ChatRoom을 완전히 숨김 */
+}
+
+/* ChatRoomList 확장/축소 버튼 */
+.chatting-list {
+  cursor: pointer; /* 버튼처럼 보이게 함 */
+  transition: transform 0.3s ease; /* 클릭 시 트랜스폼 효과 */
+}
+
+.chatting-list:active {
+  transform: scale(0.95); /* 클릭 시 약간 축소되는 효과 */
+}
+
+/* 게시물 확인 버튼은 ChatRoom이 보이는 경우에만 표시됨 */
+.post-check {
+  display: block;
+}
+
+/**/
+
+/* When ChatRoomList is collapsing (not expanded) */
+.chat-container.notexpand .chat-room {
+  /* Styles for collapsing state */
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in, width 0.3s ease-in,
+    height 0.3s ease-in;
+  transform: scale(1);
+  opacity: 1;
+  width: 656px; /* Original width */
+  height: 1062px; /* Original height */
+  transition-delay: 0.3s; /* Delay to let ChatRoomList collapse before expanding ChatRoom */
+}
+
+/* 숨겨진 상태에서 ChatRoom이 다시 나타날 때의 스타일 */
+.chat-container.notexpand .chat-room {
+  transform: scale(1);
+  opacity: 1;
+  width: 656px; /* 원래 너비로 복원 */
+  height: 1062px; /* 원래 높이로 복원 */
+  transition-delay: 0.3s; /* ChatRoomList가 축소된 후에 나타나도록 지연 시간 설정 */
+}
+
+/* Apply the transitions to the .chat-room-list as well */
+.chat-container.expand .chat-room-list,
+.chat-container.notexpand .chat-room-list {
+  transition: margin 0.3s, width 0.3s;
+}
+
+/* Ensure that transition effects are applied to the .chat-room-entry elements */
+.chat-container .chat-room-list .chat-room-entry {
+  transition: margin 1s, width 0.3s;
+  -webkit-transition: margin 1s, width 0.3s;
+  -moz-transition: margin 1s, width 0.3s;
+  -ms-transition: margin 1s, width 0.3s;
+  -o-transition: margin 1s, width 0.3s;
+}
+@media (max-width: 768px) {
+  .chat-app {
+    grid-template-columns: 1fr;
+  }
+}

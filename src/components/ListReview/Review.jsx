@@ -9,7 +9,13 @@ export default function Review() {
     <div className="Rectangle">
       <div className="Yudeng"></div>
       <div className="Box">
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <img
             style={{ width: "67px", height: "19px" }}
             src="/Review.png"

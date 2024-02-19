@@ -14,7 +14,7 @@ export const validatePw = (pw) => {
 export const validateNickname = (nickname) => {
     return nickname
         .toLowerCase()
-        .match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,7}$/)
+        .match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,15}$/)
 }
 
 export const validateBirthdate = (birthdate) => {

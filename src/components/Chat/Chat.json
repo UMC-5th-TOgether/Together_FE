@@ -1,0 +1,101 @@
+{
+  "chatRooms": [
+    {
+      "id": 1,
+      "name": "뉴진스 팬미팅 동행 구합니다 !",
+      "lastMessage": "마지막 메시지 내용"
+    },
+    {
+      "id": 2,
+      "name": "에스파 드라마 콘서트 동행 구합니다 !",
+      "lastMessage": "마지막 메시지 내용"
+    },
+    {
+      "id": 3,
+      "name": "채팅 대신 해줄 사람 구합니다 !",
+      "lastMessage": "마지막 메시지 내용"
+    },
+    {
+      "id": 4,
+      "name": "알바 대신 가줄 사람 구합니다 !",
+      "lastMessage": "마지막 메시지 내용"
+    },
+    {
+      "id": 5,
+      "name": "오늘은 설날 입니다 .",
+      "lastMessage": "마지막 메시지 내용"
+    }
+  ],
+  "messages": [
+    {
+      "roomId": 1,
+      "sender": "아산백호",
+      "receiver": "User1",
+      "content": "뉴진스 팬미팅 가실 분?",
+      "timestamp": "2024-01-15T20:51:31.422529"
+    },
+    {
+      "roomId": 1,
+      "sender": "User1",
+      "receiver": "아산백호",
+      "content": "함께할 사람 구합니다!",
+      "timestamp": "2024-01-15T21:10:20.422529"
+    },
+    {
+      "roomId": 2,
+      "sender": "User1",
+      "receiver": "User2",
+      "content": "드라마 콘서트 가요!",
+      "timestamp": "2024-01-16T15:22:19.422529"
+    },
+    {
+      "roomId": 2,
+      "sender": "User1",
+      "receiver": "User2",
+      "content": "콘서트 티켓 있어요!",
+      "timestamp": "2024-01-16T16:35:45.422529"
+    },
+    {
+      "roomId": 3,
+      "sender": "User1",
+      "receiver": "User3",
+      "content": "채팅 대신 해주실 분?",
+      "timestamp": "2024-01-17T13:47:11.422529"
+    },
+    {
+      "roomId": 3,
+      "sender": "User1",
+      "receiver": "User3",
+      "content": "대화 상대 구합니다.",
+      "timestamp": "2024-01-17T14:58:22.422529"
+    },
+    {
+      "roomId": 4,
+      "sender": "User1",
+      "receiver": "User4",
+      "content": "알바 대타 구해요.",
+      "timestamp": "2024-01-18T17:14:11.422529"
+    },
+    {
+      "roomId": 4,
+      "sender": "User1",
+      "receiver": "User4",
+      "content": "급한 알바 대타!",
+      "timestamp": "2024-01-18T18:23:37.422529"
+    },
+    {
+      "roomId": 5,
+      "sender": "User1",
+      "receiver": "User5",
+      "content": "새해 복 많이 받으세요!",
+      "timestamp": "2024-01-19T04:05:32.422529"
+    },
+    {
+      "roomId": 5,
+      "sender": "User1",
+      "receiver": "User5",
+      "content": "설날 잘 보내고 계신가요?",
+      "timestamp": "2024-01-19T05:15:48.422529"
+    }
+  ]
+}
