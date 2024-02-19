@@ -416,7 +416,7 @@ export default function Posting() {
               ? <></>
               : <>
                 {!selectedImages.length > 0 && (
-                    <label className="matching-image-label">
+                    <label className="posting-image-label">
                         이미지 추가하기
                     </label>
                 )}

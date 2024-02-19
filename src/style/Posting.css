@@ -184,3 +184,10 @@ label button {
   align-items: center;
   margin-bottom: 50px;
 }
+
+.posting-image-label {
+  cursor: pointer;
+  color: #d2d2d2;
+  width: 100%;
+  text-align: center;
+}
