@@ -27,14 +27,6 @@ export default function Review() {
           해시태그와 별점 남기기, 간단한 느낀점 작성을 통해 만남 이후 나의
           솔직한 후기도 작성해보세요!
         </div>
-        <button
-          onClick={() => {
-            navigate("/review");
-          }}
-          className="Review-button"
-        >
-          후기 작성하기
-        </button>
         <ReviewSlide />
       </div>
     </div>

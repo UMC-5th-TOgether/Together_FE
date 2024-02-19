@@ -4,6 +4,11 @@ import "./ReviewSlide.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ReviewCard1 from "./ReviewCard1";
+import ReviewCard2 from "./ReviewCard2";
+import ReviewCard3 from "./ReviewCard3";
+import ReviewCard4 from "./ReviewCard4";
+import ReviewCard5 from "./ReviewCard5";
 
 export default function ReviewSlide() {
   var settings = {
@@ -18,11 +23,11 @@ export default function ReviewSlide() {
   return (
     <Slider className="ReviewSlide-container" {...settings}>
       <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
+      <ReviewCard1 />
+      <ReviewCard2 />
+      <ReviewCard3 />
+      <ReviewCard4 />
+      <ReviewCard5 />
     </Slider>
   );
 }

@@ -1,28 +1,96 @@
-.footer {
+.footer-root {
   /* Group 26 */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 236px;
   bottom: 0px;
   background: #333333;
+  color: white;
+  font-size: 15px;
 }
 
-.footer-font {
-  /* FOOTER */
-  position: absolute;
-  width: 71px;
-  height: 21px;
+.footer-container {
+  width: 80%;
+  height: 50%;
+}
 
-  /*font style*/
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 700;
+.footer-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 20px 0;
+}
+
+.footer-title-container > div {
+  display: flex;
+  align-items: center;
+}
+
+.footer-content {
+  margin: 0 0 10px 0;
+}
+
+.footer-copyright {
+  font-size: 13px;
+}
+
+.footer-span {
+  cursor: pointer;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px 35px;
+  max-width: 1000px;
+  height: 700px;
+  width: 90%;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: black;
+  border-radius: 10px;
+  line-height: 20px;
+}
+
+.modal-close-wrap {
+  text-align: end;
+}
+
+.modal-close {
+  border: none;
+  cursor: pointer;
+  background-color: #e6e6e6;
+  color: #666666;
   font-size: 18px;
-  line-height: 21px;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
   text-align: center;
+}
 
-  /* White */
-  color: white;
+.modal-title {
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.modal-content-title {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
