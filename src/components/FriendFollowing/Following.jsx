@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { dummy } from "../../data/FollowingDummy";
 import "../../style/FollowingStyle.css";
 import defaultAvatar from "../../assets/프로필.png";
 import axios from "axios";
 
 export default function Following() {
   const token = localStorage.getItem("token");
-  const [FollowingData, setFollowingData] = useState(null);
-  const followings = dummy.followingList;
+  const [followingData, setFollowingData] = useState([]);
+
   useEffect(() => {
     const fetchFollowingData = async () => {
       try {
@@ -21,12 +20,8 @@ export default function Following() {
           }
         );
 
-        console.log(res.data);
-
         if (res.data.isSuccess) {
-          console.log(res.data.data);
-          const data = res.data.data;
-          setFollowingData(data.followingList);
+          setFollowingData(res.data.data.followingList);
         }
       } catch (error) {
         console.error("Error fetching following data:", error);
@@ -35,19 +30,16 @@ export default function Following() {
 
     fetchFollowingData();
   }, []);
+
   const UserProfile = ({ profileImg, nickname, title, gender, age }) => {
     return (
       <div className="follower-profile">
         <div className="avatar-container">
-          {profileImg ? (
-            <img
-              src={profileImg}
-              alt={`Profile of ${nickname}`}
-              className="avatar"
-            />
-          ) : (
-            <img src={defaultAvatar} alt="profile" className="avatar" />
-          )}
+          <img
+            src={profileImg ? profileImg : defaultAvatar}
+            alt={`Profile of ${nickname}`}
+            className="avatar"
+          />
         </div>
         <div className="nickname">
           {nickname}
@@ -60,6 +52,7 @@ export default function Following() {
       </div>
     );
   };
+
   const activeStyle = {
     color: "white",
     backgroundColor: "black",
@@ -92,15 +85,14 @@ export default function Following() {
           </NavLink>
         </div>
         <div className="user-list">
-          {followings.map((user) => (
-            <div className="user-profile">
+          {followingData.map((user) => (
+            <div className="user-profile" key={user.matchingId}>
               <UserProfile
-                image={user.profileImg}
+                profileImg={user.profileImg}
                 nickname={user.nickname}
                 title={user.title}
                 gender={user.gender}
                 age={user.age}
-                key={user.matchingId}
               />
             </div>
           ))}
