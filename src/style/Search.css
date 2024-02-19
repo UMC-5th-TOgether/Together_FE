@@ -1,0 +1,140 @@
+.search-page {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2rem auto 0 auto;
+}
+
+.search-input-container {
+    border: 1px solid black;
+    height: 40px;
+    margin: 3px 0 20px 0;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+#search-input-icon {
+    margin: 0 5px 0 0;
+}
+
+.search-input-field {
+    height: 80%;
+    flex-grow: 1;
+    border: none;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.search-input-field:focus {
+    outline: none;
+}
+
+.search-container {
+    margin: 0 0 3rem 0;
+}
+
+.search-container > p {
+    font-weight: 500;
+}
+
+.search-result-count {
+    font-size: 16px;
+    font-weight: 350;
+}
+
+.search-result-count > span {
+    font-weight: 700;
+}
+
+.search-result-writer {
+    display: flex;
+    align-items: center;
+    margin: 0 0 20px 0;
+}
+
+.writer-icon {
+    border-radius: 50%;
+    width: 45px;
+    margin: 0 9px 0 0;
+}
+
+.writer-nickname {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 3px 0;
+}
+
+.writer-ageNgender {
+    font-size: 13px;
+}
+
+.search-result-content-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.search-result-content-content {
+    height: fit-content;
+    line-height: 22px;
+    color: #666666;
+    font-weight: 350;
+    margin: 0 0 15px 0;
+}
+
+.search-result-recruitInfo {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #999999;
+    margin: 0 0 8px 0;
+}
+
+.search-result-status-ING {
+    font-size: 11px;
+    border-radius: 4px;
+    background: #FFEDF1;
+    font-weight: 600;
+    color: #FF4E78;
+    padding: 5px;
+    margin: 0 5px 0 0;
+}
+
+.search-result-status-END {
+    font-size: 11px;
+    border-radius: 4px;
+    background: #E5EFFF;
+    font-weight: 600;
+    color: #015FFA;
+    padding: 5px;
+    margin: 0 5px 0 0;
+}
+
+.search-result-hashtags {
+    display: flex;
+}
+
+.search-result-hashtag {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 20px;
+    background: #f3f3f3;
+    color: #808080;
+    padding: 7px 10px;
+    font-size: 13px;
+    margin: 0 8px 15px 0;
+}
+
+.search-result-item > hr {
+    background: #e6e6e6;
+    height: 1px;
+    border: none;
+    margin: 40px 0 50px 0;
+}
+
+.search-result-item {
+    cursor: pointer;
+}

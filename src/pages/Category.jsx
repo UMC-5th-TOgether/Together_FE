@@ -48,6 +48,10 @@ export default function Category() {
     categoryValue = 'HOBBY';
   }
 
+  useEffect(() => {
+    console.log(`Current category: ${selectedCategory}`);
+  }, [selectedCategory]);
+
   return (
     <>
       <div className="category-page">

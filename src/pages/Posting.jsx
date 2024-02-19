@@ -1,28 +1,30 @@
 import axios from "axios";
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import postAuthor from '../assets/post-author.png';
 import postUpload from '../assets/post-upload-button.png';
 import '../style/Posting.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { HashTag } from '../elements/HashTag';
-import { dummy } from "../PostUserDummy";
+import {Link, useLocation, useNavigate} from 'react-router-dom';
+import {HashTag} from '../elements/HashTag';
 
 export default function Posting() {
   const token = localStorage.getItem('token');
-
+  const location = useLocation();
   const [title, setTitle] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedGender, setSelectedGender] = useState('');
+  const [hasRange, setHasRange] = useState(false);
   const [personMin, setPersonMin] = useState('');
   const [personMax, setPersonMax] = useState('');
   const [content, setContent] = useState('');
   const [selectedImages, setSelectedImages] = useState([]);
   const [hashtags, setHashtags] = useState([]);
+  const [initHashtags, setInitHashtags] = useState([]);
   const [meetingYear, setMeetingYear] = useState('');
   const [meetingMonth, setMeetingMonth] = useState('');
   const [meetingDay, setMeetingDay] = useState('');
   const [meetTime, setMeetTime] = useState('');
-
+  const [isEdit, setIsEdit] = useState(false);
+  const [postData, setPostData] = useState(null);
 
   const categories = ['공연', '운동', '식사', '취미'];
   const gender = ['제한 없음', '여성', '남성'];
@@ -48,6 +50,44 @@ export default function Posting() {
   }
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(location.state && location.state.edit){
+      setIsEdit(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if(isEdit && location.state.postData){
+      setPostData(location.state.postData);
+    }
+  }, [isEdit]);
+
+  useEffect(() => {
+    if (postData) {
+      setTitle(postData.title);
+      setContent(postData.content);
+      setMeetingYear(postData.meetTime.split('-')[0]);
+      setMeetingMonth(postData.meetTime.split('-')[1]);
+      setMeetingDay(postData.meetTime.split('-')[2]);
+      setSelectedCategory(postData.category);
+      setSelectedGender(postData.gender);
+      setInitHashtags(postData.postHashtagList);
+      setPersonMax(postData.personNumMax);
+      setPersonMin(postData.personNumMin);
+      if (!postData.personNumMax) {
+        setHasRange(false);
+      }
+      if (postData.postImages.length > 0) {
+        const postImageList = postData.postImages.map(img => {
+          return {
+            preview: img
+          };
+        });
+        setSelectedImages(postImageList);
+      }
+    }
+  }, [postData]);
 
   const handleTitleChange = (e) => {
     const newTitle = e.target.value.slice(0, 40);
@@ -137,16 +177,30 @@ export default function Posting() {
     console.log(meetTime);
 
     try {
-      const res = await axios.post("https://hyeonjo.shop/api/posts",
-        postingData
-        ,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        }
-      );
+      let res;
+      if (isEdit) {
+        res = await axios.patch(`https://hyeonjo.shop/api/posts/${postData.id}/edit`,
+            postingData
+            ,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              }
+            }
+        );
+      } else {
+        res = await axios.post("https://hyeonjo.shop/api/posts",
+            postingData
+            ,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              }
+            }
+        );
+      }
 
+      // const id = res.data.data.id;
       console.log("Response:", res.data);
 
       if (res.data.isSuccess) {
@@ -172,13 +226,23 @@ export default function Posting() {
           });
       }
       setTimeout(() => {
-        navigate(`/category`, { state: { selectedCategory: categoryValue } });
+        navigate(`/category`, { state: { selectedCategory: selectedCategory } });
       }, 1500);
 
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
+  useEffect(() => {
+    if (!hasRange) {
+      setPersonMax(null);
+    }
+  }, [hasRange]);
+
+  useEffect(() => {
+    console.log('initHashtags');
+  }, [initHashtags]);
 
   return (
     <div className="posting-page">
@@ -226,7 +290,7 @@ export default function Posting() {
           <div className="posting-wrap">
             <div className="posting-input-title">해시태그</div>
             {/* <button type="button">+</button> */}
-            <HashTag onHashTagsChange={handleHashTagsChange} />
+            <HashTag initHashtags={initHashtags} onHashTagsChange={handleHashTagsChange} />
           </div>
 
           <div className="posting-wrap">
@@ -285,25 +349,37 @@ export default function Posting() {
 
           <div className="posting-wrap">
             <div className="posting-input-title">모집 인원</div>
-            <div className="posting-input-wrap" style={{ width: '35px' }}>
-              <input
-                className="posting-input"
-                type="text"
-                value={personMin}
-                onChange={handlePersonMinChange}
-                style={{ width: '30px' }} />
-            </div>
-            <p className="posting-input-p">명~</p>
-
-            <div className="posting-input-wrap" style={{ width: '35px' }}>
-              <input
-                className="posting-input"
-                type="text"
-                value={personMax}
-                onChange={handlePersonMaxChange}
-                style={{ width: '30px' }} />
+            <div className='posting-person-min-container'>
+              <div className="posting-input-wrap" style={{ width: '35px' }}>
+                <input
+                    className="posting-input"
+                    type="text"
+                    value={personMin}
+                    onChange={handlePersonMinChange}
+                    style={{ width: '30px' }} />
+              </div>
             </div>
             <p className="posting-input-p">명</p>
+            { hasRange
+              ? <>
+                  <div className='posting-person-max-container'>
+                    <span>~</span>
+                    <div className="posting-input-wrap" style={{ width: '35px' }}>
+                      <input
+                          className="posting-input"
+                          type="text"
+                          value={personMax}
+                          onChange={handlePersonMaxChange}
+                          style={{ width: '30px' }} />
+                    </div>
+                  </div>
+                  <p className="posting-input-p">명</p>
+                </>
+              : <></>
+            }
+            <button id="posting-person-range-button" onClick={() => setHasRange(!hasRange)}>
+              {hasRange ? '범위 제거' : '범위 생성'}
+            </button>
           </div>
           <br />
 
@@ -324,28 +400,36 @@ export default function Posting() {
 
           <div className="posting-input-title">이미지</div>
           <div
-            className="matching-images-wrap"
-            onClick={() => document.getElementById("imageInput").click()}
+            className="posting-images-wrap"
+            onClick={isEdit ? null :() => document.getElementById("imageInput").click()}
           >
             {selectedImages.map((image, index) => (
-              <div key={index} className="matching-image-preview">
-                <button className="remove-image-button" onClick={(e) => handleRemoveImage(e, index)}>x</button>
-                <img src={image.preview} alt={`Selected ${index + 1}`} className="matching-selected-image" />
+              <div key={index} className="posting-image-preview">
+                {isEdit
+                    ? <></>
+                    : <button className="remove-image-button" onClick={(e) => handleRemoveImage(e, index)}>x</button>
+                }
+                <img src={image.preview} alt={`Selected ${index + 1}`} className="posting-selected-image" />
               </div>
             ))}
-            {!selectedImages.length > 0 && (
-              <label className="matching-image-label">
-                이미지 추가하기
-              </label>
-            )}
-            <input
-              id="imageInput"
-              type="file"
-              accept="image/*"
-              multiple
-              style={{ display: 'none' }}
-              onChange={handleImageChange}
-            />
+            {isEdit
+              ? <></>
+              : <>
+                {!selectedImages.length > 0 && (
+                    <label className="matching-image-label">
+                        이미지 추가하기
+                    </label>
+                )}
+                  <input
+                      id="imageInput"
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      style={{ display: 'none' }}
+                      onChange={handleImageChange}
+                  />
+                </>
+            }
           </div>
         </div>
       </div>

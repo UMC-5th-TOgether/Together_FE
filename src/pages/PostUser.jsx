@@ -1,21 +1,26 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
-import { dummy } from '../PostUserDummy';
+import React, {useEffect, useState} from 'react';
+import {Link, useLocation, useNavigate, useParams} from 'react-router-dom';
+import {dummy} from '../PostUserDummy';
 import postUser from '../assets/post-user.png';
 import matching from '../assets/matching-application-button.png';
 import chatting from '../assets/chatting-button.png';
 import profilePicture from '../assets/profile.png';
+import option from '../assets/dot-vertical.png';
 import '../style/PostUser.css';
 import '../style/Posting.css';
+import { BsArrowReturnRight } from "react-icons/bs";
 
 export default function PostUser() {
+    const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const location = useLocation();
     const postData = location.state.postData;
+    const [isOptionOn, setIsOptionOn] = useState(false);
 
-    const { id } = useParams();
+    const {id} = useParams();
     const postId = parseInt(id);
+    console.log(postId);
 
     const [comments, setComments] = useState([]);
 
@@ -73,24 +78,26 @@ export default function PostUser() {
     //     fetchPostData();
     // }, [postId, token]);
 
+    const fetchComments = async () => {
+        try {
+            const res = await axios.get(`https://hyeonjo.shop/api/post/comment/id?id=${postId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+            setComments(res.data);
+            console.log(res.data);
+        } catch (error) {
+            console.error('Error fetching comments:', error);
+        }
+    };
 
     useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                const res = await axios.get(`https://hyeonjo.shop/api/post/comment/id?id=${postId}`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        }
-                    });
-                setComments(res.data);
-            } catch (error) {
-                console.error('Error fetching comments:', error);
-            }
-        };
 
         fetchComments();
-    }, [postId, token, comments]);
+
+    }, [postId, token]);
 
     const handleCommentSubmit = async (e) => {
         if (newComment.trim() == '') {
@@ -107,7 +114,7 @@ export default function PostUser() {
                 parent: "-1"
             }
 
-            const res = await axios.post(`https://hyeonjo.shop/api/post/comment`,
+            await axios.post(`https://hyeonjo.shop/api/post/comment`,
                 commentData,
                 {
                     headers: {
@@ -116,6 +123,8 @@ export default function PostUser() {
                 });
 
             setNewComment('');
+
+            await fetchComments()
         } catch (err) {
             alert(err);
         }
@@ -126,39 +135,93 @@ export default function PostUser() {
         setReplyContent('');
     };
 
-    const handleReplySubmit = () => {
+    const handleReplySubmit = async () => {
         if (replyContent.trim() !== '') {
-            console.log(`Reply to comment ${replyToCommentId}: ${replyContent}`);
-            setReplyToCommentId(null);
-            setReplyContent('');
+            const commentData = {
+                post: postId,
+                content: replyContent,
+                parent: `${replyToCommentId + 1}`
+            }
+
+            await axios.post(`https://hyeonjo.shop/api/post/comment`,
+                commentData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+
+            await setReplyToCommentId(null);
+            await setReplyContent('');
+
+            await fetchComments();
         }
     };
 
+    const handelDeletePost = async () => {
+        await axios.delete(`https://hyeonjo.shop/api/posts/${postId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
+            .then(res => {
+                if (res.data.isSuccess) {
+                    alert('게시글이 삭제되었습니다.');
+                    navigate('/Category');
+                }
+            })
+            .catch(err =>{
+                console.log(err);
+            })
+    }
 
+    const handelEditPost = async () => {
+        navigate('/posting', {state: {edit: true, postData: postData}});
+    }
 
     return (
         <div className="posting-page">
             <div className="banner-image-container">
-                <img className="banner-image" src={postUser} alt="Posting img" />
+                <img className="banner-image" src={postUser} alt="Posting img"/>
             </div>
-            <br />
-            <div className="posting-wrap">
-                <div className="posting-author-profile">
-                    <img className="posting-profile-picture" src={profilePicture} alt="Profile" />
-                    <div className="posting-profile">
-                        <span className="posting-nickname">{postData.writer.nickname} ({postData.writer.gender === 'FEMALE' ? '여성' : '남성'}/{postData.writer.age})</span>
-                        <span className="posting-date-created">{formatTime(postData.createdAt)}</span>
-                    </div>
-                </div>
-            </div>
+            <br/>
             <div className="posting-post">
                 {postData && (
                     <div>
-                        <div className="posting-post-title">{postData.title}</div>
-                        <br />
+                        <div className="posting-top-container">
+                            <div className="posting-post-title">{postData.title}</div>
+                            {postData.writer.isWriter
+                                ?<>
+                                    <div className={`posting-top-option-wrap ${isOptionOn ? 'on' : ''}`} onClick={() => setIsOptionOn(!isOptionOn)}>
+                                        <img className="posting-top-option" src={option} alt="더보기"/>
+                                    </div>
+                                    {isOptionOn
+                                        ?<>
+                                            <div className='posting-top-option-pannel'>
+                                                <div className='poting-top-option-pannel-btn' onClick={handelEditPost}>포스팅 수정</div>
+                                                <hr/>
+                                                <div className='poting-top-option-pannel-btn' onClick={handelDeletePost}>포스팅 삭제</div>
+                                            </div>
+                                        </>
+                                        :<></>
+                                    }
+                                </>
+                                :<></>
+                            }
+                        </div>
+                        <div className="posting-wrap">
+                            <div className="posting-author-profile">
+                                <img className="posting-profile-picture" src={postData.writer.image ? postData.writer.image : profilePicture} alt="Profile"/>
+                                <div className="posting-profile">
+                                    <span className="posting-nickname">{postData.writer.nickname} ({postData.writer.gender === 'FEMALE' ? '여성' : '남성'}/{postData.writer.age})</span>
+                                    <span className="posting-date-created">{formatTime(postData.createdAt)}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
                         <div className="posting-post-content">
                             <div className="posting-wrap">
-                                <div className="posting-hashtag-wrap">카테고리  </div>
+                                <div className="posting-hashtag-wrap">카테고리</div>
                                 <span className="posting-li"> {postData.category}</span>
                                 <div className="posting-hashtag-wrap">일자</div>
                                 <span className="posting-li"> {postData.meetTime}</span>
@@ -183,21 +246,24 @@ export default function PostUser() {
                         )}
                         <div className="postuser-button-wrap">
                             <Link to="/chatting">
-                                <img className="posting-bottom-button" src={chatting} alt="chatting" />
+                                <img className="posting-bottom-button" src={chatting} alt="chatting"/>
                             </Link>
-                            <Link to="/matching">
-                                <img className="posting-bottom-button" src={matching} alt="matching" />
-                            </Link>
+                            {postData.writer.isWriter
+                            ? <></>
+                            : <Link to="/matching">
+                                    <img className="posting-bottom-button" src={matching} alt="matching"/>
+                                </Link>
+                            }
                         </div>
                     </div>
                 )}
             </div>
-            <br />
+            <br/>
             {comments.map((comments, id) => (
                 <div className="posting-comment-post" key={id}>
                     <div className="posting-wrap">
                         <div className="posting-comment-profile">
-                            <img className="posting-profile-picture" src={profilePicture} alt="Profile" />
+                            <img className="posting-profile-picture" src={comments.writer.image ? comments.writer.image : profilePicture} alt="Profile"/>
                             <div className="posting-profile">
                                 <span className="posting-nickname">
                                     {comments.writer.nickname} ({comments.writer.gender === "FEMALE" ? '여성' : '남성'}/{comments.writer.age})
@@ -216,6 +282,38 @@ export default function PostUser() {
                             답글
                         </button>
                     </div>
+                    {
+                        comments.children.length > 0
+                            ? comments.children.map((child, idx) => {
+                                return (
+                                    <>
+                                        <div className="posting-child-comment-horizontal-wrap">
+                                            <BsArrowReturnRight style={{color: "#B3B3B3"}} size="20" className="posting-child-comment-icon"/>
+                                            <div className="posting-child-comment-wrap">
+                                                <div className="posting-wrap">
+                                                    <div className="posting-comment-profile">
+                                                        <img className="posting-profile-picture" src={child.writer.image ? child.writer.image : profilePicture} alt="Profile"/>
+                                                        <div className="posting-profile">
+                                                            <span className="posting-nickname">
+                                                                {child.writer.nickname} ({child.writer.gender === "FEMALE" ? '여성' : '남성'}/{child.writer.age})
+                                                            </span>
+                                                            <span className="posting-date-created">{formatTime(child.createdAt)}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="posting-wrap">
+                                                    <div key={id} className="posting-comment">
+                                                        {child.content}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            })
+
+                            : <></>
+                    }
                     {replyToCommentId === id && (
                         <div className="posting-reply-wrap">
                             <div className="posting-wrap">
@@ -224,7 +322,7 @@ export default function PostUser() {
                                     value={replyContent}
                                     placeholder="답글을 남겨보세요."
                                     onChange={(e) => setReplyContent(e.target.value)}
-                                    style={{ height: '40px', width: '1120px', padding: '0 20px' }}
+                                    style={{height: '40px', width: '1120px', padding: '0 20px', borderRadius: '8px'}}
                                 />
                                 <button
                                     type="submit"
@@ -244,7 +342,7 @@ export default function PostUser() {
                     value={newComment}
                     placeholder="댓글을 남겨보세요."
                     onChange={(e) => setNewComment(e.target.value)}
-                    style={{ height: '40px', width: '1203px' }}
+                    style={{height: '40px', width: '1203px'}}
                 />
                 <button
                     type="submit"

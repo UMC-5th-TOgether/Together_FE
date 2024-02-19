@@ -49,10 +49,7 @@
 
 .posting-input-p {
   font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  margin-left: 3px;
-  margin-right: 15px;
+  margin: 5px 15px 5px 3px;
 }
 
 .posting-input-wrap {
@@ -83,6 +80,7 @@ textarea::placeholder {
 
 .posting-wrap {
   display: flex;
+  align-items: center;
   margin-bottom: 14px;
 }
 
@@ -119,15 +117,17 @@ label button {
 }
 
 .posting-selected-image {
-  max-width: 200px;
-  max-height: 200px;
   margin: 10px;
+  height: 100%;
+  background-size: contain;
+  border-radius: 8px;
 }
 
 .posting-image-preview {
   position: relative;
   display: inline-block;
   margin-right: 10px;
+  height: 80%;
 }
 
 .remove-image-button {
@@ -152,4 +152,35 @@ label button {
 .review-fastar {
   margin-top: 10px;
   size: 24;
+}
+
+.posting-person-max-container {
+  display: flex;
+  align-items: center;
+}
+
+.posting-person-max-container > span {
+  margin: 0 15px 0 0;
+}
+
+#posting-person-range-button {
+  background: white;
+  border: 2px solid #b3b3b3;
+  color: #b3b3b3;
+  border-radius: 26px;
+  padding: 12px 20px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.posting-images-wrap {
+  position: relative;
+  display: flex;
+  width: 1257px;
+  height: 200px;
+  border: 1px solid #d2d2d2;
+  border-radius: 8px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 50px;
 }

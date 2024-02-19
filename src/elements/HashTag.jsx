@@ -4,14 +4,19 @@ import Tagify from '@yaireo/tagify';
 import '@yaireo/tagify/dist/tagify.css';
 import '../style/HashTag.css';
 
-export const HashTag = ({ onHashTagsChange }) => {
+export const HashTag = ({ initHashtags, onHashTagsChange }) => {
     const inputRef = useRef(null);
     let tagifyInstance = null;
+    console.log(initHashtags);
 
     useEffect(() => {
         tagifyInstance = new Tagify(inputRef.current, {
             maxTags: 3,
         });
+        
+        if (initHashtags) {
+            tagifyInstance.addTags(initHashtags);
+        }
 
         tagifyInstance.on('add', onTagAdded);
 

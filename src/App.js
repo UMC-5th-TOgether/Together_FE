@@ -23,6 +23,7 @@ import Review from './pages/Review';
 import Footer from './components/ListFooter/Footer';
 import LoadingGoogle from "./pages/LoadingGoogle";
 import LoadingKakao from "./pages/LoadingKakao";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
                     <Route path="/google" element={<LoadingGoogle />}/>
                     <Route path="/kakao" element={<LoadingKakao />}/>
                     <Route path="/*" element={<NotFound />} />
+                    <Route path="/search" element={<Search />}/>
                   </Routes>
                   {/* <Footer /> */}
                 </div>
