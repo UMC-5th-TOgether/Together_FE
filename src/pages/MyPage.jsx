@@ -61,7 +61,7 @@ export default function MyPage() {
         reviewAll: 8,
         reviewEmotionYes: 7,
         avgScore: 4,
-        responseRate: 99.5,
+        responseRate: 100,
     };
 
     const writtenPosts = [];
@@ -82,43 +82,58 @@ export default function MyPage() {
             </div>
 
             {myInfo && (
-                <div className="mypage-profile-wrap">
-                    <img
-                        className="mypage-profile-picture"
-                        src={profilePicture}
-                        alt="Profile"
-                    />
-                    <div className="mypage-profile">
-                        <span className="mypage-nickname">
-                            {myInfo.nickname} ({myInfo.gender === "FEMALE" ? "여성" : "남성"}{" "}
-                            / {myInfo.age})
-                        </span>
+                <div className="friend-profile-container">
+                    <div className="mypage-profile-wrap">
+                        <img
+                            className="mypage-profile-picture"
+                            src={profilePicture}
+                            alt="Profile"
+                        />
+                        <div className="mypage-profile">
+                            <span className="frined-profile-nickname">
+                                {myInfo.nickname} (
+                                {myInfo.gender === "FEMALE" ? "여성" : "남성"} /{" "}
+                                {myInfo.age})
+                            </span>
+                            <div className="frined-profile-residence">{myInfo.residence}</div>
+                            <span className="friend-profile-introduction">
+                                "{myInfo.profileMessage}"
+                            </span>
+                        </div>
                     </div>
-                    <div className="mypage-residence">{myInfo.station}</div>
+
+                    <div className="friend-profile-detail">
+                        <div className="mypage-review-wrap">
+                            <div className="friend-profile-review-content">
+                                <span className="friend-profile-detail-font1">동행 횟수</span>
+                                <span className="mypage-review-content1">
+                                    {review.reviewAll}명 중 {review.reviewEmotionYes}명의 이용자가
+                                    다시 만나고 싶어해요.
+                                </span>
+                            </div>
+                            <div className="friend-profile-review-content">
+                                <span className="friend-profile-detail-font1">매너 별점</span>
+                                <span className="mypage-review-content2">
+                                    {ARRAY.map((el, index) => (
+                                        <FaStar
+                                            key={index}
+                                            size="14"
+                                            color={index < review.avgScore ? "#007bff" : "#e4e5e9"}
+                                        />
+                                    ))}
+                                </span>
+                            </div>
+                            <div className="friend-profile-review-content">
+                                <span className="friend-profile-detail-font1">응답률</span>{" "}
+                                <span className="mypage-review-content3">
+                                    {review.responseRate}%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
 
-            <div className="mypage-wrap">
-                <div className="mypage-review-wrap">
-                    <span className="mypage-review-content">매너 별점</span>
-                    <span className="mypage-review-content">
-                        {ARRAY.map((el, index) => (
-                            <FaStar
-                                key={index}
-                                size="14"
-                                color={index < review.avgScore ? "#007bff" : "#e4e5e9"}
-                            />
-                        ))}
-                    </span>
-                    <span className="mypage-review-content">
-                        {review.reviewAll}명 중 {review.reviewEmotionYes}명의 이용자가 다시
-                        만나고 싶어해요.
-                    </span>
-                    <span className="mypage-review-content">
-                        응답률 {review.responseRate}%
-                    </span>
-                </div>
-            </div>
 
             <div className="mypage-wrap">
                 <div className="mypage-post">
