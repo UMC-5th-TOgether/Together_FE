@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import matchingSend from '../assets/my-page.png';
 import profilePicture from '../assets/profile.png';
@@ -10,7 +10,10 @@ import { PostStatus } from '../components/PostStatus';
 import axios from 'axios';
 
 export default function MyPage() {
+    const navigate = useNavigate();
+
     const token = localStorage.getItem('token');
+
     const [myInfo, setMyInfo] = useState(null);
     // const { nickname, gender, age, residence, review } = dummy.results[0];
     const ARRAY = [0, 1, 2, 3, 4];
@@ -18,6 +21,12 @@ export default function MyPage() {
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
+        if (!token) {
+            alert('로그인이 필요합니다.');
+            navigate('/login')
+            return;
+        }
+
         const fetchMyInfo = async () => {
 
             try {

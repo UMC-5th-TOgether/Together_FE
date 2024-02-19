@@ -17,9 +17,12 @@ export const LoginControl = () => {
 
     const handleToggleClick = async () => {
         if (isLoggedIn) {
-            navigate('/login');
-            localStorage.removeItem('token');
-            dispatch(setIsLoggedIn(false));
+            const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
+            if (confirmLogout) {
+                navigate('/login');
+                localStorage.removeItem('token');
+                dispatch(setIsLoggedIn(false));
+            }
         } else {
             navigate('/login');
         }

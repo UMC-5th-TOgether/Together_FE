@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import CategoryPagePosting from '../components/CategoryPagePosting'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../style/Category.css'
 import categoryImg from '../assets/category.png'
 import postingButton from '../assets/posting-button.png'
 import CategoryRecentPosting from '../components/CategoryRecentPosting';
 
 export default function Category() {
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem('token');
+
   const categories = ['공연', '운동', '식사', '취미'];
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const location = useLocation();
 
   useEffect(() => {
+    if (!token) {
+      alert('로그인이 필요합니다.');
+      navigate('/login')
+      return;
+    }
     setSelectedCategory('공연');
   }, []);
 
