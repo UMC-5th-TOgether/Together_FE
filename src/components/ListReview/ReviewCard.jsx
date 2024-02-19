@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ReviewCard.css";
 import profileImg from "../../assets/프로필.png";
 import fullStarImg from "../../assets/fullstar.png";
 import emptyStarImg from "../../assets/emptystar.png";
-//UserIconImg server에게 get,post 요청 해서 이미지 받아야함.
 
 export default function ReviewCard() {
   const ReviewsData = [
@@ -18,23 +17,18 @@ export default function ReviewCard() {
     },
   ];
 
-  const [Slideindex, setSlideindex] = useState(0);
-
   const ratingToPercent = {
-    width: `${ReviewsData[Slideindex].average * 15.5 + 5}%`,
+    width: `${ReviewsData[0].average * 15.5 + 5}%`,
   };
   return (
     <div className="ReviewBox">
       <div className="Contents">
         <div className="UserBox">
-          <img
-            src={ReviewsData[Slideindex].pimg}
-            alt={ReviewsData[Slideindex].alt}
-          />
+          <img src={ReviewsData[0].pimg} alt={ReviewsData[0].alt} />
           <div className="UserDetailBox">
-            <div className="UserName">{ReviewsData[Slideindex].name}</div>
+            <div className="UserName">{ReviewsData[0].name}</div>
             <div className="CategoryBox">
-              {ReviewsData[Slideindex].tags.map((tag, idx) => (
+              {ReviewsData[0].tags.map((tag, idx) => (
                 <div className="CategoryHash" key={idx}>
                   {tag}
                 </div>
@@ -55,11 +49,11 @@ export default function ReviewCard() {
                 <img src={emptyStarImg} alt="emptystar" />
                 <img src={emptyStarImg} alt="emptystar" />
               </div>
-              <div className="Point">{ReviewsData[Slideindex].average}</div>
+              <div className="Point">{ReviewsData[0].average}</div>
             </div>
           </div>
         </div>
-        <div className="UserReviewBox">{ReviewsData[Slideindex].review}</div>
+        <div className="UserReviewBox">{ReviewsData[0].review}</div>
       </div>
     </div>
   );

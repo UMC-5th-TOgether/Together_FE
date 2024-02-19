@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import profilePicture from "../assets/프로필.png";
 import BannerImage from "../assets/friend-Profile.png";
 import { FaStar } from "react-icons/fa";
 import "../style/FriendStyle.css";
-import { dummy } from "../data/MemberDummy";
+import { dummy } from "../MemberDummy";
 import { PostStatus } from "../components/PostStatus";
 import axios from "axios";
 
 export default function FriendProfile() {
-  const { nickname, gender, age, residence, review, introduction } =
-    dummy.results[0];
+  const { residence, review } = dummy.results[0];
   const location = useLocation();
   const friendInfo = location.state.user;
   const friendId = friendInfo.friendId;
@@ -20,6 +19,13 @@ export default function FriendProfile() {
   const [friendProfile, setFrindProfile] = useState(null);
 
   const token = localStorage.getItem("token");
+
+  const ARRAY = [0, 1, 2, 3, 4];
+  const postsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(0);
+  const [friendPost, setfriendPost] = useState(null);
+  const [friendComment, setfriendComment] = useState(null);
+  const [friendReview, setfriendReview] = useState(null);
 
   useEffect(() => {
     const fetchFriendProfile = async () => {
@@ -48,9 +54,80 @@ export default function FriendProfile() {
     fetchFriendProfile();
   }, []);
 
-  const ARRAY = [0, 1, 2, 3, 4];
-  const postsPerPage = 5;
-  const [currentPage, setCurrentPage] = useState(0);
+  useEffect(() => {
+    const fetchfriendPost = async () => {
+      try {
+        const res = await axios.get(
+          `https://hyeonjo.shopapi/friends/${friendId}/post`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(res.data);
+        if (res.data.isSuccess) {
+          // console.log(res.data.data);
+          const data = res.data.data;
+          setfriendPost(data.posts);
+          //console.log(friendPost);
+        }
+      } catch (error) {
+        console.log("Error fetching friend Post", error);
+      }
+    };
+    fetchfriendPost();
+  }, []);
+
+  useEffect(() => {
+    const fetchfriendComment = async () => {
+      try {
+        const res = await axios.get(
+          `https://hyeonjo.shop/api/friends/${friendId}/comment`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(res.data);
+        if (res.data.isSuccess) {
+          console.log(res.data.data);
+          const data = res.data.data;
+          setfriendComment(data.comments);
+          console.log(friendComment);
+        }
+      } catch (error) {
+        console.log("Error fetching friend Comment", error);
+      }
+    };
+    fetchfriendComment();
+  }, []);
+
+  useEffect(() => {
+    const fetchfriendReview = async () => {
+      try {
+        const res = await axios.get(
+          `https://hyeonjo.shop/api/friends/${friendId}/review`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(res.data);
+        if (res.data.isSuccess) {
+          console.log(res.data.data);
+          const data = res.data.data;
+          setfriendReview(data.reviews);
+          console.log(friendReview);
+        }
+      } catch (error) {
+        console.log("Error fetching friend Review", error);
+      }
+    };
+    fetchfriendReview();
+  }, []);
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -59,10 +136,18 @@ export default function FriendProfile() {
 
   const indexOfLastPost = (currentPage + 1) * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+  //dummy.writtenPosts -> friendPost로 변경
   const currentPosts = dummy.writtenPosts.slice(
     indexOfFirstPost,
     indexOfLastPost
   );
+
+  //dummy.writtenComments -> friendComment로 변경
+  const currentComments = dummy.writtenComments;
+  console.log(currentComments);
+  //dummy.writtenReviews -> friendReview로 변경
+  const currentReviews = dummy.writtenReviews;
 
   return (
     <div className="my-page">
@@ -152,19 +237,29 @@ export default function FriendProfile() {
         </div>
 
         <div className="mypage-post">
-          <div className="mypage-title"> 작성한 댓글</div>
-          {/* {currentComments.map((comment, index) => (
-                        <div key={index}>
-                            <div className="mypage-wrap">
-                                {comment.title}
-                            </div>
-                        </div>
-                    ))} */}
+          <div className="mypage-wrap">
+            <div className="mypage-title"> 작성한 댓글</div>
+          </div>
+          {currentComments.map((comment, index) => (
+            <div key={index}>
+              <div className="mypage-wrap">
+                <div className="mypage-writtenpost">{comment.title}</div>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="mypage-post">
-          <div className="mypage-title"> 작성한 후기</div>
-          {}
+          <div className="mypage-wrap">
+            <div className="mypage-title"> 작성한 후기</div>
+          </div>
+          {currentReviews.map((review, index) => (
+            <div key={index}>
+              <div className="mypage-wrap">
+                <div className="mypage-writtenpost">{review.title}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -7,6 +7,8 @@ import axios from "axios";
 
 export default function Follower() {
   const token = localStorage.getItem("token");
+
+  //followers->FollowerData로 변경
   const [FollowerData, setFollowerData] = useState(null);
   const followers = dummy.followerList;
   useEffect(() => {
@@ -108,7 +110,22 @@ export default function Follower() {
                 />
               </Link>
               <div className="follower-btn">
-                <button>거절</button>
+                <button
+                  onClick={() => {
+                    axios
+                      .patch("https://hyeonjo.shop/api/matching/decline", {
+                        matchingId: followers.matchingId,
+                      })
+                      .then(function (response) {
+                        console.log(response);
+                      })
+                      .catch(function (error) {
+                        console.log(error);
+                      });
+                  }}
+                >
+                  거절
+                </button>
                 <button>수락</button>
               </div>
             </div>

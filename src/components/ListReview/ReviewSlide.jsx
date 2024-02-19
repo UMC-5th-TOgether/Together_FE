@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function ReviewSlide() {
+  const ARRAY = [0, 1, 2, 3, 4];
   var settings = {
     dots: false,
     infinite: true,
@@ -17,12 +18,9 @@ export default function ReviewSlide() {
   };
   return (
     <Slider className="ReviewSlide-container" {...settings}>
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
+      {ARRAY.map((arr, idx) => (
+        <ReviewCard key={idx} />
+      ))}
     </Slider>
   );
 }

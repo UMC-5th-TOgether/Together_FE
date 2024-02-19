@@ -4,13 +4,13 @@ import "../../style/MatchingStyle.css";
 import MailImg from "../../assets/mail icon.png";
 import defaultAvatar from "../../assets/프로필.png";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Matching() {
   const token = localStorage.getItem("token");
   const [MatchingData, setMatchingData] = useState(null);
+
   const location = useLocation();
-  const navigate = useNavigate();
   const matchingInfo = location.state.user;
   const matchingId = matchingInfo.matchingId;
 
@@ -89,7 +89,17 @@ export default function Matching() {
         <div
           className="matching-btn"
           onClick={() => {
-            navigate("/follower");
+            axios
+              .patch("https://hyeonjo.shop/api/matching/accept", {
+                matchingId: matchingId,
+              })
+              .then(function (response) {
+                alert("매칭이 수락되었습니다.");
+                console.log(response.data);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
           }}
         >
           <span>매칭 수락</span> <span>→</span>

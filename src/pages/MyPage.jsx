@@ -16,7 +16,11 @@ export default function MyPage() {
   const ARRAY = [0, 1, 2, 3, 4];
   const postsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(0);
+  const [myPost, setMyPost] = useState(null);
+  const [myComment, setMyComment] = useState(null);
+  const [myReview, setMyReview] = useState(null);
 
+  //////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     const fetchMyInfo = async () => {
       try {
@@ -26,10 +30,10 @@ export default function MyPage() {
           },
         });
 
-        console.log(res.data);
+        // console.log(res.data);
 
         if (res.data.isSuccess) {
-          console.log(res.data.data);
+          // console.log(res.data.data);
           const data = res.data.data;
           setMyInfo(data.memberInfo);
         }
@@ -40,6 +44,79 @@ export default function MyPage() {
 
     fetchMyInfo();
   }, []);
+
+  useEffect(() => {
+    const fetchMyPost = async () => {
+      try {
+        const res = await axios.get("https://hyeonjo.shop/api/myPage/myPost", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(res.data);
+        if (res.data.isSuccess) {
+          // console.log(res.data.data);
+          const data = res.data.data;
+          setMyPost(data.posts);
+          //console.log(myPost);
+        }
+      } catch (error) {
+        console.log("Error fetching My Post", error);
+      }
+    };
+    fetchMyPost();
+  }, []);
+
+  useEffect(() => {
+    const fetchMyComment = async () => {
+      try {
+        const res = await axios.get(
+          "https://hyeonjo.shop/api/myPage/myComment",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(res.data);
+        if (res.data.isSuccess) {
+          console.log(res.data.data);
+          const data = res.data.data;
+          setMyComment(data.comments);
+          console.log(myComment);
+        }
+      } catch (error) {
+        console.log("Error fetching My Comment", error);
+      }
+    };
+    fetchMyComment();
+  }, []);
+
+  useEffect(() => {
+    const fetchMyReview = async () => {
+      try {
+        const res = await axios.get(
+          "https://hyeonjo.shop/api/myPage/myReview",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(res.data);
+        if (res.data.isSuccess) {
+          console.log(res.data.data);
+          const data = res.data.data;
+          setMyReview(data.reviews);
+          console.log(myReview);
+        }
+      } catch (error) {
+        console.log("Error fetching My Review", error);
+      }
+    };
+    fetchMyReview();
+  }, []);
+  ///////////////////////////////////////////////////////////////////////////////////
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -57,11 +134,15 @@ export default function MyPage() {
 
   const indexOfLastPost = (currentPage + 1) * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  //dummy.writtenPosts -> myPost로 변경
   const currentPosts = dummy.writtenPosts.slice(
     indexOfFirstPost,
     indexOfLastPost
   );
+
+  //dummy.writtenComments -> myComment로 변경
   const currentComments = dummy.writtenComments;
+  //dummy.writtenReviews -> myReview로 변경
   const currentReviews = dummy.writtenReviews;
 
   return (
