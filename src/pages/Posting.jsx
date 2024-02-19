@@ -1,10 +1,10 @@
 import axios from "axios";
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import postAuthor from '../assets/post-author.png';
 import postUpload from '../assets/post-upload-button.png';
 import '../style/Posting.css';
-import {Link, useLocation, useNavigate} from 'react-router-dom';
-import {HashTag} from '../elements/HashTag';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { HashTag } from '../elements/HashTag';
 
 export default function Posting() {
   const token = localStorage.getItem('token');
@@ -52,13 +52,13 @@ export default function Posting() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(location.state && location.state.edit){
+    if (location.state && location.state.edit) {
       setIsEdit(true);
     }
   }, []);
 
   useEffect(() => {
-    if(isEdit && location.state.postData){
+    if (isEdit && location.state.postData) {
       setPostData(location.state.postData);
     }
   }, [isEdit]);
@@ -180,23 +180,23 @@ export default function Posting() {
       let res;
       if (isEdit) {
         res = await axios.patch(`https://hyeonjo.shop/api/posts/${postData.id}/edit`,
-            postingData
-            ,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              }
+          postingData
+          ,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
             }
+          }
         );
       } else {
         res = await axios.post("https://hyeonjo.shop/api/posts",
-            postingData
-            ,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              }
+          postingData
+          ,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
             }
+          }
         );
       }
 
@@ -352,29 +352,29 @@ export default function Posting() {
             <div className='posting-person-min-container'>
               <div className="posting-input-wrap" style={{ width: '35px' }}>
                 <input
-                    className="posting-input"
-                    type="text"
-                    value={personMin}
-                    onChange={handlePersonMinChange}
-                    style={{ width: '30px' }} />
+                  className="posting-input"
+                  type="text"
+                  value={personMin}
+                  onChange={handlePersonMinChange}
+                  style={{ width: '30px' }} />
               </div>
             </div>
             <p className="posting-input-p">명</p>
-            { hasRange
+            {hasRange
               ? <>
-                  <div className='posting-person-max-container'>
-                    <span>~</span>
-                    <div className="posting-input-wrap" style={{ width: '35px' }}>
-                      <input
-                          className="posting-input"
-                          type="text"
-                          value={personMax}
-                          onChange={handlePersonMaxChange}
-                          style={{ width: '30px' }} />
-                    </div>
+                <div className='posting-person-max-container'>
+                  <span>~</span>
+                  <div className="posting-input-wrap" style={{ width: '35px' }}>
+                    <input
+                      className="posting-input"
+                      type="text"
+                      value={personMax}
+                      onChange={handlePersonMaxChange}
+                      style={{ width: '30px' }} />
                   </div>
-                  <p className="posting-input-p">명</p>
-                </>
+                </div>
+                <p className="posting-input-p">명</p>
+              </>
               : <></>
             }
             <button id="posting-person-range-button" onClick={() => setHasRange(!hasRange)}>
@@ -400,35 +400,35 @@ export default function Posting() {
 
           <div className="posting-input-title">이미지</div>
           <div
-            className="posting-images-wrap"
-            onClick={isEdit ? null :() => document.getElementById("imageInput").click()}
+            className="matching-images-wrap"
+            onClick={isEdit ? null : () => document.getElementById("imageInput").click()}
           >
             {selectedImages.map((image, index) => (
-              <div key={index} className="posting-image-preview">
+              <div key={index} className="matching-image-preview">
                 {isEdit
-                    ? <></>
-                    : <button className="remove-image-button" onClick={(e) => handleRemoveImage(e, index)}>x</button>
+                  ? <></>
+                  : <button className="remove-image-button" onClick={(e) => handleRemoveImage(e, index)}>x</button>
                 }
-                <img src={image.preview} alt={`Selected ${index + 1}`} className="posting-selected-image" />
+                <img src={image.preview} alt={`Selected ${index + 1}`} className="matching-selected-image" />
               </div>
             ))}
             {isEdit
               ? <></>
               : <>
                 {!selectedImages.length > 0 && (
-                    <label className="posting-image-label">
-                        이미지 추가하기
-                    </label>
+                  <label className="posting-image-label">
+                    이미지 추가하기
+                  </label>
                 )}
-                  <input
-                      id="imageInput"
-                      type="file"
-                      accept="image/*"
-                      multiple
-                      style={{ display: 'none' }}
-                      onChange={handleImageChange}
-                  />
-                </>
+                <input
+                  id="imageInput"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  style={{ display: 'none' }}
+                  onChange={handleImageChange}
+                />
+              </>
             }
           </div>
         </div>
