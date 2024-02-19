@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Client } from "@stomp/stompjs";
 import useWebSocket from "../../util/useWebSocket"; // WebSocket 연결을 관리하는 커스텀 훅
 import profileImage from "../../assets/프로필_blue.png"; // 프로필 이미지 경로
 import { fetchMessages, saveMessage } from "../../util/ChatApi"; // 채팅 메시지 관련 API 호출
@@ -40,6 +39,13 @@ const ChatRoom = ({ chatRoomId }) => {
     }
   }, [client, isConnected, receiverId, chatRoomId]); // chatRoomId가 변경될 때마다 효과 실행
 
+  // Status를 나타내는 문자열 상수
+  const Status = {
+    JOIN: "JOIN",
+    MESSAGE: "MESSAGE",
+    LEAVE: "LEAVE",
+  };
+
   // 새로운 메시지를 전송하는 함수
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -51,11 +57,12 @@ const ChatRoom = ({ chatRoomId }) => {
       senderId: Number(senderId),
       receiverId: Number(receiverId),
       chatRoomId,
+      status: Status.MESSAGE, // 여기에서 메시지의 상태를 설정
     };
 
     if (client && isConnected) {
       client.publish({
-        destination: "/pub/chat/message",
+        destination: "/app/message",
         body: JSON.stringify(messagePayload),
       });
     }
