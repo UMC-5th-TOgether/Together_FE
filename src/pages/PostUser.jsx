@@ -198,7 +198,7 @@ export default function PostUser() {
                                 <span className="posting-nickname">
                                     {comments.writer.nickname} ({comments.writer.gender === "FEMALE" ? '여성' : '남성'}/{comments.writer.age})
                                 </span>
-                                <span className="posting-date-created">2024.02.14 16:35{formatTime(comments.createdAt)}</span>
+                                <span className="posting-date-created">{formatTime(comments.createdAt)}</span>
                             </div>
                         </div>
                     </div>
