@@ -5,7 +5,7 @@ import profilePicture from "../assets/프로필.png";
 import BannerImage from "../assets/friend-Profile.png";
 import { FaStar } from "react-icons/fa";
 import "../style/FriendStyle.css";
-import { dummy } from "../data/MemberDummy";
+import { dummy } from '../MemberDummy';
 import { PostStatus } from "../components/PostStatus";
 import axios from "axios";
 
@@ -13,8 +13,9 @@ export default function FriendProfile() {
   const { nickname, gender, age, residence, review, introduction } =
     dummy.results[0];
   const location = useLocation();
-  const friendInfo = location.state.user;
-  const friendId = friendInfo.friendId;
+  const { friendId } = location.state || {};
+  // console.log(friendInfo)
+  // const friendId = friendInfo ? friendInfo.friendId : null;
 
   // friendInfo -> friendProfile로 모두 변경해야함.
   const [friendProfile, setFrindProfile] = useState(null);
@@ -63,6 +64,8 @@ export default function FriendProfile() {
     indexOfFirstPost,
     indexOfLastPost
   );
+  const currentComments = dummy.writtenComments;
+  const currentReviews = dummy.writtenReviews;
 
   return (
     <div className="my-page">
@@ -76,17 +79,18 @@ export default function FriendProfile() {
             src={profilePicture}
             alt="Profile"
           />
-          <div className="mypage-profile">
-            <span className="frined-profile-nickname">
-              {friendInfo.nickname} (
-              {friendInfo.gender === "FEMALE" ? "여성" : "남성"} /{" "}
-              {friendInfo.age})
-            </span>
-            <div className="frined-profile-residence">{residence}</div>
-            <span className="friend-profile-introduction">
-              "{friendInfo.profileMessage}"
-            </span>
-          </div>
+          {friendProfile && (
+            <div className="mypage-profile">
+              <span className="frined-profile-nickname">
+                {friendProfile.nickname} (
+                {friendProfile.gender === "FEMALE" ? "여성" : "남성"} / {friendProfile.age})
+              </span>
+              <div className="frined-profile-residence">{friendProfile.residence}</div>
+              <span className="friend-profile-introduction">
+                "{friendProfile.profileMessage}"
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="friend-profile-detail">
@@ -152,19 +156,29 @@ export default function FriendProfile() {
         </div>
 
         <div className="mypage-post">
-          <div className="mypage-title"> 작성한 댓글</div>
-          {/* {currentComments.map((comment, index) => (
-                        <div key={index}>
-                            <div className="mypage-wrap">
-                                {comment.title}
-                            </div>
-                        </div>
-                    ))} */}
+          <div className="mypage-wrap">
+            <div className="mypage-title"> 작성한 댓글</div>
+          </div>
+          {currentComments.map((comment, index) => (
+            <div key={index}>
+              <div className="mypage-wrap">
+                <div className="mypage-writtenpost">{comment.title}</div>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="mypage-post">
-          <div className="mypage-title"> 작성한 후기</div>
-          {}
+          <div className="mypage-wrap">
+            <div className="mypage-title"> 작성한 후기</div>
+          </div>
+          {currentReviews.map((comment, index) => (
+            <div key={index}>
+              <div className="mypage-wrap">
+                <div className="mypage-writtenpost">{comment.title}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

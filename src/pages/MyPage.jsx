@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-import matchingSend from '../assets/my-page.png';
+import myPage from '../assets/my-page.png';
 import profilePicture from '../assets/profile.png';
 import { FaStar } from 'react-icons/fa';
 import '../style/MyPage.css';
@@ -78,7 +78,7 @@ export default function MyPage() {
     return (
         <div className="my-page">
             <div className="banner-image-container">
-                <img className="banner-image" src={matchingSend} alt="Posting img" />
+                <img className="banner-image" src={myPage} alt="Posting img" />
             </div>
 
             {myInfo && (

@@ -9,7 +9,7 @@ export default function FriendFollower() {
         <img
           src={BannerImg}
           alt="Banner"
-          style={{ width: "100%", height: "400px" }}
+          style={{ width: "100%" }}
         />
       </header>
       <Follower />

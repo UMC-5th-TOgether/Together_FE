@@ -251,7 +251,7 @@ export default function PostUser() {
                             </Link>
                             {postData.writer.isWriter
                                 ? <></>
-                                : <Link to="/matching">
+                                : <Link to="/matching" state={{ postDataWriter: postData.writer }}>
                                     <img className="posting-bottom-button" src={matching} alt="matching" />
                                 </Link>
                             }
