@@ -53,7 +53,6 @@
   margin: 10px 10px 45px 10px;
 }
 
-
 .mypage-post {
   width: 400px;
   height: 400px;
@@ -166,7 +165,8 @@
   height: 24px;
 }
 
-.previousLabel, .nextLabel {
+.previousLabel,
+.nextLabel {
   border: none;
   border-radius: 50%;
   width: 44px;
@@ -179,12 +179,13 @@
   cursor: pointer;
 }
 
-.previousLabel_first, .nextLabel_last {
+.previousLabel_first,
+.nextLabel_last {
   border: none;
   border-radius: 50%;
   width: 44px;
   height: 44px;
-  background: #F3F3F3;
+  background: #f3f3f3;
   padding: 0;
   display: flex;
   align-items: center;

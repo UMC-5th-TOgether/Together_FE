@@ -21,10 +21,13 @@ const UserProfile = ({ image, nickname, profileMessage, gender, age }) => {
           ({gender === "FEMALE" ? "여성" : "남성"}/{age})
         </p>
       </div>
-      <div className="friend-profileMessage">"{profileMessage}"</div>
+      <div className={profileMessage === null ? 'friend-profileMessage no-message' : 'friend-profileMessage'}>
+        {profileMessage === null ? '프로필 메세지가 없습니다' : profileMessage}
+      </div>
     </div>
   );
 };
+
 const Friend = () => {
   const token = localStorage.getItem("token");
 
